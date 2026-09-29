@@ -64,7 +64,7 @@ When the custom domain is live, update `SITE_URL` in `scripts/build-blog.mjs` an
 - [RemitOtter](https://solana-meme-bank.preview.emergentagent.com): Solana meme-coin platform demo (Next.js 15, MongoDB, buyback-and-burn engine)
 - [TS Task Control](https://ts-task-control-ui.vercel.app/): operations dashboard UI system
 - [Harbor Reach Studio OS](https://harbor-reach-studio-os-ui.vercel.app/): production operating system UI for a game studio (product design)
-- [BoyaxDev Marketplace](https://vincentinferido-a11y.github.io/boyaxdev-marketplace-ui/): website marketplace UI system
+- [BoyaxDev Marketplace](https://boyaxdev-marketplace-ui.vercel.app/): website marketplace UI system
 - [SkinStack](https://skinstack-ui.vercel.app/): skincare review site UI system
 
 ## Licensing & access
