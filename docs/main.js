@@ -542,6 +542,20 @@ function initBooking() {
     })
   );
 
+  // Wallet shortcuts: jump to the Web3 live demo and briefly highlight it.
+  $$('a[href="#web3-demo"]').forEach((a) =>
+    a.addEventListener("click", () => {
+      const demo = $("#web3-demo");
+      if (!demo) return;
+      setTimeout(() => {
+        demo.style.transition = "box-shadow .4s";
+        demo.style.boxShadow = "0 0 0 2px #4fdbc8, 0 0 28px rgba(79,219,200,.35)";
+        demo.focus({ preventScroll: true });
+        setTimeout(() => (demo.style.boxShadow = ""), 1600);
+      }, reducedMotion ? 0 : 500);
+    })
+  );
+
   // "Estimate this" on a service card: preselect the estimator and jump there.
   $$("[data-est-preset]").forEach((btn) =>
     btn.addEventListener("click", () => {

@@ -39,6 +39,7 @@
 <a class="nav-link" href="#contact">Contact</a>
 </nav>
 <div class="flex items-center gap-space-sm shrink-0">
+<a href="#web3-demo" data-web3-demo-link title="Try the live Web3 demo" aria-label="Try the live Web3 demo" class="hidden sm:flex items-center justify-center w-9 h-9 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">account_balance_wallet</span></a>
 <button type="button" data-book-call aria-label="Book a free call" class="flex items-center gap-space-xs px-2.5 sm:px-space-md py-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[18px] sm:text-[16px]" aria-hidden="true">event_available</span><span class="hidden sm:inline">Book a free call</span></button>
 <button id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav" class="xl:hidden p-2 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span></button>
 </div>
@@ -52,6 +53,7 @@
 <a class="nav-link p-2 rounded bg-surface-container" href="#reviews">Reviews</a>
 <a class="nav-link p-2 rounded bg-surface-container" href="#about">About</a>
 <a class="nav-link p-2 rounded bg-surface-container" href="#contact">Contact</a>
+<a class="p-2 rounded bg-surface-container text-on-surface-variant hover:text-primary inline-flex items-center gap-1" href="#web3-demo"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">account_balance_wallet</span>Web3 demo</a>
 </div>
 </nav>
 </header>
@@ -253,7 +255,7 @@
 <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Web3 & crypto products</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">For crypto teams: token sites, dApps and wallet features that newcomers can actually use.</p>
 <p class="font-label-sm text-label-sm text-outline">Token launch · dApp · wallet login</p>
-<button type="button" data-est-preset="web3" data-est-features="wallet" class="self-start inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline"><span>Estimate this</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></button>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1"><button type="button" data-est-preset="web3" data-est-features="wallet" class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline"><span>Estimate this</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></button><a href="#web3-demo" class="inline-flex items-center gap-1 font-label-md text-label-md text-tertiary hover:underline"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">account_balance_wallet</span><span>Try the live demo</span></a></div>
 </article>
 </div>
 <div class="mt-space-lg p-space-lg rounded-xl bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
@@ -588,7 +590,7 @@
 <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Web3 &amp; Smart Contracts</h2>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">I'm bringing my full-stack and UX skills to the EVM. The goal is dApps that are secure on-chain and easy to use for people who have never touched a wallet.</p>
 </div>
-<div class="mb-space-lg p-space-md rounded-xl bg-surface-container-low ring-1 ring-tertiary/20 flex flex-col lg:flex-row lg:items-center justify-between gap-space-md" id="web3-demo">
+<div class="mb-space-lg scroll-mt-24 p-space-md rounded-xl bg-surface-container-low ring-1 ring-tertiary/20 flex flex-col lg:flex-row lg:items-center justify-between gap-space-md" id="web3-demo" tabindex="-1">
 <div class="flex flex-col gap-1">
 <span class="inline-flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary uppercase tracking-wider"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>Live demo · try it</span>
 <p class="font-body-sm text-body-sm text-on-surface-variant max-w-xl">Pick a blockchain to stream live network data, then connect your wallet (read-only: no signatures, no payments). The same building blocks I use in client dApps.</p>
