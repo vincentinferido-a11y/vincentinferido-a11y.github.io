@@ -62,10 +62,10 @@ When the custom domain is live, update `SITE_URL` in `scripts/build-blog.mjs` an
 
 - [Overland Ready](https://overland-ready-eta.vercel.app): Next.js 16 and Sanity CMS gear review site
 - [RemitOtter](https://solana-meme-bank.preview.emergentagent.com): Solana meme-coin platform demo (Next.js 15, MongoDB, buyback-and-burn engine)
-- [TS Task Control](https://vincentinferido-a11y.github.io/ts-task-control-ui/): operations dashboard UI system
-- [Harbor Reach Studio OS](https://vincentinferido-a11y.github.io/harbor-reach-studio-os-ui/): production operating system UI for a game studio (product design)
+- [TS Task Control](https://ts-task-control-ui.vercel.app/): operations dashboard UI system
+- [Harbor Reach Studio OS](https://harbor-reach-studio-os-ui.vercel.app/): production operating system UI for a game studio (product design)
 - [BoyaxDev Marketplace](https://vincentinferido-a11y.github.io/boyaxdev-marketplace-ui/): website marketplace UI system
-- [SkinStack](https://vincentinferido-a11y.github.io/skinstack-ui/): skincare review site UI system
+- [SkinStack](https://skinstack-ui.vercel.app/): skincare review site UI system
 
 ## Licensing & access
 
