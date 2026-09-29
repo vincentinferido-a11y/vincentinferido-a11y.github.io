@@ -904,7 +904,7 @@
 <div class="flex flex-col gap-space-xs pb-space-lg">
 <span class="font-label-md text-label-md text-tertiary tracking-wider uppercase">// 07. Project Estimator</span>
 <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Estimate Your Project</h2>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Pick what you need and get an instant ballpark for cost and timeline. It&#39;s free, there&#39;s no sign-up, and you can send the estimate straight to me for a fixed quote.</p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Pick what you need and get an instant ballpark for effort and timeline. It&#39;s free, there&#39;s no sign-up, and you can send the estimate straight to me for a fixed-price quote.</p>
 </div>
 <form id="estimator" class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start" novalidate>
 <!-- Inputs -->
@@ -940,7 +940,7 @@
 <legend class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-space-sm">5 · Timeline</legend>
 <div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
 <label class="flex items-start gap-2 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest"><input class="accent-tertiary mt-1" type="radio" name="timeline" value="standard" checked/><span><span class="text-on-surface font-semibold">Standard</span><br/><span class="text-outline">Best value, normal pace</span></span></label>
-<label class="flex items-start gap-2 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest"><input class="accent-tertiary mt-1" type="radio" name="timeline" value="rush"/><span><span class="text-on-surface font-semibold">Rush</span><br/><span class="text-outline">Priority delivery (+25%)</span></span></label>
+<label class="flex items-start gap-2 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest"><input class="accent-tertiary mt-1" type="radio" name="timeline" value="rush"/><span><span class="text-on-surface font-semibold">Rush</span><br/><span class="text-outline">Priority delivery, shorter timeline</span></span></label>
 </div>
 </fieldset>
 </div>
@@ -949,21 +949,21 @@
 <aside class="lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-space-md p-space-lg rounded-xl bg-surface-container-lowest shadow-2xl" aria-labelledby="est-result-title">
 <div class="flex items-center justify-between">
 <span id="est-result-title" class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Your ballpark estimate</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-outline">USD</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-outline">Effort</span>
 </div>
 <div aria-live="polite" aria-atomic="true">
 <p class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-lg md:text-headline-lg font-bold text-on-surface" id="est-cost">—</p>
 <p class="font-body-sm text-body-sm text-on-surface-variant" id="est-summary">Choose a project type to begin.</p>
 </div>
 <div class="grid grid-cols-2 gap-space-sm">
-<div class="p-space-sm rounded bg-surface-container-low"><span class="font-label-sm text-label-sm text-outline block">Estimated effort</span><span class="font-headline-sm text-headline-sm font-bold text-primary" id="est-hours">—</span></div>
+<div class="p-space-sm rounded bg-surface-container-low"><span class="font-label-sm text-label-sm text-outline block">Pricing</span><span class="font-headline-sm text-headline-sm font-bold text-primary" id="est-hours">—</span></div>
 <div class="p-space-sm rounded bg-surface-container-low"><span class="font-label-sm text-label-sm text-outline block">Estimated timeline</span><span class="font-headline-sm text-headline-sm font-bold text-secondary" id="est-weeks">—</span></div>
 </div>
 <ul class="font-body-sm text-body-sm text-on-surface-variant space-y-1" id="est-includes"></ul>
 <button type="button" id="est-send" class="w-full h-12 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-all flex items-center justify-center gap-space-xs hover:shadow-[0_0_24px_rgba(79,219,200,0.4)]">
-<span class="material-symbols-outlined text-[18px]" aria-hidden="true">request_quote</span><span>Send this estimate &amp; get a fixed quote</span>
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">request_quote</span><span>Send this estimate &amp; get a quote</span>
 </button>
-<p class="font-label-sm text-label-sm text-outline">Ballpark only, not a binding quote. Your final price is fixed after a free 30-minute discovery call, based on your exact scope. Hosting, third-party services and smart-contract audits are billed separately.</p>
+<p class="font-label-sm text-label-sm text-outline">Ballpark only. After a free 30-minute discovery call you get a fixed-price quote based on your exact scope. Hosting, third-party services and smart-contract audits are billed separately.</p>
 </aside>
 </form>
 </section>

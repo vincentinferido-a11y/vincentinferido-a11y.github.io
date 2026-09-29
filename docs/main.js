@@ -21,7 +21,8 @@ const CONFIG = {
   // Project cost estimator (section #estimate). All prices in USD.
   // estimate = (base + screens x perScreen + features) x design x timeline x hourlyRate
   estimator: {
-    hourlyRate: 30,
+    hourlyRate: 25,
+    showPrices: false, // false = visitors see hours and timeline only; pricing is shared after the discovery call
     hoursPerWeek: 30, // focused hours per week used for the timeline estimate
     rangeLow: 0.85, // shown range around the point estimate
     rangeHigh: 1.2,
@@ -452,8 +453,9 @@ function initEstimator() {
     $$('input[name="design"]').forEach((i) => (i.disabled = type.designOnly));
 
     $("#est-screens-out").textContent = screens;
-    $("#est-cost").textContent = `${usd(low)} – ${usd(high)}`;
-    $("#est-hours").textContent = `${latestEstimate.hoursLow}–${latestEstimate.hoursHigh} h`;
+    const hoursText = `${latestEstimate.hoursLow}–${latestEstimate.hoursHigh} h`;
+    $("#est-cost").textContent = E.showPrices ? `${usd(low)} – ${usd(high)}` : `${latestEstimate.hoursLow}–${latestEstimate.hoursHigh} hours`;
+    $("#est-hours").textContent = E.showPrices ? hoursText : "Fixed quote";
     $("#est-weeks").textContent = weeks === 1 ? "~1 week" : `~${weeks} weeks`;
     $("#est-summary").textContent = `${type.label}, ${screens} ${screens === 1 ? "screen" : "screens"}` +
       (features.length ? `, ${features.length} feature${features.length > 1 ? "s" : ""}` : "") +
@@ -478,10 +480,12 @@ function initEstimator() {
     const domain = { web3: "defi", design: "ux", system: "system" }[est.type.id] || "fullstack";
     const domainInput = $(`#project-form input[name="domain"][value="${domain}"]`);
     if (domainInput) domainInput.checked = true;
-    const mid = (est.low + est.high) / 2;
-    const budget = mid < 1000 ? "under-1k" : mid < 5000 ? "1k-5k" : mid < 15000 ? "5k-15k" : "15k+";
-    const budgetInput = $(`#project-form input[name="budget"][value="${budget}"]`);
-    if (budgetInput) budgetInput.checked = true;
+    if (E.showPrices) {
+      const mid = (est.low + est.high) / 2;
+      const budget = mid < 1000 ? "under-1k" : mid < 5000 ? "1k-5k" : mid < 15000 ? "5k-15k" : "15k+";
+      const budgetInput = $(`#project-form input[name="budget"][value="${budget}"]`);
+      if (budgetInput) budgetInput.checked = true;
+    }
     const msg = $("#message");
     if (msg) {
       msg.value =
@@ -490,7 +494,9 @@ function initEstimator() {
         (est.features.length ? `- Features: ${est.features.map((f) => f.label).join(", ")}\n` : "") +
         (est.type.designOnly ? "" : `- Design: ${est.designProvided ? "I have designs" : "Design it for me"}\n`) +
         `- Timeline: ${est.rush ? "Rush" : "Standard"}\n` +
-        `- Ballpark: ${usd(est.low)} – ${usd(est.high)}, ~${est.weeks} week${est.weeks > 1 ? "s" : ""}\n\n` +
+        (E.showPrices
+          ? `- Ballpark: ${usd(est.low)} – ${usd(est.high)}, ~${est.weeks} week${est.weeks > 1 ? "s" : ""}\n\n`
+          : `- Estimated effort: ${est.hoursLow}–${est.hoursHigh} hours, ~${est.weeks} week${est.weeks > 1 ? "s" : ""}\n\n`) +
         `About my project:\n`;
     }
     $("#contact")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
