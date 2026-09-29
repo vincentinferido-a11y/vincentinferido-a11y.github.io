@@ -18,6 +18,35 @@ const CONFIG = {
     // Non-EVM: shows live TPS + slot instead of gas + block, and connects Solana wallets (Phantom, Solflare)
     { id: "solana", type: "solana", name: "Solana", color: "#14F195", rpcs: ["https://solana-rpc.publicnode.com"], symbol: "SOL", explorer: "https://solscan.io" },
   ],
+  // Project cost estimator (section #estimate). All prices in USD.
+  // estimate = (base + screens x perScreen + features) x design x timeline x hourlyRate
+  estimator: {
+    hourlyRate: 30,
+    hoursPerWeek: 30, // focused hours per week used for the timeline estimate
+    rangeLow: 0.85, // shown range around the point estimate
+    rangeHigh: 1.2,
+    rushMultiplier: 1.25,
+    providedDesignMultiplier: 0.8, // client supplies finished designs
+    types: [
+      { id: "landing", label: "Landing page / marketing site", icon: "web", base: 12, perScreen: 6, designOnly: false },
+      { id: "webapp", label: "Web app / SaaS MVP", icon: "apps", base: 60, perScreen: 10, designOnly: false },
+      { id: "system", label: "Business system / CRM / dashboard", icon: "dashboard", base: 70, perScreen: 11, designOnly: false },
+      { id: "web3", label: "Web3 dApp / token platform", icon: "token", base: 70, perScreen: 10, designOnly: false },
+      { id: "design", label: "UI/UX design + design system only", icon: "brush", base: 16, perScreen: 5, designOnly: true },
+    ],
+    features: [
+      { id: "auth", label: "User accounts & roles", hours: 20 },
+      { id: "admin", label: "Admin dashboard", hours: 30 },
+      { id: "payments", label: "Payments (Stripe)", hours: 20 },
+      { id: "cms", label: "Editable content (CMS)", hours: 16 },
+      { id: "integrations", label: "Third-party integrations / API", hours: 20 },
+      { id: "realtime", label: "Real-time updates & notifications", hours: 24 },
+      { id: "ai", label: "AI features (chat, generation)", hours: 24 },
+      { id: "wallet", label: "Crypto wallet connect", hours: 12 },
+      { id: "contract", label: "Smart contract (Solidity)", hours: 40 },
+      { id: "i18n", label: "Multiple languages", hours: 12 },
+    ],
+  },
   roles: [
     "Full-Stack Product Builder",
     "CRM & Business Systems Developer",
@@ -371,7 +400,106 @@ function initWallet() {
   render();
 }
 
-// --- 6. Contact form -----------------------------------------------------
+// --- 6. Project cost estimator -------------------------------------------
+let latestEstimate = null;
+
+function initEstimator() {
+  const form = $("#estimator");
+  if (!form) return;
+  const E = CONFIG.estimator;
+  const usd = (n) => "$" + (Math.round(n / 50) * 50).toLocaleString("en-US");
+
+  $("#est-types").innerHTML = E.types
+    .map(
+      (t, i) => `<label class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-high cursor-pointer hover:bg-surface-container-highest has-[:checked]:ring-1 has-[:checked]:ring-tertiary transition-colors">
+        <input class="accent-tertiary" type="radio" name="type" value="${t.id}"${i === 1 ? " checked" : ""}/>
+        <span class="material-symbols-outlined text-[20px] text-tertiary" aria-hidden="true">${t.icon}</span>
+        <span class="font-body-sm text-body-sm text-on-surface">${t.label}</span></label>`
+    )
+    .join("");
+  $("#est-features").innerHTML = E.features
+    .map(
+      (f) => `<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest font-body-sm text-body-sm text-on-surface">
+        <input class="accent-primary" type="checkbox" name="feature" value="${f.id}"/><span>${f.label}</span></label>`
+    )
+    .join("");
+
+  const compute = () => {
+    const data = new FormData(form);
+    const type = E.types.find((t) => t.id === data.get("type")) || E.types[0];
+    const screens = Number(data.get("screens")) || 1;
+    const featureIds = type.designOnly ? [] : data.getAll("feature");
+    const features = E.features.filter((f) => featureIds.includes(f.id));
+    const designProvided = !type.designOnly && data.get("design") === "provided";
+    const rush = data.get("timeline") === "rush";
+
+    let hours = type.base + screens * type.perScreen + features.reduce((s, f) => s + f.hours, 0);
+    if (designProvided) hours *= E.providedDesignMultiplier;
+    const effortHours = hours;
+    if (rush) hours *= E.rushMultiplier;
+
+    const low = hours * E.rangeLow * E.hourlyRate;
+    const high = hours * E.rangeHigh * E.hourlyRate;
+    let weeks = Math.max(1, Math.ceil((effortHours * E.rangeHigh) / E.hoursPerWeek));
+    if (rush) weeks = Math.max(1, Math.ceil(weeks * 0.7));
+
+    latestEstimate = { type, screens, features, designProvided, rush, low, high, weeks,
+      hoursLow: Math.round(effortHours * E.rangeLow), hoursHigh: Math.round(effortHours * E.rangeHigh) };
+
+    // Features and design choice don't apply to design-only projects
+    $("#est-features-set").classList.toggle("opacity-40", type.designOnly);
+    $$("#est-features input").forEach((i) => (i.disabled = type.designOnly));
+    $$('input[name="design"]').forEach((i) => (i.disabled = type.designOnly));
+
+    $("#est-screens-out").textContent = screens;
+    $("#est-cost").textContent = `${usd(low)} – ${usd(high)}`;
+    $("#est-hours").textContent = `${latestEstimate.hoursLow}–${latestEstimate.hoursHigh} h`;
+    $("#est-weeks").textContent = weeks === 1 ? "~1 week" : `~${weeks} weeks`;
+    $("#est-summary").textContent = `${type.label}, ${screens} ${screens === 1 ? "screen" : "screens"}` +
+      (features.length ? `, ${features.length} feature${features.length > 1 ? "s" : ""}` : "") +
+      (rush ? ", rush delivery" : "") + ".";
+    const includes = type.designOnly
+      ? ["UX flows and wireframes", "High-fidelity UI in Figma", "Design system and tokens", "Clickable prototype and developer handoff"]
+      : [designProvided ? "Build from your designs" : "UX, UI and design system", "Responsive front end (Next.js, TypeScript)", "Back end, database and deployment", "Testing, handoff and 2 weeks of fixes"];
+    $("#est-includes").innerHTML = includes
+      .map((t) => `<li class="flex items-start gap-2"><span class="material-symbols-outlined text-[16px] text-tertiary" aria-hidden="true">check_circle</span><span>${t}</span></li>`)
+      .join("");
+  };
+
+  form.addEventListener("input", compute);
+  form.addEventListener("change", compute);
+  form.addEventListener("submit", (e) => e.preventDefault());
+  compute();
+
+  // Hand the estimate to the contact form
+  $("#est-send")?.addEventListener("click", () => {
+    const est = latestEstimate;
+    if (!est) return;
+    const domain = { web3: "defi", design: "ux", system: "system" }[est.type.id] || "fullstack";
+    const domainInput = $(`#project-form input[name="domain"][value="${domain}"]`);
+    if (domainInput) domainInput.checked = true;
+    const mid = (est.low + est.high) / 2;
+    const budget = mid < 1000 ? "under-1k" : mid < 5000 ? "1k-5k" : mid < 15000 ? "5k-15k" : "15k+";
+    const budgetInput = $(`#project-form input[name="budget"][value="${budget}"]`);
+    if (budgetInput) budgetInput.checked = true;
+    const msg = $("#message");
+    if (msg) {
+      msg.value =
+        `Estimate from your site:\n` +
+        `- Project: ${est.type.label}\n- Screens: ${est.screens}\n` +
+        (est.features.length ? `- Features: ${est.features.map((f) => f.label).join(", ")}\n` : "") +
+        (est.type.designOnly ? "" : `- Design: ${est.designProvided ? "I have designs" : "Design it for me"}\n`) +
+        `- Timeline: ${est.rush ? "Rush" : "Standard"}\n` +
+        `- Ballpark: ${usd(est.low)} – ${usd(est.high)}, ~${est.weeks} week${est.weeks > 1 ? "s" : ""}\n\n` +
+        `About my project:\n`;
+    }
+    $("#contact")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+    setTimeout(() => { msg?.focus(); msg?.setSelectionRange(msg.value.length, msg.value.length); }, reducedMotion ? 0 : 600);
+    toast("Estimate added to the contact form. Add a few details and send.");
+  });
+}
+
+// --- 7. Contact form -----------------------------------------------------
 function initForm() {
   const form = $("#project-form");
   const status = $("#form-status");
@@ -420,4 +548,5 @@ initNav();
 initChainPicker();
 initChainTelemetry();
 initWallet();
+initEstimator();
 initForm();

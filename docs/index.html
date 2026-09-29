@@ -34,7 +34,8 @@
 <a class="nav-link" href="#fullstack">04.Full-Stack</a>
 <a class="nav-link" href="#skills">05.Specs</a>
 <a class="nav-link" href="#about">06.About</a>
-<a class="nav-link" href="#contact">07.Contact</a>
+<a class="nav-link" href="#estimate">07.Estimate</a>
+<a class="nav-link" href="#contact">08.Contact</a>
 </nav>
 <div class="flex items-center gap-space-sm shrink-0">
 <div class="relative" id="chain-picker">
@@ -54,7 +55,8 @@
 <a class="nav-link p-2 rounded bg-surface-container" href="#fullstack">04.Full-Stack</a>
 <a class="nav-link p-2 rounded bg-surface-container" href="#skills">05.Specs</a>
 <a class="nav-link p-2 rounded bg-surface-container" href="#about">06.About</a>
-<a class="nav-link p-2 rounded bg-surface-container" href="#contact">07.Contact</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#estimate">07.Estimate</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#contact">08.Contact</a>
 </div>
 </nav>
 </header>
@@ -896,6 +898,76 @@
 </div>
 </section>
 <!-- ========================================== -->
+<!-- SECTION: PROJECT COST ESTIMATOR -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="estimate">
+<div class="flex flex-col gap-space-xs pb-space-lg">
+<span class="font-label-md text-label-md text-tertiary tracking-wider uppercase">// 07. Project Estimator</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Estimate Your Project</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Pick what you need and get an instant ballpark for cost and timeline. It&#39;s free, there&#39;s no sign-up, and you can send the estimate straight to me for a fixed quote.</p>
+</div>
+<form id="estimator" class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start" novalidate>
+<!-- Inputs -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<fieldset class="p-space-md rounded-xl bg-surface-container-low">
+<legend class="sr-only">Project type</legend>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-space-sm" aria-hidden="true">1 · What are we building?</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm" id="est-types"></div>
+</fieldset>
+<fieldset class="p-space-md rounded-xl bg-surface-container-low">
+<legend class="sr-only">Size</legend>
+<div class="flex items-center justify-between pb-space-sm">
+<label for="est-screens" class="font-label-sm text-label-sm text-outline uppercase tracking-wider">2 · How many pages or screens?</label>
+<output id="est-screens-out" for="est-screens" class="font-headline-sm text-headline-sm font-bold text-primary">5</output>
+</div>
+<input id="est-screens" name="screens" type="range" min="1" max="40" value="5" class="w-full accent-primary" aria-describedby="est-screens-hint"/>
+<p id="est-screens-hint" class="font-label-sm text-label-sm text-outline pt-1">Count each unique page or screen, for example home, dashboard, settings and checkout.</p>
+</fieldset>
+<fieldset class="p-space-md rounded-xl bg-surface-container-low" id="est-features-set">
+<legend class="sr-only">Features</legend>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-space-sm" aria-hidden="true">3 · Features you need</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs" id="est-features"></div>
+</fieldset>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<fieldset class="p-space-md rounded-xl bg-surface-container-low">
+<legend class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-space-sm">4 · Design</legend>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<label class="flex items-start gap-2 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest"><input class="accent-secondary mt-1" type="radio" name="design" value="full" checked/><span><span class="text-on-surface font-semibold">Design it for me</span><br/><span class="text-outline">UX, UI and a design system in Figma</span></span></label>
+<label class="flex items-start gap-2 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest"><input class="accent-secondary mt-1" type="radio" name="design" value="provided"/><span><span class="text-on-surface font-semibold">I already have designs</span><br/><span class="text-outline">You build from my Figma files</span></span></label>
+</div>
+</fieldset>
+<fieldset class="p-space-md rounded-xl bg-surface-container-low">
+<legend class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-space-sm">5 · Timeline</legend>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<label class="flex items-start gap-2 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest"><input class="accent-tertiary mt-1" type="radio" name="timeline" value="standard" checked/><span><span class="text-on-surface font-semibold">Standard</span><br/><span class="text-outline">Best value, normal pace</span></span></label>
+<label class="flex items-start gap-2 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest"><input class="accent-tertiary mt-1" type="radio" name="timeline" value="rush"/><span><span class="text-on-surface font-semibold">Rush</span><br/><span class="text-outline">Priority delivery (+25%)</span></span></label>
+</div>
+</fieldset>
+</div>
+</div>
+<!-- Result -->
+<aside class="lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-space-md p-space-lg rounded-xl bg-surface-container-lowest shadow-2xl" aria-labelledby="est-result-title">
+<div class="flex items-center justify-between">
+<span id="est-result-title" class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Your ballpark estimate</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-outline">USD</span>
+</div>
+<div aria-live="polite" aria-atomic="true">
+<p class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-lg md:text-headline-lg font-bold text-on-surface" id="est-cost">—</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="est-summary">Choose a project type to begin.</p>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded bg-surface-container-low"><span class="font-label-sm text-label-sm text-outline block">Estimated effort</span><span class="font-headline-sm text-headline-sm font-bold text-primary" id="est-hours">—</span></div>
+<div class="p-space-sm rounded bg-surface-container-low"><span class="font-label-sm text-label-sm text-outline block">Estimated timeline</span><span class="font-headline-sm text-headline-sm font-bold text-secondary" id="est-weeks">—</span></div>
+</div>
+<ul class="font-body-sm text-body-sm text-on-surface-variant space-y-1" id="est-includes"></ul>
+<button type="button" id="est-send" class="w-full h-12 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-all flex items-center justify-center gap-space-xs hover:shadow-[0_0_24px_rgba(79,219,200,0.4)]">
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">request_quote</span><span>Send this estimate &amp; get a fixed quote</span>
+</button>
+<p class="font-label-sm text-label-sm text-outline">Ballpark only, not a binding quote. Your final price is fixed after a free 30-minute discovery call, based on your exact scope. Hosting, third-party services and smart-contract audits are billed separately.</p>
+</aside>
+</form>
+</section>
+<!-- ========================================== -->
 <!-- SECTION 10: INTERACTIVE CONTACT TERMINAL -->
 <!-- ========================================== -->
 <section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="contact">
@@ -945,18 +1017,22 @@
 </div>
 <div class="flex flex-col gap-1">
 <label class="font-label-sm text-label-sm text-outline">PROJECT DOMAIN</label>
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs font-label-sm text-label-sm">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-space-xs font-label-sm text-label-sm">
 <label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
-<input checked="" class="accent-tertiary" name="domain" type="radio" value="defi"/>
-<span>Web3 / DeFi</span>
+<input checked="" class="accent-tertiary" name="domain" type="radio" value="system"/>
+<span>Business system / CRM</span>
+</label>
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input class="accent-primary" name="domain" type="radio" value="fullstack"/>
+<span>Web app / Full-Stack</span>
+</label>
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input class="accent-tertiary" name="domain" type="radio" value="defi"/>
+<span>Web3 / dApp</span>
 </label>
 <label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
 <input class="accent-secondary" name="domain" type="radio" value="ux"/>
 <span>UX / Design</span>
-</label>
-<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
-<input class="accent-primary" name="domain" type="radio" value="fullstack"/>
-<span>Full-Stack</span>
 </label>
 <label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
 <input class="accent-primary" name="domain" type="radio" value="advisory"/>
@@ -965,19 +1041,23 @@
 </div>
 </div>
 <div class="flex flex-col gap-1">
-<label class="font-label-sm text-label-sm text-outline">ESTIMATED SCOPE BUDGET</label>
-<div class="grid grid-cols-3 gap-space-xs font-label-sm text-label-sm">
+<div class="flex items-center justify-between gap-space-sm"><label class="font-label-sm text-label-sm text-outline">BUDGET RANGE (USD)</label><a href="#estimate" class="font-label-sm text-label-sm text-tertiary hover:underline">Not sure? Estimate it →</a></div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs font-label-sm text-label-sm">
 <label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
-<input class="accent-tertiary" name="budget" type="radio" value="10k-25k"/>
-<span>$10k – $25k</span>
+<input class="accent-tertiary" name="budget" type="radio" value="under-1k"/>
+<span>Under $1k</span>
 </label>
 <label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
-<input checked="" class="accent-tertiary" name="budget" type="radio" value="25k-50k"/>
-<span>$25k – $50k</span>
+<input checked="" class="accent-tertiary" name="budget" type="radio" value="1k-5k"/>
+<span>$1k – $5k</span>
 </label>
 <label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
-<input class="accent-tertiary" name="budget" type="radio" value="50k+"/>
-<span>$50k+</span>
+<input class="accent-tertiary" name="budget" type="radio" value="5k-15k"/>
+<span>$5k – $15k</span>
+</label>
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input class="accent-tertiary" name="budget" type="radio" value="15k+"/>
+<span>$15k+</span>
 </label>
 </div>
 </div>
