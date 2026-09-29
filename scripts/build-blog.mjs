@@ -142,6 +142,26 @@ function enhance(html) {
   return { html, toc };
 }
 
+// ---------------------------------------------------------------- share bar
+// X, LinkedIn, Facebook, copy link, plus the phone's native share sheet where supported.
+const X_ICON = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+const LI_ICON = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>`;
+const FB_ICON = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>`;
+const SHARE_BTN = "inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm";
+function shareBar(url, title, label = "Share:") {
+  const u = encodeURIComponent(url), t = encodeURIComponent(title);
+  const a = (name, href, ico) => `<a href="${href}" target="_blank" rel="noopener noreferrer" aria-label="Share on ${name}" class="${SHARE_BTN}">${ico}${name}</a>`;
+  return `<div class="flex flex-wrap items-center gap-space-xs" data-share>
+<span class="font-label-sm text-label-sm text-outline pr-1">${label}</span>
+${a("X", `https://x.com/intent/post?text=${t}&url=${u}&via=web3boyaxdev`, X_ICON)}
+${a("LinkedIn", `https://www.linkedin.com/sharing/share-offsite/?url=${u}`, LI_ICON)}
+${a("Facebook", `https://www.facebook.com/sharer/sharer.php?u=${u}`, FB_ICON)}
+<button type="button" data-copy="${url}" class="${SHARE_BTN}"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">link</span><span>Copy link</span></button>
+<button type="button" data-native-share data-url="${url}" data-title="${esc(title)}" hidden class="${SHARE_BTN}"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">ios_share</span><span>More</span></button>
+</div>`;
+}
+const SHARE_SCRIPT = `<script>document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var t=b.dataset.copy,l=b.lastElementChild;function done(ok){l.textContent=ok?"Copied!":"Press Ctrl+C";setTimeout(function(){l.textContent="Copy link"},1800)}function legacy(){var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}a.remove();done(ok)}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){done(true)},legacy)}else{legacy()}})});if(navigator.share){document.querySelectorAll("[data-native-share]").forEach(function(b){b.hidden=false;b.addEventListener("click",function(){navigator.share({title:b.dataset.title,url:b.dataset.url}).catch(function(){})})})}</script>`;
+
 // ---------------------------------------------------------------- shared page chrome
 const head = ({ title, description, url, type = "website", image = "/og-image.jpg", imageAlt = "", extra = "" }) => `<!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
@@ -263,9 +283,6 @@ posts.forEach((p, i) => {
     { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog/` },
     { "@type": "ListItem", position: 3, name: p.meta.title, item: url }] }];
   if (p.faqs.length) ld.push({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: p.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) });
-  const share = (label, href, svgPath) => `<a href="${href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm">${svgPath}${label}</a>`;
-  const xIcon = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
-  const liIcon = `<span class="material-symbols-outlined text-[15px]" aria-hidden="true">work</span>`;
 
   const page = head({ title: `${p.meta.seoTitle || p.meta.title} | ${AUTHOR}`, description: p.meta.description, url, type: "article", image: p.cover || undefined, imageAlt: p.meta.title,
     extra: `<meta property="article:published_time" content="${p.meta.date}"/>
@@ -285,6 +302,7 @@ ${ld.map((o) => `<script type="application/ld+json">${JSON.stringify(o).replace(
 <img src="/vincent-inferido.jpg" alt="" width="28" height="28" class="w-7 h-7 rounded-full object-cover"/>
 <span class="text-on-surface">${AUTHOR}</span><span>·</span><time datetime="${p.meta.date}">${fmtDate(p.meta.date)}</time><span>·</span><span>${p.minutes} min read</span>
 </div>
+<div class="pt-1">${shareBar(url, p.meta.title)}</div>
 ${p.meta.checked ? `<p class="research-badge">${icon("fact_check", "text-[18px]")}<span><strong>${esc(p.meta.research || "Research-based")}</strong> · prices and features checked on official sources on <time datetime="${p.meta.checked}">${fmtDate(p.meta.checked)}</time>. <a href="#sources">See sources</a></span></p>` : ""}
 </header>
 ${p.cover ? `<img src="${p.cover}" alt="${esc(p.meta.imageAlt || p.meta.title)}" width="1200" height="630" fetchpriority="high" decoding="async" class="w-full aspect-[1200/630] object-cover rounded-xl mt-space-lg"/>` : ""}
@@ -306,12 +324,7 @@ ${p.html}
 <div class="flex flex-col gap-1"><span class="font-headline-sm text-headline-sm font-bold text-on-surface">${AUTHOR}</span>
 <span class="font-body-sm text-body-sm text-on-surface-variant">${esc(AUTHOR_TITLE)} based in the Philippines. I design and build CRMs, booking systems, web apps and Web3 products for growing businesses.</span></div>
 </div>
-<div class="mt-space-md flex flex-wrap items-center gap-space-xs">
-<span class="font-label-sm text-label-sm text-outline pr-1">Share:</span>
-${share("X", `https://x.com/intent/post?text=${encodeURIComponent(p.meta.title)}&url=${encodeURIComponent(url)}&via=web3boyaxdev`, xIcon)}
-${share("LinkedIn", `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, liIcon)}
-<button type="button" data-copy="${url}" class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">link</span><span>Copy link</span></button>
-</div>
+<div class="mt-space-md">${shareBar(url, p.meta.title, "Found this useful? Share it:")}</div>
 <nav class="mt-space-lg grid grid-cols-1 sm:grid-cols-2 gap-space-sm" aria-label="More articles">
 ${older ? `<a href="/blog/${older.slug}/" class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container"><span class="font-label-sm text-label-sm text-outline">← Previous</span><span class="block font-body-sm text-body-sm text-on-surface">${esc(older.meta.title)}</span></a>` : "<span></span>"}
 ${newer ? `<a href="/blog/${newer.slug}/" class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container sm:text-right"><span class="font-label-sm text-label-sm text-outline">Next →</span><span class="block font-body-sm text-body-sm text-on-surface">${esc(newer.meta.title)}</span></a>` : ""}
@@ -325,7 +338,7 @@ ${p.toc.length > 2 ? `<nav class="p-space-md rounded-xl bg-surface-container-low
 </aside>
 </div>
 </div>
-<script>document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(function(){b.lastElementChild.textContent="Copied!";setTimeout(function(){b.lastElementChild.textContent="Copy link"},1800)})})});</script>
+${SHARE_SCRIPT}
 ` + foot();
   fs.mkdirSync(path.join(OUT, p.slug), { recursive: true });
   fs.writeFileSync(path.join(OUT, p.slug, "index.html"), page);
@@ -340,6 +353,7 @@ const index = head({ title: `Blog | ${AUTHOR} — ${AUTHOR_TITLE}`, description:
 <h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Practical Guides for Growing Businesses</h1>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Plain-English answers to the questions business owners and founders ask before building software: what it costs, what you actually need, how to choose, and how to avoid expensive mistakes.</p>
 </div>
+<div class="pb-space-lg">${shareBar(`${SITE_URL}/blog/`, "Practical guides for growing businesses, by Vincent Inferido", "Share the blog:")}</div>
 <div class="flex flex-wrap gap-space-xs pb-space-lg" role="group" aria-label="Filter by topic">
 <button type="button" data-tag="" aria-pressed="true" class="tag-btn px-space-md py-1.5 rounded font-label-sm text-label-sm bg-primary text-on-primary">All (${posts.length})</button>
 ${allTags.map((t) => `<button type="button" data-tag="${esc(t)}" aria-pressed="false" class="tag-btn px-space-md py-1.5 rounded font-label-sm text-label-sm bg-surface-container-low text-on-surface-variant hover:text-on-surface">${esc(t)}</button>`).join("\n")}
@@ -349,6 +363,7 @@ ${posts.map(postCard).join("\n")}
 </div>
 </section>
 <script>(function(){var btns=document.querySelectorAll(".tag-btn"),cards=document.querySelectorAll(".post-card");btns.forEach(function(b){b.addEventListener("click",function(){var t=b.dataset.tag;btns.forEach(function(x){var on=x===b;x.setAttribute("aria-pressed",on);x.classList.toggle("bg-primary",on);x.classList.toggle("text-on-primary",on);x.classList.toggle("bg-surface-container-low",!on);x.classList.toggle("text-on-surface-variant",!on)});cards.forEach(function(c){c.hidden=!!t&&c.dataset.tags.split("|").indexOf(t)<0})})})})();</script>
+${SHARE_SCRIPT}
 ` + foot();
 fs.writeFileSync(path.join(OUT, "index.html"), index);
 
