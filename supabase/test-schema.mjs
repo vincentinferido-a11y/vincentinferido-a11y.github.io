@@ -22,9 +22,22 @@ async function expectDenied(name, sql, params) {
 
 // Supabase-like roles
 await db.exec(`create role anon nologin; create role authenticated nologin; grant usage on schema public to anon, authenticated;`);
+// Optional: an older schema version to apply first, to prove the upgrade path on a live database.
+if (process.argv[3]) {
+  await db.exec(fs.readFileSync(process.argv[3], "utf8"));
+  await db.exec(`insert into public.reviews (name, rating, body, consent, status) values ('Old Row', 5, 'Review saved before the upgrade.', true, 'approved')`);
+  console.log("older schema applied + existing row inserted (upgrade test)");
+}
 await db.exec(schema);
 await db.exec(schema); // idempotent re-run
 console.log("schema applied twice (idempotent) OK");
+if (process.argv[3]) {
+  const old = await db.query(`select name, verified_client, wallet_chain from public.reviews where name = 'Old Row'`);
+  old.rows.length === 1 && old.rows[0].verified_client === false && old.rows[0].wallet_chain === null
+    ? ok("existing reviews survive the upgrade with new columns defaulted")
+    : bad("upgrade kept existing rows", JSON.stringify(old.rows));
+  await db.exec(`delete from public.reviews where name = 'Old Row'`);
+}
 
 console.log("\nreviews");
 await expectOk("visitor submits a review (lands as pending)",
@@ -49,6 +62,31 @@ await expectDenied("visitor cannot read reviewer email", `select email from publ
 await expectDenied("visitor cannot read status column", `select status from public.reviews`);
 await expectDenied("visitor cannot edit a review", `update public.reviews set body = 'hacked' where true`);
 await expectDenied("visitor cannot delete reviews", `delete from public.reviews where true`);
+
+console.log("\nreview verification");
+const evmAddr = "0x" + "ab".repeat(20), evmSig = "0x" + "cd".repeat(65);
+const solAddr = "7EcDhSYGxXyscszYEp35KHN8vvw3svAuLKTzXwCFLtV", solSig = "ef".repeat(64);
+await expectOk("visitor submits an EVM wallet-signed review",
+  `insert into public.reviews (name, rating, body, consent, wallet_chain, wallet_address, wallet_signature, signed_at) values ('Eve Evm', 5, 'Signed with my EVM wallet, great work.', true, 'evm', $1, $2, now())`, [evmAddr, evmSig]);
+await expectOk("visitor submits a Solana wallet-signed review",
+  `insert into public.reviews (name, rating, body, consent, wallet_chain, wallet_address, wallet_signature, signed_at) values ('Sol Sam', 5, 'Signed with Phantom, smooth delivery.', true, 'solana', $1, $2, now())`, [solAddr, solSig]);
+await expectDenied("incomplete wallet fields rejected",
+  `insert into public.reviews (name, rating, body, consent, wallet_chain, wallet_address) values ('Half Sig', 5, 'Only half of the wallet data here.', true, 'evm', $1)`, [evmAddr]);
+await expectDenied("malformed wallet address rejected",
+  `insert into public.reviews (name, rating, body, consent, wallet_chain, wallet_address, wallet_signature, signed_at) values ('Bad Addr', 5, 'Address is not a real EVM address.', true, 'evm', '0x123', $1, now())`, [evmSig]);
+await expectDenied("unknown wallet chain rejected",
+  `insert into public.reviews (name, rating, body, consent, wallet_chain, wallet_address, wallet_signature, signed_at) values ('Bad Chain', 5, 'Chain value is not supported here.', true, 'bitcoin', $1, $2, now())`, [evmAddr, evmSig]);
+await expectDenied("visitor cannot give themselves the Verified client badge",
+  `insert into public.reviews (name, rating, body, consent, verified_client) values ('Faker', 5, 'I claim to be verified, trust me.', true, true)`);
+await db.exec(`update public.reviews set status = 'approved' where name in ('Eve Evm', 'Sol Sam'); update public.reviews set verified_client = true where name = 'Jane Client'`);
+r = await expectOk("visitor reads badges and wallet data of approved reviews",
+  `select name, verified_client, wallet_chain, wallet_address, wallet_signature, signed_at from public.reviews order by name`);
+if (r) {
+  const byName = Object.fromEntries(r.rows.map((x) => [x.name, x]));
+  byName["Jane Client"]?.verified_client === true ? ok("owner-set Verified client badge is visible") : bad("verified_client visible", JSON.stringify(byName["Jane Client"]));
+  byName["Eve Evm"]?.wallet_address === evmAddr && byName["Sol Sam"]?.wallet_chain === "solana" ? ok("wallet signature data is readable for in-browser verification") : bad("wallet data readable", JSON.stringify(r.rows));
+}
+await expectDenied("visitor still cannot read reviewer email", `select email from public.reviews`);
 
 console.log("\ninquiries");
 await expectOk("visitor submits contact inquiry",

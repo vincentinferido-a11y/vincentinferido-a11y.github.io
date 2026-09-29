@@ -9,7 +9,7 @@ Until it's configured, both forms fall back to email, so nothing is lost.
 | `inquiries` | Submit an inquiry | Read everything, update `status` (`new`, `replied`, `won`, `lost`, `spam`) |
 
 The rules are enforced by Postgres row-level security and column permissions in [`schema.sql`](schema.sql),
-and verified by 22 automated checks: `npm run test:db`.
+and verified by automated checks: `npm run test:db`.
 
 ## One-time setup (about 10 minutes)
 
@@ -31,6 +31,8 @@ and verified by 22 automated checks: `npm run test:db`.
 ## Day-to-day
 
 - **Approve a review:** go to **Table Editor → reviews**, set `status` to `approved` (and optionally `featured` to `true` to pin it first). It appears on the site on the next page load.
+- **Verified client badge:** after confirming a reviewer really worked with you (for example via the private email they left), set `verified_client` to `true`. Visitors cannot set this themselves.
+- **Wallet-verified badge:** automatic. If a reviewer signed their review with MetaMask/EVM or Phantom/Solana (optional, free, no transaction), every visitor's browser re-checks the signature before showing the badge. Editing a signed review's name, rating or text removes the badge, so don't fix typos in signed reviews.
 - **Read inquiries:** go to **Table Editor → inquiries**, newest first. Estimator inquiries include the full estimate in the `estimate` column.
 - **Get an email for every new inquiry (recommended):** go to **Database → Webhooks → Create a new hook** on table `inquiries`, event `INSERT`, and point it at an email service (for example a Zapier or Make "Catch Hook → Send Email" zap, or a Supabase Edge Function using Resend). Without it, check the dashboard regularly.
 

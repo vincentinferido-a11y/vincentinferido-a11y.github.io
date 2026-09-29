@@ -875,6 +875,14 @@
 <label for="rv-body" class="font-label-sm text-label-sm text-outline">YOUR REVIEW * <span class="normal-case" id="rv-count">(0/1500)</span></label>
 <textarea id="rv-body" name="body" required minlength="20" maxlength="1500" rows="4" placeholder="What was it like working together? What did the project achieve?" class="px-space-md py-2 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary"></textarea>
 </div>
+<div class="lg:col-span-2 flex flex-col gap-space-xs p-space-sm rounded-lg bg-surface-container ring-1 ring-primary/20" id="rv-wallet">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary uppercase tracking-wider"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">lock</span>Optional: verify with your wallet</span>
+<button type="button" data-sign="evm" class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm disabled:opacity-60"><span class="w-2 h-2 rounded-full" style="background:#627EEA"></span>MetaMask / EVM</button>
+<button type="button" data-sign="solana" class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm disabled:opacity-60"><span class="w-2 h-2 rounded-full" style="background:#14F195"></span>Phantom / Solana</button>
+</div>
+<p id="rv-wallet-status" class="font-label-sm text-label-sm text-outline">No crypto needed to leave a review. If you have a wallet, signing is free (no transaction, no gas) and adds a Wallet-verified badge. Your wallet address is shown with the review.</p>
+</div>
 <div class="flex flex-col gap-1">
 <label for="rv-email" class="font-label-sm text-label-sm text-outline">EMAIL (PRIVATE, NEVER SHOWN)</label>
 <input id="rv-email" name="email" type="email" maxlength="200" autocomplete="email" placeholder="So I can thank you or verify the review" class="px-space-md py-2.5 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary"/>
@@ -883,7 +891,7 @@
 <div class="hidden" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"/></label></div>
 <label class="flex items-start gap-2 font-body-sm text-body-sm text-on-surface-variant self-end">
 <input name="consent" type="checkbox" required class="accent-tertiary mt-1"/>
-<span>I agree that my name, role and review may be published on this website.</span>
+<span>I agree that my name, role, review and wallet address (only if I sign) may be published on this website.</span>
 </label>
 <div class="lg:col-span-2 flex flex-col sm:flex-row sm:items-center gap-space-md">
 <button type="submit" class="h-12 px-space-lg rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-all inline-flex items-center justify-center gap-space-xs disabled:opacity-60">

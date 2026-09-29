@@ -610,7 +610,88 @@ function initForm() {
   });
 }
 
-// --- 9. Client reviews ---------------------------------------------------
+// --- 9. Wallet-signed reviews --------------------------------------------
+// Optional: a reviewer signs the exact review text with their wallet (free, no transaction).
+// Every visitor's browser re-verifies the signature before showing the badge, so a row
+// inserted directly into the database can't fake it. Editing the review text breaks the badge.
+const REVIEW_LIBS = {
+  evm: { src: "https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js", integrity: "sha384-6Zl0Pc8zjSz8KvmNeXRvUQgY4ryFb+BwDvKCmLYcBME0joAaru491tQgi9B7zsMM", global: "ethers" },
+  solana: { src: "https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js", integrity: "sha384-05+sicyRJQ56XpL4U9HJ8YbtSzFDvAg7apPKOGV6A0JsAJKFM68jp5oLnUjG5mEp", global: "nacl" },
+};
+
+const reviewMessage = ({ name, rating, body, signedAt }) =>
+  `Review for Vincent Inferido's portfolio\n\nName: ${name}\nRating: ${rating}/5\nReview: ${body}\n\nSigned at: ${signedAt}`;
+
+const bytesToHex = (bytes) => Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+const hexToBytes = (hex) => new Uint8Array(hex.replace(/^0x/, "").match(/../g).map((h) => parseInt(h, 16)));
+const B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+function base58Decode(str) {
+  let bytes = [0];
+  for (const ch of str) {
+    let carry = B58.indexOf(ch);
+    if (carry < 0) throw new Error("Invalid base58");
+    for (let i = 0; i < bytes.length; i++) { carry += bytes[i] * 58; bytes[i] = carry & 0xff; carry >>= 8; }
+    while (carry) { bytes.push(carry & 0xff); carry >>= 8; }
+  }
+  for (const ch of str) { if (ch === "1") bytes.push(0); else break; }
+  return new Uint8Array(bytes.reverse());
+}
+
+const libLoads = {};
+function loadLib(kind) {
+  const lib = REVIEW_LIBS[kind];
+  if (window[lib.global]) return Promise.resolve(window[lib.global]);
+  libLoads[kind] ??= new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    Object.assign(s, { src: lib.src, integrity: lib.integrity, crossOrigin: "anonymous", async: true });
+    s.onload = () => (window[lib.global] ? resolve(window[lib.global]) : reject(new Error("library missing")));
+    s.onerror = () => reject(new Error("library failed to load"));
+    document.head.appendChild(s);
+  });
+  return libLoads[kind];
+}
+
+const solanaWallet = () => window.phantom?.solana || window.solflare || (window.solana?.signMessage ? window.solana : null);
+
+async function signReview(chain, fields) {
+  const signedAt = new Date().toISOString();
+  const message = reviewMessage({ ...fields, signedAt });
+  if (chain === "evm") {
+    const eth = window.ethereum;
+    if (!eth) throw new Error("No EVM wallet found. Install MetaMask or a similar wallet.");
+    const [address] = await eth.request({ method: "eth_requestAccounts" });
+    const msgHex = "0x" + bytesToHex(new TextEncoder().encode(message));
+    const signature = await eth.request({ method: "personal_sign", params: [msgHex, address] });
+    return { wallet_chain: "evm", wallet_address: address.toLowerCase(), wallet_signature: signature.toLowerCase(), signed_at: signedAt };
+  }
+  const sol = solanaWallet();
+  if (!sol) throw new Error("No Solana wallet found. Install Phantom or Solflare.");
+  const res = await sol.connect();
+  const address = (res?.publicKey || sol.publicKey).toString();
+  const signed = await sol.signMessage(new TextEncoder().encode(message), "utf8");
+  const sigBytes = signed?.signature || signed;
+  return { wallet_chain: "solana", wallet_address: address, wallet_signature: bytesToHex(sigBytes), signed_at: signedAt };
+}
+
+async function verifyReviewSignature(r) {
+  if (!r.wallet_chain || !r.wallet_signature || !r.signed_at) return false;
+  const message = reviewMessage({ name: r.name, rating: r.rating, body: r.body, signedAt: new Date(r.signed_at).toISOString() });
+  try {
+    if (r.wallet_chain === "evm") {
+      const ethers = await loadLib("evm");
+      return ethers.verifyMessage(message, r.wallet_signature).toLowerCase() === r.wallet_address.toLowerCase();
+    }
+    if (r.wallet_chain === "solana") {
+      const nacl = await loadLib("solana");
+      return nacl.sign.detached.verify(new TextEncoder().encode(message), hexToBytes(r.wallet_signature), base58Decode(r.wallet_address));
+    }
+  } catch {
+    return false;
+  }
+  return false;
+}
+
+// --- 10. Client reviews --------------------------------------------------
 function initReviews() {
   const form = $("#review-form");
   const openBtn = $("#review-open");
@@ -659,6 +740,34 @@ function initReviews() {
   const body = $("#rv-body");
   body.addEventListener("input", () => ($("#rv-count").textContent = `(${body.value.length}/1500)`));
 
+  // Optional wallet signature
+  let walletSig = null;
+  const walletStatus = $("#rv-wallet-status");
+  const walletNote = walletStatus?.textContent;
+  const setWalletStatus = (msg, tone = "outline") => { walletStatus.textContent = msg; walletStatus.className = `font-label-sm text-label-sm text-${tone}`; };
+  const signedFields = () => ({ name: form.name.value.trim(), rating: Number(form.rating.value) || 5, body: form.body.value.trim() });
+  $$("[data-sign]", form).forEach((btn) =>
+    btn.addEventListener("click", async () => {
+      const f = signedFields();
+      if (f.name.length < 2 || f.body.length < 20) return setWalletStatus("Write your name and review first, then sign.", "error");
+      $$("[data-sign]", form).forEach((b) => (b.disabled = true));
+      setWalletStatus("Check your wallet to sign the message (free, no transaction)…");
+      try {
+        walletSig = await signReview(btn.dataset.sign, f);
+        const a = walletSig.wallet_address;
+        setWalletStatus(`✓ Signed by ${a.slice(0, 6)}…${a.slice(-4)} (${walletSig.wallet_chain === "evm" ? "EVM" : "Solana"}). If you edit your name, rating or review, sign again.`, "tertiary");
+      } catch (err) {
+        walletSig = null;
+        setWalletStatus(err?.code === 4001 || /reject/i.test(err?.message || "") ? "Signature cancelled. You can still submit without it." : err?.message || "Could not sign. You can still submit without it.", "error");
+      } finally {
+        $$("[data-sign]", form).forEach((b) => (b.disabled = false));
+      }
+    })
+  );
+  // A signature only covers the exact text signed; editing it invalidates the signature.
+  ["name", "body"].forEach((n) => form[n].addEventListener("input", () => { if (walletSig) { walletSig = null; setWalletStatus("Review changed after signing. Sign again for the Wallet-verified badge.", "error"); } }));
+  starInputs.forEach((i) => i.addEventListener("change", () => { if (walletSig) { walletSig = null; setWalletStatus("Rating changed after signing. Sign again for the Wallet-verified badge.", "error"); } }));
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const d = Object.fromEntries(new FormData(form));
@@ -675,6 +784,7 @@ function initReviews() {
       body: d.body.trim(),
       email: d.email?.trim() || null,
       consent: true,
+      ...(walletSig || {}),
     };
     const submit = $("button[type=submit]", form);
 
@@ -685,6 +795,8 @@ function initReviews() {
         setStatus("✓ Thank you! Your review will appear once it's approved.", "tertiary");
         form.reset();
         paintStars();
+        walletSig = null;
+        if (walletNote) setWalletStatus(walletNote);
         return;
       } catch {
         // fall back to email so the review is never lost
@@ -693,23 +805,42 @@ function initReviews() {
       }
     }
     const text = `Name: ${review.name}\nRole & company: ${review.role_company || "-"}\nProject: ${review.project || "-"}\n` +
-      `Rating: ${review.rating}/5\nEmail: ${review.email || "-"}\nConsent to publish: yes\n\n${review.body}`;
+      `Rating: ${review.rating}/5\nEmail: ${review.email || "-"}\nConsent to publish: yes\n` +
+      (review.wallet_signature ? `Wallet (${review.wallet_chain}): ${review.wallet_address}\nSigned at: ${review.signed_at}\nSignature: ${review.wallet_signature}\n` : "") +
+      `\n${review.body}`;
     window.location.href = `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent(`Client review from ${review.name}`)}&body=${encodeURIComponent(text)}`;
     setStatus("✓ Opening your email app with the review filled in. Just press send.", "tertiary");
   });
 
   // Show approved reviews (only when the database is connected and has some)
   if (!dbEnabled()) return;
-  dbRequest("reviews?select=name,role_company,project,rating,body,featured,created_at&order=featured.desc,created_at.desc&limit=12")
+  const badge = (icon, text, tone, title = "") =>
+    `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-${tone}"${title ? ` title="${esc(title)}"` : ""}>` +
+    `<span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1" aria-hidden="true">${icon}</span>${text}</span>`;
+  const explorer = (r) => r.wallet_chain === "evm" ? `https://etherscan.io/address/${r.wallet_address}` : `https://solscan.io/account/${r.wallet_address}`;
+
+  const order = "&order=featured.desc,created_at.desc&limit=12";
+  dbRequest("reviews?select=name,role_company,project,rating,body,featured,created_at,verified_client,wallet_chain,wallet_address,wallet_signature,signed_at" + order)
+    // Older database without the verification columns: still show reviews, just without badges.
+    .catch(() => dbRequest("reviews?select=name,role_company,project,rating,body,featured,created_at" + order))
     .then((rows) => {
       if (!rows.length) return;
-      list.innerHTML = rows.map((r) => `<figure class="p-space-lg rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-md">
+      list.innerHTML = rows.map((r, i) => `<figure class="p-space-lg rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-md">
         <div class="flex flex-col gap-space-sm"><div class="flex" aria-label="${r.rating} out of 5 stars">${stars(r.rating)}</div>
         <blockquote class="font-body-md text-body-md text-on-surface-variant">&ldquo;${esc(r.body)}&rdquo;</blockquote></div>
-        <figcaption class="flex flex-col"><span class="font-headline-sm text-headline-sm font-bold text-on-surface">${esc(r.name)}</span>
-        <span class="font-label-sm text-label-sm text-outline">${esc([r.role_company, r.project].filter(Boolean).join(" · "))}</span></figcaption></figure>`).join("");
+        <figcaption class="flex flex-col gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold text-on-surface">${esc(r.name)}</span>
+        <span class="font-label-sm text-label-sm text-outline">${esc([r.role_company, r.project].filter(Boolean).join(" · "))}</span>
+        <span class="flex flex-wrap gap-1" data-badges="${i}">${r.verified_client ? badge("verified", "Verified client", "tertiary", "Confirmed as a real client by Vincent") : ""}</span></figcaption></figure>`).join("");
       list.classList.remove("hidden");
       $("#reviews-intro").textContent = "Reviews from people I've built with. Worked with me too? I'd love to hear from you.";
+
+      // Verify wallet signatures in this browser; only valid ones get the badge.
+      rows.forEach(async (r, i) => {
+        if (!r.wallet_signature || !(await verifyReviewSignature(r))) return;
+        const a = r.wallet_address, short = `${a.slice(0, 6)}…${a.slice(-4)}`;
+        $(`[data-badges="${i}"]`)?.insertAdjacentHTML("beforeend",
+          `<a href="${explorer(r)}" target="_blank" rel="noreferrer">${badge("lock", "Wallet-verified", "primary", `Signature verified in your browser · ${r.wallet_chain === "evm" ? "EVM" : "Solana"} wallet ${short}`)}</a>`);
+      });
     })
     .catch(() => {});
 }

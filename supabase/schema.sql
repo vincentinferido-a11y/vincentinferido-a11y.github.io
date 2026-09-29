@@ -25,8 +25,33 @@ create table if not exists public.reviews (
   featured      boolean not null default false
 );
 
+-- Verification (added 2026-09-29). Two independent badges:
+--   verified_client  set ONLY by you in the dashboard after confirming the reviewer.
+--   wallet_*         optional wallet signature of the review. The website re-verifies
+--                    the signature in every visitor's browser before showing a badge,
+--                    so a forged row in the database can't produce a fake badge.
+alter table public.reviews add column if not exists verified_client  boolean not null default false;
+alter table public.reviews add column if not exists wallet_chain     text;
+alter table public.reviews add column if not exists wallet_address   text;
+alter table public.reviews add column if not exists wallet_signature text;
+alter table public.reviews add column if not exists signed_at        timestamptz;
+
+alter table public.reviews drop constraint if exists reviews_wallet_complete;
+alter table public.reviews add constraint reviews_wallet_complete check (
+  (wallet_chain is null and wallet_address is null and wallet_signature is null and signed_at is null)
+  or (wallet_chain is not null and wallet_address is not null and wallet_signature is not null and signed_at is not null)
+);
+alter table public.reviews drop constraint if exists reviews_wallet_format;
+alter table public.reviews add constraint reviews_wallet_format check (
+  wallet_chain is null
+  or (wallet_chain = 'evm'    and wallet_address ~ '^0x[0-9a-fA-F]{40}$'            and wallet_signature ~ '^0x[0-9a-fA-F]{130}$')
+  or (wallet_chain = 'solana' and wallet_address ~ '^[1-9A-HJ-NP-Za-km-z]{32,44}$' and wallet_signature ~ '^[0-9a-f]{128}$')
+);
+
 comment on table public.reviews is 'Client reviews submitted from the portfolio. Set status = approved to publish.';
 comment on column public.reviews.email is 'Private. Never readable by the website (no column grant to anon).';
+comment on column public.reviews.verified_client is 'Set to true yourself after confirming the reviewer really was a client.';
+comment on column public.reviews.wallet_signature is 'Optional wallet signature of the review text; verified in the browser before a badge is shown.';
 
 create index if not exists reviews_status_created_idx on public.reviews (status, created_at desc);
 
@@ -34,13 +59,15 @@ alter table public.reviews enable row level security;
 
 -- Start from zero privileges, then grant only what the website needs.
 revoke all on table public.reviews from anon, authenticated;
-grant insert (name, role_company, project, rating, body, email, consent) on table public.reviews to anon;
-grant select (id, created_at, name, role_company, project, rating, body, featured) on table public.reviews to anon;
+grant insert (name, role_company, project, rating, body, email, consent,
+              wallet_chain, wallet_address, wallet_signature, signed_at) on table public.reviews to anon;
+grant select (id, created_at, name, role_company, project, rating, body, featured,
+              verified_client, wallet_chain, wallet_address, wallet_signature, signed_at) on table public.reviews to anon;
 
 drop policy if exists "Visitors can submit a pending review" on public.reviews;
 create policy "Visitors can submit a pending review"
   on public.reviews for insert to anon
-  with check (status = 'pending' and featured = false and consent = true);
+  with check (status = 'pending' and featured = false and consent = true and verified_client = false);
 
 drop policy if exists "Visitors can read approved reviews" on public.reviews;
 create policy "Visitors can read approved reviews"
