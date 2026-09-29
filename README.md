@@ -1,6 +1,6 @@
 # Vincent Inferido — Portfolio
 
-Full-stack product builder: business systems and CRMs, web apps and Web3. Designed in Figma, built with Next.js and TypeScript, shipped end to end.
+Full-stack engineer & designer: business systems and CRMs, web apps and Web3. Designed in Figma, built with Next.js and TypeScript, shipped end to end.
 
 **Live site:** https://vincentinferido-a11y.github.io
 
