@@ -91,4 +91,4 @@ A good developer will answer all of these clearly and in writing.
 
 A custom CRM isn't priced by magic. It's the sum of screens, roles, workflow, integrations, reports, data migration and design. Start by asking whether an off-the-shelf tool is enough. If it isn't, define your core process, build an MVP first, and grow it with your business.
 
-**Not sure which route fits you?** [Try the estimator](/#estimate) for an instant ballpark, or [book a free 30-minute call](/#contact) and I'll tell you honestly whether you need a custom CRM or a subscription would do the job.
+**Not sure which route fits you?** [Try the estimator](/#estimate) for an instant ballpark, or [Send me a message](/#contact) and I'll tell you honestly whether you need a custom CRM or a subscription would do the job.

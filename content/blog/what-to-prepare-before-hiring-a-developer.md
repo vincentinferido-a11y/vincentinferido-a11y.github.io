@@ -101,4 +101,4 @@ If you're unsure what's realistic, try a [project estimator](/#estimate) to get 
 
 The clearer your problem, priorities and budget, the more accurate your quote and the smoother your project. You don't need technical knowledge, just a clear picture of what success looks like.
 
-**Ready to talk it through?** [Book a free 30-minute discovery call](/#contact). Bring your brief (or just your idea) and we'll shape it into a clear, fixed-scope plan together. Curious how I run projects? Read [How I Plan a Project: From Discovery Call to Launch](/blog/how-i-plan-a-project/).
+**Ready to talk it through?** [Send me a message](/#contact) with your brief (or just your idea) and we'll shape it into a clear, fixed-scope plan together. Curious how I run projects? Read [How I Plan a Project: From Discovery Call to Launch](/blog/how-i-plan-a-project/).

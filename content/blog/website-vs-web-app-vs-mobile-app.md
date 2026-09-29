@@ -88,4 +88,4 @@ It's not right for everything (heavy games or apps needing deep hardware access 
 
 Start with the simplest option that solves the problem. You can always grow from there, and you'll grow based on real usage instead of guesses.
 
-**Still not sure which one fits?** [Book a free 30-minute call](/#contact) and describe what you want your customers or team to do. I'll recommend the simplest option that works, or [get an instant estimate](/#estimate) for a website or web app.
+**Still not sure which one fits?** [Send me a message](/#contact) and describe what you want your customers or team to do. I'll recommend the simplest option that works, or [get an instant estimate](/#estimate) for a website or web app.

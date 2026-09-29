@@ -190,7 +190,7 @@ ${extra}</head>
 <a class="nav-link is-active" href="/blog/" aria-current="page">Blog</a>
 <a class="nav-link" href="/#contact">Contact</a>
 </nav>
-<a href="/#contact" aria-label="Book a free call" class="flex items-center gap-space-xs px-2.5 sm:px-space-md py-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors font-label-md text-label-md font-bold shrink-0"><span class="material-symbols-outlined text-[18px] sm:text-[16px]" aria-hidden="true">event_available</span><span class="hidden sm:inline">Book a free call</span></a>
+<a href="/#contact" aria-label="Hire me" class="flex items-center gap-space-xs px-2.5 sm:px-space-md py-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors font-label-md text-label-md font-bold shrink-0"><span class="material-symbols-outlined text-[18px] sm:text-[16px]" aria-hidden="true">handshake</span><span class="hidden sm:inline">Hire me</span></a>
 </div>
 </header>
 <main id="main">`;
@@ -295,10 +295,10 @@ ${p.html}
 <aside class="mt-space-xl p-space-lg rounded-xl bg-surface-container-low ring-1 ring-tertiary/20 flex flex-col gap-space-sm" aria-label="Get help">
 <span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Need help with this?</span>
 <p class="font-headline-sm text-headline-sm font-bold text-on-surface">Let&#39;s talk about your project</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Get an instant ballpark for effort and timeline, or book a free 30-minute call. No pressure, and you&#39;ll leave with a clearer plan either way.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Get an instant ballpark for effort and timeline, or send me a message about your project. No pressure, and you&#39;ll leave with a clearer plan either way.</p>
 <div class="flex flex-wrap gap-space-sm pt-1">
 <a href="/#estimate" class="inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">calculate</span>Estimate my project</a>
-<a href="/#contact" class="inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">event_available</span>Book a free call</a>
+<a href="/#contact" class="inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">handshake</span>Hire me</a>
 </div>
 </aside>
 <div class="mt-space-lg flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-low">

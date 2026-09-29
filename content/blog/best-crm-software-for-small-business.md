@@ -261,7 +261,7 @@ A: When your process doesn't fit standard tools, you're paying for many unused s
 
 Pick one, start a trial this week with real leads, and give it two weeks. The best CRM is the one that means you never lose another *"let me think about it"* lead.
 
-**Outgrown off-the-shelf tools, or not sure which one fits your process?** [Book a free 30-minute call](/#contact) and I'll give you an honest answer, even if that answer is "use Zoho." You can also [estimate a custom CRM](/#estimate) in under a minute.
+**Outgrown off-the-shelf tools, or not sure which one fits your process?** [Send me a message](/#contact) and I'll give you an honest answer, even if that answer is "use Zoho." You can also [estimate a custom CRM](/#estimate) in under a minute.
 
 ## Sources
 

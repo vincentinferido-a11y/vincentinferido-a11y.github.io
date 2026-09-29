@@ -99,4 +99,4 @@ A smooth project is a team effort. From your side:
 
 No mystery, no disappearing developer, no surprise invoices: a clear plan, designs you approve, regular demos, and a product you fully own.
 
-**Have a project in mind?** [Book a free 30-minute discovery call](/#contact), or [estimate your project](/#estimate) first and send me the result. I'll reply within 24 hours.
+**Have a project in mind?** [Send me a message](/#contact), or [estimate your project](/#estimate) first and send me the result. I'll reply within 24 hours.

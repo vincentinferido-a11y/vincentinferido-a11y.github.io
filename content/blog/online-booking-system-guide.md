@@ -94,4 +94,4 @@ A custom booking system is typically a **web app** (works on any phone with no d
 
 Online booking saves staff time, captures customers when you're closed, and cuts no-shows with reminders and deposits. Start with the must-haves, add deposits for your most-missed slots, and choose custom software only when your process doesn't fit a standard tool.
 
-**Want to know which option fits your business?** [Book a free 30-minute call](/#contact) and I'll walk through your booking process with you, or [estimate a custom booking system](/#estimate) in seconds.
+**Want to know which option fits your business?** [Send me a message](/#contact) and I'll walk through your booking process with you, or [estimate a custom booking system](/#estimate) in seconds.

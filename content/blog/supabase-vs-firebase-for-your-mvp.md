@@ -86,4 +86,4 @@ Clear, honest answers to those three questions matter more than the brand name.
 
 Both let you launch an MVP quickly. Choose based on **the shape of your data** and **where your users are**, not hype.
 
-**Planning an MVP?** [Book a free 30-minute call](/#contact) and I'll help you pick the right backend for your product, or [estimate your MVP](/#estimate) in seconds.
+**Planning an MVP?** [Send me a message](/#contact) and I'll help you pick the right backend for your product, or [estimate your MVP](/#estimate) in seconds.

@@ -83,4 +83,4 @@ If Overland Ready were to grow, the next steps I'd prioritise are:
 4. **Separate what editors see from what customers see.**
 5. **Design a system, not just pages**, so the site stays consistent as it grows.
 
-**Running a content-heavy business** (listings, catalogs, menus, guides or reviews) and tired of waiting on a developer for every update? [Book a free 30-minute call](/#contact) and let's talk about an editor built around your content, or [estimate your project](/#estimate).
+**Running a content-heavy business** (listings, catalogs, menus, guides or reviews) and tired of waiting on a developer for every update? [Send me a message](/#contact) and let's talk about an editor built around your content, or [estimate your project](/#estimate).

@@ -85,4 +85,4 @@ A **custom CRM** makes sense when your workflow is unusual (for example, booking
 
 Spreadsheets are a great starting point, not a long-term system. If follow-ups are slipping, data is getting lost, or you can't see your pipeline at a glance, a CRM will pay for itself in recovered deals and saved hours.
 
-**Want a second opinion?** [Book a free 30-minute call](/#contact) and walk me through your current spreadsheet. I'll tell you whether an off-the-shelf CRM is enough or a custom one would serve you better, or try the [estimator](/#estimate) for an instant ballpark.
+**Want a second opinion?** [Send me a message](/#contact) and walk me through your current spreadsheet. I'll tell you whether an off-the-shelf CRM is enough or a custom one would serve you better, or try the [estimator](/#estimate) for an instant ballpark.

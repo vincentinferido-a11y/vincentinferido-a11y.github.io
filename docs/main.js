@@ -5,7 +5,7 @@ const CONFIG = {
   contactEmail: "vincent.inferido@gmail.com",
   // Optional: a Formspree / Getform endpoint. When empty, the form opens the visitor's mail client.
   formEndpoint: "",
-  // Scheduling link for "Book a free call" (e.g. https://calendly.com/yourname/30min or a Cal.com link).
+  // Optional scheduling link for the "Hire me" buttons (e.g. https://calendly.com/yourname/30min or a Cal.com link).
   // Leave empty to send visitors to the contact form with a call request pre-filled.
   bookingUrl: "",
   // Supabase database (see supabase/README.md). Leave empty to use email instead.
@@ -523,7 +523,7 @@ function initEstimator() {
   });
 }
 
-// --- 6b. Book a call + service shortcuts ----------------------------------
+// --- 6b. Hire me + service shortcuts ----------------------------------
 function initBooking() {
   $$("[data-book-call]").forEach((btn) =>
     btn.addEventListener("click", () => {
@@ -534,11 +534,11 @@ function initBooking() {
       // No scheduling link yet: pre-fill a call request in the contact form.
       const msg = $("#message");
       if (msg && !msg.value.trim()) {
-        msg.value = "Hi Vincent, I'd like to book a free 30-minute discovery call.\n\nBest days/times for me:\n\nWhat I need help with:\n";
+        msg.value = "Hi Vincent, I'd like to hire you for a project.\n\nWhat I need:\n\nTimeline and budget:\n";
       }
       $("#contact")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
       setTimeout(() => { $("#name")?.focus(); }, reducedMotion ? 0 : 600);
-      toast("Tell me a good time for a call and I'll confirm by email.");
+      toast("Tell me about your project and I'll reply within 24 hours.");
     })
   );
 
