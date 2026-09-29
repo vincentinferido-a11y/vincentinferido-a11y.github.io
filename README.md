@@ -60,12 +60,12 @@ When the custom domain is live, update `SITE_URL` in `scripts/build-blog.mjs` an
 
 ## Projects featured
 
-- [Overland Ready](https://github.com/vincentinferido-a11y/overland-ready): Next.js 16 and Sanity CMS gear review site
-- [RemitOtter](https://github.com/vincentinferido-a11y/remitotter): Solana meme-coin platform demo (Next.js 15, MongoDB, buyback-and-burn engine)
-- [TS Task Control](https://github.com/vincentinferido-a11y/ts-task-control-ui): operations dashboard UI system
-- [Harbor Reach Studio OS](https://github.com/vincentinferido-a11y/harbor-reach-studio-os-ui): production operating system UI for a game studio (product design)
-- [BoyaxDev Marketplace](https://github.com/vincentinferido-a11y/boyaxdev-marketplace-ui): website marketplace UI system
-- [SkinStack](https://github.com/vincentinferido-a11y/skinstack-ui): skincare review site UI system
+- [Overland Ready](https://overland-ready-eta.vercel.app): Next.js 16 and Sanity CMS gear review site
+- [RemitOtter](https://solana-meme-bank.preview.emergentagent.com): Solana meme-coin platform demo (Next.js 15, MongoDB, buyback-and-burn engine)
+- [TS Task Control](https://vincentinferido-a11y.github.io/ts-task-control-ui/): operations dashboard UI system
+- [Harbor Reach Studio OS](https://vincentinferido-a11y.github.io/harbor-reach-studio-os-ui/): production operating system UI for a game studio (product design)
+- [BoyaxDev Marketplace](https://vincentinferido-a11y.github.io/boyaxdev-marketplace-ui/): website marketplace UI system
+- [SkinStack](https://vincentinferido-a11y.github.io/skinstack-ui/): skincare review site UI system
 
 ## Licensing & access
 

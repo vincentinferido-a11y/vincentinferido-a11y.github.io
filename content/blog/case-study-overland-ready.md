@@ -11,7 +11,6 @@ coverAccent: "#ffb86b"
 **Overland Ready** is a gear review site for car campers and overlanders, focused on honest, evidence-based buying guides for first-time and budget-conscious buyers. I designed and built it end to end.
 
 - **Live site:** [overland-ready-eta.vercel.app](https://overland-ready-eta.vercel.app)
-- **Source code:** [github.com/vincentinferido-a11y/overland-ready](https://github.com/vincentinferido-a11y/overland-ready)
 
 This case study walks through the problems, the decisions, and the lessons, most of which apply to **any** business that publishes content: blogs, product catalogs, menus, listings or guides.
 
