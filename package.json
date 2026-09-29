@@ -8,7 +8,8 @@
     "dev": "tailwindcss -i ./src/input.css -o ./docs/styles.css --watch",
     "serve": "npx --yes serve docs -l 5173",
     "test:db": "node supabase/test-schema.mjs supabase/schema.sql",
-    "build:blog": "node scripts/build-blog.mjs"
+    "build:blog": "node scripts/build-blog.mjs",
+    "covers": "node scripts/make-covers.mjs"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",

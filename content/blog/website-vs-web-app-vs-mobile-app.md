@@ -3,6 +3,9 @@ title: "Website, Web App or Mobile App: Which One Does Your Business Actually Ne
 description: A clear explanation of the difference between a website, a web app and a mobile app, with a simple decision guide and the most expensive mistake businesses make when choosing.
 date: 2026-09-29
 tags: Planning, Business, Tech choices
+coverIcon: devices
+coverLabel: Planning
+coverAccent: "#d0bcff"
 ---
 
 "We need an app" is one of the most common requests I hear, and one of the most expensive to get wrong. Sometimes a business truly needs a mobile app. Often a website or a web app would solve the same problem faster, for a fraction of the cost, and reach more people.

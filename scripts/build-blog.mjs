@@ -46,6 +46,85 @@ function parseFrontMatter(raw, file) {
   return { meta, body: m[2] };
 }
 
+// ---------------------------------------------------------------- content blocks
+// Fenced blocks in Markdown become rich components:
+//   ```picks      - For: Solo seller | Pick: HubSpot Free | Why: ... | Link: #hubspot
+//   ```product    name/tagline/bestFor/pricing/free/pros/cons/verdict/link/source (see docs in README)
+//   ```callout tip|mistake|note Optional title      (body is Markdown)
+//   ```faq        Q: question  /  A: answer (Markdown), repeated
+const inline = (s) => marked.parseInline(String(s ?? "").trim());
+const icon = (name, cls = "") => `<span class="material-symbols-outlined ${cls}" aria-hidden="true">${name}</span>`;
+
+function parseKeyed(text) {
+  // key: value lines; a key followed by "- item" lines becomes a list
+  const out = {}; let listKey = null;
+  for (const raw of text.split("\n")) {
+    const line = raw.replace(/\s+$/, "");
+    if (!line.trim()) continue;
+    const li = line.match(/^\s*-\s+(.*)$/);
+    if (li && listKey) { out[listKey].push(li[1]); continue; }
+    const kv = line.match(/^([A-Za-z][\w-]*):\s*(.*)$/);
+    if (kv) {
+      if (kv[2] === "") { listKey = kv[1]; out[listKey] = []; } else { listKey = null; out[kv[1]] = kv[2]; }
+    }
+  }
+  return out;
+}
+
+function renderPicks(text) {
+  const rows = text.split("\n").map((l) => l.replace(/^\s*-\s*/, "").trim()).filter(Boolean).map((l) =>
+    Object.fromEntries(l.split("|").map((part) => { const i = part.indexOf(":"); return [part.slice(0, i).trim().toLowerCase(), part.slice(i + 1).trim()]; })));
+  return `<div class="picks not-prose">${rows.map((r) => `<div class="pick">
+<span class="pick-for">${icon("person_search", "text-[16px]")}${inline(r.for)}</span>
+<span class="pick-name">${r.link ? `<a href="${esc(r.link)}">${inline(r.pick)}</a>` : inline(r.pick)}</span>
+<span class="pick-why">${inline(r.why)}</span></div>`).join("")}</div>`;
+}
+
+function renderProduct(text) {
+  const p = parseKeyed(text);
+  const row = (label, val) => (val ? `<div><dt>${label}</dt><dd>${inline(val)}</dd></div>` : "");
+  const list = (items, kind) => (items && items.length ? `<ul class="${kind}">${items.map((i) => `<li>${icon(kind === "pros" ? "check_circle" : "cancel", "text-[18px]")}<span>${inline(i)}</span></li>`).join("")}</ul>` : "");
+  return `<section class="product" id="${esc(p.anchor || slugify(p.name))}">
+<header class="product-head"><div><h3 class="product-name">${esc(p.name)}</h3>${p.tagline ? `<p class="product-tagline">${inline(p.tagline)}</p>` : ""}</div>${p.badge ? `<span class="product-badge">${inline(p.badge)}</span>` : ""}</header>
+<dl class="product-facts">${row("Best for", p.bestFor)}${row("Pricing", p.pricing)}${row("Free plan / trial", p.free)}${row("Watch out for", p.watch)}</dl>
+<div class="product-proscons">${list(p.pros, "pros")}${list(p.cons, "cons")}</div>
+${p.verdict ? `<p class="product-verdict"><strong>Verdict:</strong> ${inline(p.verdict)}</p>` : ""}
+${p.link || p.source ? `<p class="product-links">${p.link ? `<a href="${esc(p.link)}">Visit official site ${icon("open_in_new", "text-[14px]")}</a>` : ""}${p.source ? `<a href="${esc(p.source)}">Official pricing ${icon("open_in_new", "text-[14px]")}</a>` : ""}</p>` : ""}
+</section>`;
+}
+
+function renderCallout(kind, title, text) {
+  const cfg = { tip: ["lightbulb", "Tip"], mistake: ["warning", "Common mistake"], note: ["info", "Note"], hook: ["bolt", ""] }[kind] || ["info", "Note"];
+  return `<aside class="callout callout-${esc(kind)}">${icon(cfg[0], "text-[22px] callout-icon")}<div><p class="callout-title">${esc(title || cfg[1])}</p>${marked.parse(text)}</div></aside>`;
+}
+
+function renderFaq(text, faqs) {
+  const items = [];
+  let cur = null;
+  for (const line of text.split("\n")) {
+    const q = line.match(/^Q:\s*(.*)$/), a = line.match(/^A:\s*(.*)$/);
+    if (q) { cur = { q: q[1].trim(), a: "" }; items.push(cur); }
+    else if (a && cur) cur.a = a[1];
+    else if (cur && line.trim()) cur.a += "\n" + line;
+  }
+  items.forEach((i) => faqs.push({ q: i.q, a: marked.parseInline(i.a.trim()).replace(/<[^>]+>/g, "") }));
+  return `<div class="faq-list">${items.map((i) => `<details class="faq-item"><summary>${esc(i.q)}${icon("expand_more", "text-[20px] faq-chevron")}</summary><div>${marked.parse(i.a.trim())}</div></details>`).join("")}</div>`;
+}
+
+function renderBlocks(body) {
+  const blocks = [], faqs = [];
+  const md = body.replace(/```(picks|product|callout|faq)([^\n]*)\n([\s\S]*?)```/g, (_, kind, info, inner) => {
+    let html;
+    if (kind === "picks") html = renderPicks(inner);
+    else if (kind === "product") html = renderProduct(inner);
+    else if (kind === "faq") html = renderFaq(inner, faqs);
+    else { const [k, ...rest] = info.trim().split(/\s+/); html = renderCallout(k || "note", rest.join(" "), inner); }
+    blocks.push(html);
+    return `\n\n<!--BLOCK:${blocks.length - 1}-->\n\n`;
+  });
+  return { md, blocks, faqs };
+}
+
 // Post-process marked's HTML: heading ids, external links, responsive tables.
 function enhance(html) {
   const toc = [];
@@ -54,7 +133,7 @@ function enhance(html) {
     let id = slugify(inner) || "section";
     while (seen.has(id)) id += "-x";
     seen.add(id);
-    if (lvl === "2") toc.push({ id, text: inner.replace(/<[^>]+>/g, "") });
+    if (lvl === "2") toc.push({ id, text: inner.replace(/<[^>]+>/g, "").replace(/&#39;/g, "'").replace(/&quot;/g, "\"").replace(/&amp;/g, "&") });
     return `<h${lvl} id="${id}">${inner}</h${lvl}>`;
   });
   html = html.replace(/<a href="(https?:\/\/[^"]+)"/g, (m, href) =>
@@ -64,7 +143,7 @@ function enhance(html) {
 }
 
 // ---------------------------------------------------------------- shared page chrome
-const head = ({ title, description, url, type = "website", extra = "" }) => `<!DOCTYPE html>
+const head = ({ title, description, url, type = "website", image = "/og-image.jpg", imageAlt = "", extra = "" }) => `<!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -76,8 +155,15 @@ const head = ({ title, description, url, type = "website", extra = "" }) => `<!D
 <meta property="og:description" content="${esc(description)}"/>
 <meta property="og:type" content="${type}"/>
 <meta property="og:url" content="${url}"/>
-<meta property="og:image" content="${SITE_URL}/vincent-inferido.jpg"/>
-<meta name="twitter:card" content="summary"/>
+<meta property="og:image" content="${SITE_URL}${image}"/>
+${image !== "/vincent-inferido.jpg" ? `<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="${esc(imageAlt || title)}"/>
+<meta name="twitter:card" content="summary_large_image"/>` : `<meta name="twitter:card" content="summary"/>`}
+<meta property="og:site_name" content="${AUTHOR}"/>
+<meta property="og:locale" content="en_US"/>
+<meta name="author" content="${AUTHOR}"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
 <meta name="twitter:site" content="@web3boyaxdev"/>
 <meta name="twitter:creator" content="@web3boyaxdev"/>
 <meta name="theme-color" content="#0f131c"/>
@@ -133,11 +219,14 @@ const foot = () => `</main>
 
 const tagChip = (t) => `<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">${esc(t)}</span>`;
 
-const postCard = (p) => `<article class="post-card group flex flex-col gap-space-sm p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors" data-tags="${esc(p.meta.tags.join("|"))}">
+const postCard = (p) => `<article class="post-card group relative flex flex-col rounded-xl overflow-hidden bg-surface-container-low hover:bg-surface-container transition-colors" data-tags="${esc(p.meta.tags.join("|"))}">
+${p.cover ? `<img src="${p.cover}" alt="" width="1200" height="630" loading="lazy" decoding="async" class="w-full aspect-[1200/630] object-cover"/>` : ""}
+<div class="flex flex-col gap-space-sm p-space-md flex-1">
 <div class="flex flex-wrap items-center gap-1.5">${p.meta.tags.map(tagChip).join("")}</div>
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors"><a href="/blog/${p.slug}/" class="after:absolute after:inset-0 relative">${esc(p.meta.title)}</a></h3>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors"><a href="/blog/${p.slug}/" class="after:absolute after:inset-0">${esc(p.meta.title)}</a></h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">${esc(p.meta.description)}</p>
 <p class="font-label-sm text-label-sm text-outline">${fmtDate(p.meta.date)} · ${p.minutes} min read</p>
+</div>
 </article>`;
 
 // ---------------------------------------------------------------- load posts
@@ -145,8 +234,12 @@ if (!fs.existsSync(CONTENT)) throw new Error("content/blog not found");
 const posts = fs.readdirSync(CONTENT).filter((f) => f.endsWith(".md")).map((f) => {
   const { meta, body } = parseFrontMatter(fs.readFileSync(path.join(CONTENT, f), "utf8"), f);
   const words = body.split(/\s+/).filter(Boolean).length;
-  const { html, toc } = enhance(marked.parse(body));
-  return { slug: f.replace(/\.md$/, ""), meta, html, toc, words, minutes: Math.max(1, Math.round(words / 220)) };
+  const { md, blocks, faqs } = renderBlocks(body);
+  let { html, toc } = enhance(marked.parse(md));
+  html = html.replace(/<!--BLOCK:(\d+)-->/g, (_, i) => enhance(blocks[Number(i)]).html);
+  const slug = f.replace(/\.md$/, "");
+  const cover = meta.image || (fs.existsSync(path.join(DOCS, "images", "blog", `${slug}.png`)) ? `/images/blog/${slug}.png` : null);
+  return { slug, meta, html, toc, faqs, cover, words, minutes: Math.max(1, Math.round(words / 220)) };
 }).sort((a, b) => (a.meta.date < b.meta.date ? 1 : a.meta.date > b.meta.date ? -1 : a.meta.title.localeCompare(b.meta.title)));
 
 fs.rmSync(OUT, { recursive: true, force: true });
@@ -163,13 +256,23 @@ posts.forEach((p, i) => {
     datePublished: p.meta.date, dateModified: p.meta.updated || p.meta.date, mainEntityOfPage: url, url,
     author: { "@type": "Person", name: AUTHOR, url: SITE_URL, jobTitle: AUTHOR_TITLE },
     publisher: { "@type": "Person", name: AUTHOR }, keywords: p.meta.tags.join(", "), wordCount: p.words,
+    ...(p.cover ? { image: `${SITE_URL}${p.cover}` } : {}), inLanguage: "en",
   };
+  const ld = [jsonLd, { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+    { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog/` },
+    { "@type": "ListItem", position: 3, name: p.meta.title, item: url }] }];
+  if (p.faqs.length) ld.push({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: p.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) });
   const share = (label, href, svgPath) => `<a href="${href}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm">${svgPath}${label}</a>`;
   const xIcon = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
   const liIcon = `<span class="material-symbols-outlined text-[15px]" aria-hidden="true">work</span>`;
 
-  const page = head({ title: `${p.meta.title} | ${AUTHOR}`, description: p.meta.description, url, type: "article",
-    extra: `<meta property="article:published_time" content="${p.meta.date}"/>\n<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>\n` }) + `
+  const page = head({ title: `${p.meta.seoTitle || p.meta.title} | ${AUTHOR}`, description: p.meta.description, url, type: "article", image: p.cover || undefined, imageAlt: p.meta.title,
+    extra: `<meta property="article:published_time" content="${p.meta.date}"/>
+<meta property="article:modified_time" content="${p.meta.updated || p.meta.date}"/>
+${p.meta.tags.map((t) => `<meta property="article:tag" content="${esc(t)}"/>`).join("\n")}
+${ld.map((o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, "\\u003c")}</script>`).join("\n")}
+` }) + `
 <div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop pt-space-lg">
 <nav class="font-label-sm text-label-sm text-outline pb-space-md" aria-label="Breadcrumb"><a class="hover:text-primary" href="/">Home</a> / <a class="hover:text-primary" href="/blog/">Blog</a></nav>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg">
@@ -182,7 +285,10 @@ posts.forEach((p, i) => {
 <img src="/vincent-inferido.jpg" alt="" width="28" height="28" class="w-7 h-7 rounded-full object-cover"/>
 <span class="text-on-surface">${AUTHOR}</span><span>·</span><time datetime="${p.meta.date}">${fmtDate(p.meta.date)}</time><span>·</span><span>${p.minutes} min read</span>
 </div>
+${p.meta.checked ? `<p class="research-badge">${icon("fact_check", "text-[18px]")}<span><strong>${esc(p.meta.research || "Research-based")}</strong> · prices and features checked on official sources on <time datetime="${p.meta.checked}">${fmtDate(p.meta.checked)}</time>. <a href="#sources">See sources</a></span></p>` : ""}
 </header>
+${p.cover ? `<img src="${p.cover}" alt="${esc(p.meta.imageAlt || p.meta.title)}" width="1200" height="630" fetchpriority="high" decoding="async" class="w-full aspect-[1200/630] object-cover rounded-xl mt-space-lg"/>` : ""}
+${p.toc.length > 2 ? `<details class="lg:hidden mt-space-lg rounded-xl bg-surface-container-low"><summary class="cursor-pointer p-space-md font-label-md text-label-md text-on-surface">On this page</summary><ol class="flex flex-col gap-1.5 px-space-md pb-space-md font-body-sm text-body-sm">${p.toc.map((t) => `<li><a class="text-on-surface-variant hover:text-primary" href="#${t.id}">${esc(t.text)}</a></li>`).join("")}</ol></details>` : ""}
 <div class="article pt-space-lg">
 ${p.html}
 </div>

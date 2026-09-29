@@ -3,6 +3,9 @@ title: What to Prepare Before Hiring a Developer (So Your Project Doesn't Go Ove
 description: A practical checklist, a one-page project brief template, the questions to ask, and the red flags to watch for, so your software project starts clear and stays on budget.
 date: 2026-09-29
 tags: Planning, Business, Budgeting
+coverIcon: checklist
+coverLabel: Hiring a developer
+coverAccent: "#ffb86b"
 ---
 
 Most software projects that go over budget don't fail because of bad code. They fail because of **unclear expectations**: the client imagined one thing, the developer built another, and weeks of changes follow.

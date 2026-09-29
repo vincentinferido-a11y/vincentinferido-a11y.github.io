@@ -3,6 +3,9 @@ title: "Case Study: Building Overland Ready, a Review Site Editors Can Run Witho
 description: How I designed and built an evidence-based gear review site with Next.js and Sanity CMS, including the problems I solved, the decisions behind them, and the lessons you can apply to your own content site.
 date: 2026-09-29
 tags: Case study, Content sites, Tech choices
+coverIcon: landscape
+coverLabel: Case study
+coverAccent: "#ffb86b"
 ---
 
 **Overland Ready** is a gear review site for car campers and overlanders, focused on honest, evidence-based buying guides for first-time and budget-conscious buyers. I designed and built it end to end.

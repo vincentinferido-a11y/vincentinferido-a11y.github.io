@@ -3,6 +3,9 @@ title: "How I Plan a Project: From Discovery Call to Launch"
 description: A transparent walkthrough of how I take a project from a first conversation to a launched product, with what happens at each step, what you'll see, and what I'll need from you.
 date: 2026-09-29
 tags: Planning, Process, Business
+coverIcon: route
+coverLabel: Process
+coverAccent: "#adc6ff"
 ---
 
 Hiring someone to build software can feel like a leap of faith. You describe what you want, money changes hands, and you hope the result matches what you imagined.

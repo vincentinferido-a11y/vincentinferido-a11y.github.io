@@ -3,6 +3,9 @@ title: "Supabase vs. Firebase: Choosing a Backend for Your MVP"
 description: A practical, non-hype comparison of Supabase and Firebase for founders and small teams, covering data model, security, pricing model, lock-in, and a simple guide to which one fits your product.
 date: 2026-09-29
 tags: Tech choices, Startups, Planning
+coverIcon: database
+coverLabel: Tech choices
+coverAccent: "#4fdbc8"
 ---
 
 If you're building an MVP (a first version of your product), you don't want to spend months setting up servers. **Supabase** and **Firebase** both give you a ready-made backend (database, user login, file storage and more) so you can focus on your actual product.

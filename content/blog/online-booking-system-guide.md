@@ -3,6 +3,9 @@ title: "Online Booking for Clinics, Salons and Service Businesses: What to Look 
 description: How an online booking system reduces no-shows and missed calls, the features that actually matter, how deposits and reminders work, and when to use a ready-made tool vs. a custom system.
 date: 2026-09-29
 tags: Booking systems, Business, Planning
+coverIcon: event_available
+coverLabel: Booking systems
+coverAccent: "#4fdbc8"
 ---
 
 If your business runs on appointments (a clinic, salon, spa, repair shop, tutoring centre, consultant or rental), your booking process is your front door. When it depends on phone calls and chat messages, three things happen:

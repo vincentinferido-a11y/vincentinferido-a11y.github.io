@@ -3,6 +3,9 @@ title: How Much Does a Custom CRM Cost? A Plain-English Guide for Small Business
 description: What actually drives the price of a custom CRM, how to estimate it before you talk to a developer, when an off-the-shelf tool is the smarter choice, and how to keep costs under control.
 date: 2026-09-29
 tags: CRM, Business, Budgeting
+coverIcon: payments
+coverLabel: CRM · Costs
+coverAccent: "#4fdbc8"
 ---
 
 "How much will it cost?" is the first question almost every business owner asks, and the most common answer is the least helpful one: *"It depends."*

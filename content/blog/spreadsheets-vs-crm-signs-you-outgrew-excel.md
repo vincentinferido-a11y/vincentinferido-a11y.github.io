@@ -3,6 +3,9 @@ title: "Spreadsheets vs. a CRM: 7 Signs Your Business Has Outgrown Excel"
 description: Spreadsheets are a great place to start, until they quietly start costing you clients. Here are seven warning signs, a simple test, and a step-by-step plan for switching without chaos.
 date: 2026-09-29
 tags: CRM, Business, Productivity
+coverIcon: table_chart
+coverLabel: CRM · Operations
+coverAccent: "#adc6ff"
 ---
 
 Almost every business starts tracking clients in a spreadsheet, and that's the right call. It's free, flexible and everyone knows how to use it.

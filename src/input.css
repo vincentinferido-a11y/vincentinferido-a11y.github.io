@@ -37,6 +37,64 @@
   .article th { @apply bg-surface-container-high text-on-surface text-left font-semibold px-space-sm py-2; }
   .article td { @apply border-t border-white/5 px-space-sm py-2 align-top; }
   .article tr:nth-child(even) td { @apply bg-surface-container-low; }
+  .article td:first-child { @apply text-on-surface font-semibold; }
+
+  /* Research badge under the article title */
+  .research-badge { @apply flex items-start gap-space-xs mt-space-xs px-space-sm py-2 rounded-lg bg-tertiary/10 ring-1 ring-tertiary/25 text-on-surface-variant font-body-sm text-body-sm; }
+  .research-badge .material-symbols-outlined { @apply text-tertiary mt-0.5; }
+  .research-badge strong { @apply text-tertiary; }
+  .research-badge a { @apply text-primary underline underline-offset-2; }
+
+  /* Quick picks */
+  .article .picks { @apply grid gap-space-sm; }
+  .article .pick { @apply grid gap-1 p-space-md rounded-xl bg-surface-container-low ring-1 ring-white/5; }
+  @media (min-width: 640px) { .article .pick { grid-template-columns: 11rem 1fr; column-gap: 1rem; } .article .pick-why { grid-column: 2; } }
+  .article .pick-for { @apply flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-wider text-tertiary; }
+  .article .pick-name { @apply font-headline-sm text-headline-sm font-bold text-on-surface; }
+  .article .pick-name a { @apply text-on-surface no-underline hover:text-primary; }
+  .article .pick-why { @apply font-body-sm text-body-sm; }
+
+  /* Product / tool review block */
+  .article .product { @apply p-space-md md:p-space-lg rounded-xl bg-surface-container-low ring-1 ring-white/5 scroll-mt-24; margin-top: 1.6em; }
+  .article .product-head { @apply flex flex-wrap items-start justify-between gap-space-sm; }
+  .article .product-name { @apply font-headline-md text-headline-md font-bold text-on-surface; margin: 0; }
+  .article .product-tagline { @apply font-body-sm text-body-sm text-on-surface-variant mt-1; }
+  .article .product-badge { @apply px-space-sm py-1 rounded-full bg-primary/15 text-primary font-label-sm text-label-sm font-semibold; }
+  .article .product-facts { @apply grid gap-2 mt-space-md font-body-sm text-body-sm; }
+  @media (min-width: 640px) { .article .product-facts > div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1rem; } }
+  .article .product-facts dt { @apply font-label-sm text-label-sm uppercase tracking-wider text-outline pt-0.5; }
+  .article .product-facts dd { @apply text-on-surface; }
+  .article .product-proscons { @apply grid sm:grid-cols-2 gap-space-md mt-space-md; }
+  .article .product-proscons ul { @apply list-none pl-0 flex flex-col gap-2 font-body-sm text-body-sm; }
+  .article .product-proscons li { @apply flex gap-2 items-start; margin: 0; }
+  .article .product-proscons .pros .material-symbols-outlined { @apply text-tertiary mt-0.5; }
+  .article .product-proscons .cons .material-symbols-outlined { @apply text-error mt-0.5; }
+  .article .product-verdict { @apply mt-space-md pt-space-md border-t border-white/5 text-on-surface; }
+  .article .product-links { @apply flex flex-wrap gap-space-md mt-space-sm font-label-md text-label-md; }
+  .article .product-links a { @apply inline-flex items-center gap-1 no-underline; }
+
+  /* Callouts */
+  .article .callout { @apply flex gap-space-sm p-space-md rounded-xl ring-1; }
+  .article .callout > div > * + * { margin-top: 0.5em; }
+  .article .callout-title { @apply font-label-md text-label-md font-bold uppercase tracking-wider; }
+  .article .callout-tip { @apply bg-tertiary/10 ring-tertiary/25; }
+  .article .callout-tip .callout-icon, .article .callout-tip .callout-title { @apply text-tertiary; }
+  .article .callout-mistake { @apply bg-error/10 ring-error/25; }
+  .article .callout-mistake .callout-icon, .article .callout-mistake .callout-title { @apply text-error; }
+  .article .callout-note, .article .callout-hook { @apply bg-primary/10 ring-primary/25; }
+  .article .callout-note .callout-icon, .article .callout-note .callout-title, .article .callout-hook .callout-icon { @apply text-primary; }
+
+  /* FAQ accordion */
+  .article .faq-list { @apply flex flex-col gap-space-xs; }
+  .article .faq-item { @apply rounded-xl bg-surface-container-low ring-1 ring-white/5; }
+  .article .faq-item summary { @apply flex items-center justify-between gap-space-sm cursor-pointer list-none p-space-md font-body-md text-body-md font-semibold text-on-surface; }
+  .article .faq-item summary::-webkit-details-marker { display: none; }
+  .article .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+  .article .faq-item > div { @apply px-space-md pb-space-md; }
+  .article .faq-item > div > * + * { margin-top: 0.6em; }
+
+  /* Sources list */
+  .article #sources + ol, .article #sources + ul { @apply font-body-sm text-body-sm; }
 }
 
 /* thin themed scrollbars instead of hiding them (keeps horizontal code/heatmap scroll discoverable) */
