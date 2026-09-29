@@ -29,6 +29,25 @@ npm run serve    # http://localhost:5173
 
 GitHub Pages serves the `docs/` folder from the `main` branch. After editing HTML classes, run `npm run build` and commit the updated `docs/styles.css`.
 
+## Blog
+
+Articles live in `content/blog/` as Markdown files. To publish a new one:
+
+1. Create `content/blog/your-article-slug.md` starting with:
+   ```
+   ---
+   title: Your Article Title
+   description: One or two sentences for Google and link previews.
+   date: 2026-10-15
+   tags: CRM, Business
+   ---
+   ```
+2. Write the article in Markdown below it (headings, lists, tables and links all work).
+3. Run `npm run build`. It generates `docs/blog/`, the RSS feed, the sitemap and the homepage "From the Blog" strip.
+4. Commit and push. GitHub Pages publishes it in about a minute.
+
+When the custom domain is live, update `SITE_URL` in `scripts/build-blog.mjs` and rebuild.
+
 ## Customize
 
 | What | Where |

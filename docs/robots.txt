@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vincentinferido-a11y.github.io/sitemap.xml

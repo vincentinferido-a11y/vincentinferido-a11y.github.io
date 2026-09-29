@@ -16,6 +16,27 @@
   .nav-link { @apply text-on-surface-variant hover:text-on-surface transition-colors; }
   .nav-link.is-active { @apply text-primary font-semibold; }
   .nav-link.is-active::before { content: "// "; }
+
+  /* Blog article typography (content rendered from Markdown) */
+  .article { @apply text-on-surface-variant max-w-[72ch]; font-size: 17px; line-height: 1.75; }
+  .article > * + * { margin-top: 1.1em; }
+  .article h2 { @apply font-headline-md text-headline-md font-bold text-on-surface scroll-mt-24; margin-top: 2em; }
+  .article h3 { @apply font-headline-sm text-headline-sm font-bold text-on-surface scroll-mt-24; margin-top: 1.6em; }
+  .article p strong, .article li strong { @apply text-on-surface font-semibold; }
+  .article a { @apply text-primary underline decoration-primary/40 underline-offset-2 hover:decoration-primary; }
+  .article ul { @apply list-disc pl-6; }
+  .article ol { @apply list-decimal pl-6; }
+  .article li + li { margin-top: 0.4em; }
+  .article li::marker { @apply text-tertiary; }
+  .article blockquote { @apply border-l-4 border-tertiary bg-surface-container-low rounded-r-lg px-space-md py-space-sm text-on-surface; }
+  .article blockquote p { margin: 0; }
+  .article code { @apply font-label-md text-label-md bg-surface-container-high text-tertiary rounded px-1.5 py-0.5; }
+  .article hr { @apply border-white/10 my-space-xl; }
+  .article .table-wrap { @apply overflow-x-auto rounded-lg ring-1 ring-white/5; }
+  .article table { @apply w-full border-collapse font-body-sm text-body-sm; min-width: 520px; }
+  .article th { @apply bg-surface-container-high text-on-surface text-left font-semibold px-space-sm py-2; }
+  .article td { @apply border-t border-white/5 px-space-sm py-2 align-top; }
+  .article tr:nth-child(even) td { @apply bg-surface-container-low; }
 }
 
 /* thin themed scrollbars instead of hiding them (keeps horizontal code/heatmap scroll discoverable) */

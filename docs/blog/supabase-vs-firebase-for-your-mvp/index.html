@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Supabase vs. Firebase: Choosing a Backend for Your MVP | Vincent Inferido</title>
+<meta name="description" content="A practical, non-hype comparison of Supabase and Firebase for founders and small teams, covering data model, security, pricing model, lock-in, and a simple guide to which one fits your product."/>
+<link rel="canonical" href="https://vincentinferido-a11y.github.io/blog/supabase-vs-firebase-for-your-mvp/"/>
+<meta property="og:title" content="Supabase vs. Firebase: Choosing a Backend for Your MVP | Vincent Inferido"/>
+<meta property="og:description" content="A practical, non-hype comparison of Supabase and Firebase for founders and small teams, covering data model, security, pricing model, lock-in, and a simple guide to which one fits your product."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://vincentinferido-a11y.github.io/blog/supabase-vs-firebase-for-your-mvp/"/>
+<meta property="og:image" content="https://vincentinferido-a11y.github.io/vincent-inferido.jpg"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="@web3boyaxdev"/>
+<meta name="twitter:creator" content="@web3boyaxdev"/>
+<meta name="theme-color" content="#0f131c"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="alternate" type="application/rss+xml" title="Vincent Inferido — Blog" href="https://vincentinferido-a11y.github.io/blog/feed.xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=block" rel="stylesheet"/>
+<link href="/styles.css" rel="stylesheet"/>
+<meta property="article:published_time" content="2026-09-29"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Supabase vs. Firebase: Choosing a Backend for Your MVP","description":"A practical, non-hype comparison of Supabase and Firebase for founders and small teams, covering data model, security, pricing model, lock-in, and a simple guide to which one fits your product.","datePublished":"2026-09-29","dateModified":"2026-09-29","mainEntityOfPage":"https://vincentinferido-a11y.github.io/blog/supabase-vs-firebase-for-your-mvp/","url":"https://vincentinferido-a11y.github.io/blog/supabase-vs-firebase-for-your-mvp/","author":{"@type":"Person","name":"Vincent Inferido","url":"https://vincentinferido-a11y.github.io","jobTitle":"Full-Stack Engineer & Designer"},"publisher":{"@type":"Person","name":"Vincent Inferido"},"keywords":"Tech choices, Startups, Planning","wordCount":800}</script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-space-md focus:py-2 focus:rounded focus:bg-tertiary focus:text-on-tertiary font-label-md text-label-md">Skip to content</a>
+<header class="sticky top-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+<div class="h-16 max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-space-md">
+<a href="/" class="flex items-center gap-space-sm sm:gap-space-md min-w-0" aria-label="Vincent Inferido — home">
+<svg class="h-8 w-8 shrink-0" viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="none" stroke="#4D8EFF" stroke-width="2"/><path d="M16 2v14M28 9l-12 7M28 23l-12-7M16 30V16M4 23l12-7M4 9l12 7" stroke="#D0BCFF" stroke-width="1.5"/><circle cx="16" cy="16" r="3.5" fill="#4FDBC8"/></svg>
+<div class="flex flex-col min-w-0"><span class="font-label-md text-label-md font-bold tracking-tight text-on-surface uppercase">Vincent Inferido</span><span class="font-label-sm text-label-sm text-outline tracking-normal sm:tracking-wider uppercase truncate">Full-Stack Engineer &amp; Designer</span></div>
+</a>
+<nav class="hidden md:flex items-center gap-space-md font-label-md text-label-md" aria-label="Primary">
+<a class="nav-link" href="/#services">Services</a>
+<a class="nav-link" href="/#projects">Projects</a>
+<a class="nav-link" href="/#estimate">Estimate</a>
+<a class="nav-link is-active" href="/blog/" aria-current="page">Blog</a>
+<a class="nav-link" href="/#contact">Contact</a>
+</nav>
+<a href="/#contact" aria-label="Book a free call" class="flex items-center gap-space-xs px-2.5 sm:px-space-md py-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors font-label-md text-label-md font-bold shrink-0"><span class="material-symbols-outlined text-[18px] sm:text-[16px]" aria-hidden="true">event_available</span><span class="hidden sm:inline">Book a free call</span></a>
+</div>
+</header>
+<main id="main">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop pt-space-lg">
+<nav class="font-label-sm text-label-sm text-outline pb-space-md" aria-label="Breadcrumb"><a class="hover:text-primary" href="/">Home</a> / <a class="hover:text-primary" href="/blog/">Blog</a></nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg">
+<article class="lg:col-span-8 min-w-0">
+<header class="flex flex-col gap-space-sm pb-space-lg border-b border-white/5">
+<div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Tech choices</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Startups</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Planning</span></div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Supabase vs. Firebase: Choosing a Backend for Your MVP</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">A practical, non-hype comparison of Supabase and Firebase for founders and small teams, covering data model, security, pricing model, lock-in, and a simple guide to which one fits your product.</p>
+<div class="flex flex-wrap items-center gap-space-sm font-label-sm text-label-sm text-outline">
+<img src="/vincent-inferido.jpg" alt="" width="28" height="28" class="w-7 h-7 rounded-full object-cover"/>
+<span class="text-on-surface">Vincent Inferido</span><span>·</span><time datetime="2026-09-29">September 29, 2026</time><span>·</span><span>4 min read</span>
+</div>
+</header>
+<div class="article pt-space-lg">
+<p>If you&#39;re building an MVP (a first version of your product), you don&#39;t want to spend months setting up servers. <strong>Supabase</strong> and <strong>Firebase</strong> both give you a ready-made backend (database, user login, file storage and more) so you can focus on your actual product.</p>
+<p>I&#39;ve used both: <strong>Supabase</strong> powers the reviews and inquiries on this very portfolio (with row-level security), and I&#39;ve worked with <strong>Firestore and Firebase Hosting</strong> on an internal production tool. Both are excellent. They&#39;re just built on different ideas, and that difference matters for your product.</p>
+<h2 id="the-one-sentence-difference">The one-sentence difference</h2>
+<ul>
+<li><strong>Supabase</strong> is built on <strong>PostgreSQL</strong>, a <em>relational</em> (table-based) database queried with SQL.</li>
+<li><strong>Firebase</strong> uses <strong>Firestore</strong>, a <em>document</em> (NoSQL) database of flexible, JSON-like records.</li>
+</ul>
+<p>Almost every other difference flows from this.</p>
+<h2 id="side-by-side">Side-by-side</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Supabase</th>
+<th>Firebase</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Database</strong></td>
+<td>PostgreSQL (tables, relations, SQL)</td>
+<td>Firestore (documents and collections, NoSQL)</td>
+</tr>
+<tr>
+<td><strong>Best at</strong></td>
+<td>Structured business data, reporting, complex queries</td>
+<td>Real-time apps, mobile apps, flexible data</td>
+</tr>
+<tr>
+<td><strong>Security model</strong></td>
+<td>Row-level security (SQL policies in the database)</td>
+<td>Security Rules (a rules language per collection)</td>
+</tr>
+<tr>
+<td><strong>User login</strong></td>
+<td>Built in (email, magic link, social logins)</td>
+<td>Built in (email, phone, social logins)</td>
+</tr>
+<tr>
+<td><strong>Real-time updates</strong></td>
+<td>Supported</td>
+<td>A core strength, especially on mobile</td>
+</tr>
+<tr>
+<td><strong>Offline support on mobile</strong></td>
+<td>Possible, but more work</td>
+<td>Strong built-in offline support in mobile SDKs</td>
+</tr>
+<tr>
+<td><strong>Server code</strong></td>
+<td>Edge Functions</td>
+<td>Cloud Functions</td>
+</tr>
+<tr>
+<td><strong>Pricing model</strong></td>
+<td>Mostly plan-based per project, plus usage</td>
+<td>Mostly pay-per-use (reads, writes, storage)</td>
+</tr>
+<tr>
+<td><strong>Lock-in</strong></td>
+<td>Open source, standard Postgres, can self-host</td>
+<td>Proprietary Google platform</td>
+</tr>
+<tr>
+<td><strong>Extras</strong></td>
+<td>SQL editor, database branching, vector search</td>
+<td>Analytics, crash reporting, push notifications, A/B testing</td>
+</tr>
+</tbody></table></div>
+<p><em>Features and prices change. Always check each provider&#39;s current documentation before you commit.</em></p>
+<h2 id="when-supabase-is-the-better-fit">When Supabase is the better fit</h2>
+<ul>
+<li>Your data is <strong>naturally structured and connected</strong>: customers → orders → invoices, clients → deals → tasks. This describes most <strong>CRMs, booking systems, marketplaces and internal tools</strong>.</li>
+<li>You need <strong>reports and dashboards</strong> (&quot;revenue by service per month&quot;). SQL makes this straightforward.</li>
+<li>You want <strong>predictable costs</strong> as usage grows.</li>
+<li>You care about <strong>portability</strong>: it&#39;s standard Postgres, so you can move it or self-host later.</li>
+</ul>
+<h2 id="when-firebase-is-the-better-fit">When Firebase is the better fit</h2>
+<ul>
+<li>You&#39;re building a <strong>mobile-first app</strong> that must <strong>work offline</strong> and sync later.</li>
+<li>Your app is heavily <strong>real-time</strong>, like chat, live collaboration or live tracking.</li>
+<li>Your data is <strong>flexible or loosely structured</strong>, and you mostly read it in simple ways.</li>
+<li>You want Google&#39;s <strong>built-in extras</strong> such as push notifications, analytics and crash reporting in one place.</li>
+</ul>
+<h2 id="watch-outs-for-each">Watch-outs for each</h2>
+<p><strong>Supabase</strong></p>
+<ul>
+<li>You&#39;ll get the most out of it if someone on the team is comfortable with <strong>SQL and database design</strong>.</li>
+<li><strong>Row-level security must be set up properly.</strong> It&#39;s powerful, but a missing policy can expose data. Test your rules. (For this portfolio I verify mine with automated tests.)</li>
+</ul>
+<p><strong>Firebase</strong></p>
+<ul>
+<li><strong>Pay-per-read pricing</strong> can surprise you if the app reads the same data over and over. Design your data to minimise reads.</li>
+<li><strong>Complex queries and reports are harder</strong> in a document database. You often duplicate data to make screens fast, which adds complexity.</li>
+<li>It&#39;s <strong>harder to leave</strong>: moving away from Firestore usually means reworking your data model.</li>
+</ul>
+<h2 id="a-simple-decision-guide">A simple decision guide</h2>
+<ol>
+<li><strong>Is it mainly a mobile app that must work offline?</strong> → <strong>Firebase</strong>.</li>
+<li><strong>Is it a business system with connected records and reports</strong> (CRM, bookings, orders, inventory)? → <strong>Supabase</strong>.</li>
+<li><strong>Is it highly real-time</strong> (chat, collaboration, live location)? → Either works. <strong>Firebase</strong> has the edge on mobile.</li>
+<li><strong>Do you want to avoid lock-in or might you self-host later?</strong> → <strong>Supabase</strong>.</li>
+<li><strong>Still unsure?</strong> → Pick the one your developer knows best. An experienced team on either platform will beat an unfamiliar &quot;perfect&quot; choice.</li>
+</ol>
+<h2 id="a-note-for-non-technical-founders">A note for non-technical founders</h2>
+<p>You don&#39;t need to understand the technical details to make a good decision. Ask your developer three questions:</p>
+<ol>
+<li><em>&quot;How will this handle our data as we grow, especially reports?&quot;</em></li>
+<li><em>&quot;What will it cost at 10× our expected users?&quot;</em></li>
+<li><em>&quot;If we ever need to move, how hard would it be?&quot;</em></li>
+</ol>
+<p>Clear, honest answers to those three questions matter more than the brand name.</p>
+<h2 id="the-bottom-line">The bottom line</h2>
+<ul>
+<li><strong>Supabase:</strong> structured business data, reporting, predictable costs, no lock-in.</li>
+<li><strong>Firebase:</strong> mobile-first, offline-capable, real-time apps with Google&#39;s ecosystem.</li>
+</ul>
+<p>Both let you launch an MVP quickly. Choose based on <strong>the shape of your data</strong> and <strong>where your users are</strong>, not hype.</p>
+<p><strong>Planning an MVP?</strong> <a href="/#contact">Book a free 30-minute call</a> and I&#39;ll help you pick the right backend for your product, or <a href="/#estimate">estimate your MVP</a> in seconds.</p>
+
+</div>
+<aside class="mt-space-xl p-space-lg rounded-xl bg-surface-container-low ring-1 ring-tertiary/20 flex flex-col gap-space-sm" aria-label="Get help">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Need help with this?</span>
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">Let&#39;s talk about your project</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Get an instant ballpark for effort and timeline, or book a free 30-minute call. No pressure, and you&#39;ll leave with a clearer plan either way.</p>
+<div class="flex flex-wrap gap-space-sm pt-1">
+<a href="/#estimate" class="inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">calculate</span>Estimate my project</a>
+<a href="/#contact" class="inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">event_available</span>Book a free call</a>
+</div>
+</aside>
+<div class="mt-space-lg flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-low">
+<img src="/vincent-inferido.jpg" alt="Vincent Inferido" width="64" height="64" class="w-16 h-16 rounded-full object-cover shrink-0"/>
+<div class="flex flex-col gap-1"><span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vincent Inferido</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Full-Stack Engineer &amp; Designer based in the Philippines. I design and build CRMs, booking systems, web apps and Web3 products for growing businesses.</span></div>
+</div>
+<div class="mt-space-md flex flex-wrap items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline pr-1">Share:</span>
+<a href="https://x.com/intent/post?text=Supabase%20vs.%20Firebase%3A%20Choosing%20a%20Backend%20for%20Your%20MVP&url=https%3A%2F%2Fvincentinferido-a11y.github.io%2Fblog%2Fsupabase-vs-firebase-for-your-mvp%2F&via=web3boyaxdev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fvincentinferido-a11y.github.io%2Fblog%2Fsupabase-vs-firebase-for-your-mvp%2F" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">work</span>LinkedIn</a>
+<button type="button" data-copy="https://vincentinferido-a11y.github.io/blog/supabase-vs-firebase-for-your-mvp/" class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">link</span><span>Copy link</span></button>
+</div>
+<nav class="mt-space-lg grid grid-cols-1 sm:grid-cols-2 gap-space-sm" aria-label="More articles">
+<a href="/blog/website-vs-web-app-vs-mobile-app/" class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container"><span class="font-label-sm text-label-sm text-outline">← Previous</span><span class="block font-body-sm text-body-sm text-on-surface">Website, Web App or Mobile App: Which One Does Your Business Actually Need?</span></a>
+<a href="/blog/spreadsheets-vs-crm-signs-you-outgrew-excel/" class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container sm:text-right"><span class="font-label-sm text-label-sm text-outline">Next →</span><span class="block font-body-sm text-body-sm text-on-surface">Spreadsheets vs. a CRM: 7 Signs Your Business Has Outgrown Excel</span></a>
+</nav>
+</article>
+<aside class="hidden lg:block lg:col-span-4">
+<div class="sticky top-24 flex flex-col gap-space-md">
+<nav class="p-space-md rounded-xl bg-surface-container-low" aria-label="On this page"><p class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-space-sm">On this page</p><ol class="flex flex-col gap-1.5 font-body-sm text-body-sm"><li><a class="text-on-surface-variant hover:text-primary" href="#the-one-sentence-difference">The one-sentence difference</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#side-by-side">Side-by-side</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#when-supabase-is-the-better-fit">When Supabase is the better fit</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#when-firebase-is-the-better-fit">When Firebase is the better fit</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#watch-outs-for-each">Watch-outs for each</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#a-simple-decision-guide">A simple decision guide</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#a-note-for-non-technical-founders">A note for non-technical founders</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#the-bottom-line">The bottom line</a></li></ol></nav>
+<div class="p-space-md rounded-xl bg-surface-container-low"><p class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-space-sm">Related</p><ul class="flex flex-col gap-space-sm"><li><a class="font-body-sm text-body-sm text-on-surface hover:text-primary" href="/blog/case-study-overland-ready/">Case Study: Building Overland Ready, a Review Site Editors Can Run Without a Developer</a></li><li><a class="font-body-sm text-body-sm text-on-surface hover:text-primary" href="/blog/how-i-plan-a-project/">How I Plan a Project: From Discovery Call to Launch</a></li><li><a class="font-body-sm text-body-sm text-on-surface hover:text-primary" href="/blog/online-booking-system-guide/">Online Booking for Clinics, Salons and Service Businesses: What to Look For</a></li></ul></div>
+</div>
+</aside>
+</div>
+</div>
+<script>document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(function(){b.lastElementChild.textContent="Copied!";setTimeout(function(){b.lastElementChild.textContent="Copy link"},1800)})})});</script>
+</main>
+<footer class="w-full bg-surface-container-lowest mt-space-xl py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop flex flex-col md:flex-row md:items-center justify-between gap-space-md font-label-sm text-label-sm text-outline">
+<div class="flex flex-col gap-1">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vincent Inferido</span>
+<span>Full-Stack Engineer &amp; Designer · Building business systems, web apps and Web3 products.</span>
+</div>
+<div class="flex flex-wrap gap-space-md">
+<a class="hover:text-primary" href="/">Portfolio</a>
+<a class="hover:text-primary" href="/blog/">Blog</a>
+<a class="hover:text-primary" href="/blog/feed.xml">RSS</a>
+<a class="hover:text-primary" href="https://github.com/vincentinferido-a11y" target="_blank" rel="noreferrer">GitHub</a>
+<a class="hover:text-primary" href="https://www.linkedin.com/in/vincentci/" target="_blank" rel="noreferrer">LinkedIn</a>
+<a class="hover:text-primary" href="https://x.com/web3boyaxdev" target="_blank" rel="noreferrer">X</a>
+</div>
+</div>
+<p class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop pt-space-md font-label-sm text-label-sm text-outline">© 2026 Vincent Inferido. All rights reserved.</p>
+</footer>
+</body>
+</html>
