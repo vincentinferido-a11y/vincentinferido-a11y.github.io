@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vincent Inferido — Full-Stack Product Builder</title>
+<meta name="description" content="Full-stack developer building business systems like CRMs, web apps and Web3 dApps, designed in Figma and built with Next.js and TypeScript."/>
+<meta property="og:title" content="Vincent Inferido — Full-Stack Product Builder"/>
+<meta property="og:description" content="I bridge the gap between technical complexity and human-centered design."/>
+<meta property="og:type" content="website"/>
+<meta name="theme-color" content="#0f131c"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=block" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="main.js" defer></script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-space-md focus:py-2 focus:rounded focus:bg-tertiary focus:text-on-tertiary font-label-md text-label-md">Skip to content</a>
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+<div class="h-20 max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-gutter">
+<a href="#hero" class="flex items-center gap-space-md shrink-0" aria-label="Vincent Inferido — back to top">
+<svg class="h-8 w-8" viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="none" stroke="#4D8EFF" stroke-width="2"/><path d="M16 2v14M28 9l-12 7M28 23l-12-7M16 30V16M4 23l12-7M4 9l12 7" stroke="#D0BCFF" stroke-width="1.5"/><circle cx="16" cy="16" r="3.5" fill="#4FDBC8"/></svg>
+<div class="flex flex-col"><span class="font-label-md text-label-md font-bold tracking-tight text-on-surface uppercase">Vincent Inferido</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Product Builder</span></div>
+<div class="hidden 2xl:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span><span>Open to work</span></div>
+</a>
+<nav class="hidden xl:flex items-center gap-space-md 2xl:gap-space-lg whitespace-nowrap font-label-md text-label-md" aria-label="Primary" id="primary-nav">
+<a class="nav-link" href="#hero">00.Index</a>
+<a class="nav-link" href="#projects">01.Projects</a>
+<a class="nav-link" href="#web3">02.Web3</a>
+<a class="nav-link" href="#ux-design">03.Design</a>
+<a class="nav-link" href="#fullstack">04.Full-Stack</a>
+<a class="nav-link" href="#skills">05.Specs</a>
+<a class="nav-link" href="#about">06.About</a>
+<a class="nav-link" href="#contact">07.Contact</a>
+</nav>
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="relative" id="chain-picker">
+<button id="chain-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="chain-menu" aria-label="Select network" class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface transition-colors"><span id="chain-dot" class="w-2 h-2 rounded-full" style="background:#627EEA"></span><span class="hidden sm:inline" id="network-name">Ethereum</span><span class="material-symbols-outlined text-[16px] text-outline" aria-hidden="true">expand_more</span></button>
+<ul id="chain-menu" role="listbox" aria-label="Networks" tabindex="-1" class="hidden absolute right-0 top-full mt-2 w-48 p-1 rounded-lg bg-surface-container-high shadow-2xl border border-white/5 font-label-sm text-label-sm z-50"></ul>
+</div>
+<button id="wallet-btn" class="flex items-center gap-space-xs px-space-md py-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary hover:text-on-surface transition-colors font-label-md text-label-md font-semibold" type="button"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">account_balance_wallet</span><span class="hidden sm:inline" id="wallet-label">Connect Wallet</span></button>
+<button id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav" class="xl:hidden p-2 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span></button>
+</div>
+</div>
+<nav id="mobile-nav" class="hidden xl:hidden border-t border-white/5 bg-surface/95 backdrop-blur-xl" aria-label="Mobile">
+<div class="px-margin-mobile py-space-md grid grid-cols-2 gap-space-xs font-label-md text-label-md">
+<a class="nav-link p-2 rounded bg-surface-container" href="#hero">00.Index</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#projects">01.Projects</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#web3">02.Web3</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#ux-design">03.Design</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#fullstack">04.Full-Stack</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#skills">05.Specs</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#about">06.About</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#contact">07.Contact</a>
+</div>
+</nav>
+</header>
+<div id="toast" role="status" aria-live="polite" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] px-space-md py-2 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<main id="main" class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full text-on-surface">
+<!-- ========================================== -->
+<!-- SECTION 1: HERO - MULTI-DIMENSIONAL INTRO -->
+<!-- ========================================== -->
+<section class="relative w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl overflow-hidden scroll-mt-20" id="hero">
+<!-- Ambient photonic backdrop glow -->
+<div class="absolute -top-32 left-1/4 w-96 h-96 bg-primary-container/20 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute top-1/3 -right-20 w-80 h-80 bg-secondary/15 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-center relative z-10">
+<!-- Left Column: Copy & CTAs -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Live Gas & Status Ribbon -->
+<div class="flex flex-wrap items-center gap-space-xs font-label-sm text-label-sm">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span><span id="gas-chain">ETHEREUM</span> <span id="gas-label">GAS</span>: <span id="gas-price">— </span> <span id="gas-unit">GWEI</span></span>
+<span class="text-outline">•</span>
+<span class="text-on-surface-variant"><span id="block-label">BLOCK</span> <span id="block-number">#—</span></span>
+</div>
+<!-- Dynamic Role Pill -->
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+<span class="transition-opacity duration-300" id="rotating-role">Full-Stack Product Builder</span>
+</div>
+</div>
+<!-- Main Architectural Headline -->
+<h1 class="font-headline-xl text-headline-xl-mobile sm:text-headline-xl lg:text-[64px] lg:leading-[72px] tracking-tight font-bold text-on-surface">
+          I bridge the gap between <span class="bg-gradient-to-r from-primary via-secondary to-tertiary bg-clip-text text-transparent">technical complexity</span> &amp; human-centered design.
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          Most developers don't understand UX. Most designers can't build the system behind it. I do both, from <strong class="text-on-surface">CRMs and business systems</strong> to <strong class="text-on-surface">full-stack web apps</strong> and <strong class="text-on-surface">Web3 dApps</strong>, designed for real people and built to scale.
+        </p>
+<!-- CTAs & Micro Actions -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg h-12 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-all hover:shadow-[0_0_24px_rgba(79,219,200,0.35)]" href="#projects">
+<span>Explore Shipped Works</span>
+<span class="material-symbols-outlined text-[18px]">south_east</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg h-12 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold transition-all" href="#contact">
+<span class="material-symbols-outlined text-[18px]">code</span>
+<span>Let's Build Together</span>
+</a>
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm ml-auto sm:ml-0">
+<span class="material-symbols-outlined text-tertiary text-[16px]">work</span>
+<span>Open to roles &amp; freelance</span>
+</div>
+</div>
+<!-- Telemetry Stats Strip -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-md">
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-primary">2</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Products shipped</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-tertiary">3</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Design · systems · Web3</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-secondary">TS</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">TypeScript end to end</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">UTC+8</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Philippines · remote-ready</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Triad Synergy Visualization -->
+<div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+<div class="w-full max-w-[460px] p-space-md rounded-xl bg-surface-container-low shadow-xl relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-label-sm text-outline ml-2">TRIAD_SYNERGY_INDEX // V4.8</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-tertiary">Live Core</span>
+</div>
+<!-- Dynamic SVG Node Graph replicating the hex-triad branding -->
+<div class="relative w-full aspect-square flex items-center justify-center bg-surface-container-lowest rounded-lg p-space-sm">
+<svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="grad-web3" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#4D8EFF"></stop>
+<stop offset="100%" stop-color="#71F8E4"></stop>
+</linearGradient>
+<linearGradient id="grad-ux" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#D0BCFF"></stop>
+<stop offset="100%" stop-color="#4D8EFF"></stop>
+</linearGradient>
+<linearGradient id="grad-fs" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#F97316"></stop>
+<stop offset="100%" stop-color="#D0BCFF"></stop>
+</linearGradient>
+</defs>
+<!-- Outer Hexagonal / Cube Wireframe Struts -->
+<polygon class="text-outline-variant/30" fill="none" points="200,45 330,120 330,270 200,345 70,270 70,120" stroke="currentColor" stroke-dasharray="4 4" stroke-width="2"></polygon>
+<!-- Connecting Edges -->
+<line stroke="url(#grad-web3)" stroke-linecap="round" stroke-width="4" x1="200" x2="200" y1="45" y2="195"></line>
+<line stroke="url(#grad-ux)" stroke-linecap="round" stroke-width="4" x1="330" x2="200" y1="120" y2="195"></line>
+<line stroke="url(#grad-fs)" stroke-linecap="round" stroke-width="4" x1="330" x2="200" y1="270" y2="195"></line>
+<line stroke="#F97316" stroke-linecap="round" stroke-width="4" x1="200" x2="200" y1="345" y2="195"></line>
+<line stroke="#4D8EFF" stroke-linecap="round" stroke-width="4" x1="70" x2="200" y1="270" y2="195"></line>
+<line stroke="#D0BCFF" stroke-linecap="round" stroke-width="4" x1="70" x2="200" y1="120" y2="195"></line>
+<!-- Outer Contour Edges -->
+<line stroke="#71F8E4" stroke-width="3" x1="200" x2="330" y1="45" y2="120"></line>
+<line stroke="#D0BCFF" stroke-width="3" x1="330" x2="330" y1="120" y2="270"></line>
+<line stroke="#71F8E4" stroke-width="3" x1="330" x2="200" y1="270" y2="345"></line>
+<line stroke="#D0BCFF" stroke-width="3" x1="200" x2="70" y1="345" y2="270"></line>
+<line stroke="#4D8EFF" stroke-width="3" x1="70" x2="70" y1="270" y2="120"></line>
+<line stroke="#4D8EFF" stroke-width="3" x1="70" x2="200" y1="120" y2="45"></line>
+<!-- Vertex Nodes -->
+<!-- Top: Web3 Architecture -->
+<circle class="cursor-pointer hover:scale-125 transition-transform" cx="200" cy="45" fill="#3B82F6" r="16"></circle>
+<!-- Top Right: UI Systems -->
+<circle class="cursor-pointer hover:scale-125 transition-transform" cx="330" cy="120" fill="#A855F7" r="16"></circle>
+<!-- Bottom Right: Full Stack Engine -->
+<circle class="cursor-pointer hover:scale-125 transition-transform" cx="330" cy="270" fill="#14B8A6" r="16"></circle>
+<!-- Bottom: Product Strategy -->
+<circle class="cursor-pointer hover:scale-125 transition-transform" cx="200" cy="345" fill="#F97316" r="16"></circle>
+<!-- Bottom Left: Protocol Security -->
+<circle class="cursor-pointer hover:scale-125 transition-transform" cx="70" cy="270" fill="#3B82F6" r="16"></circle>
+<!-- Top Left: Usability Testing -->
+<circle class="cursor-pointer hover:scale-125 transition-transform" cx="70" cy="120" fill="#A855F7" r="16"></circle>
+<!-- Center Nucleus: Vincent Inferido Unified Delivery -->
+<circle class="shadow-2xl shadow-white animate-pulse" cx="200" cy="195" fill="#FFFFFF" r="22"></circle>
+<text fill="#0A0E17" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle" x="200" y="200">CORE</text>
+</svg>
+<!-- Floating Synergy Explanations -->
+<div class="absolute bottom-3 left-3 right-3 p-space-xs rounded bg-surface-container/90 backdrop-blur-md flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-label-sm font-semibold">Zero-Friction Hand-off</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Solidity ↔ Figma ↔ Next.js</span>
+</div>
+</div>
+<!-- Bottom Telemetry bar -->
+<div class="pt-space-sm flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>RPC latency: <span id="rpc-latency">—</span></span>
+<span class="text-tertiary">100% End-to-End Ownership</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 2: FEATURED PROJECTS (FILTERABLE) -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="projects">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-primary tracking-wider uppercase">// 01. Selected Work</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Featured Projects</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Business systems, web apps and Web3 products I designed and built end to end.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs bg-surface-container-low p-1.5 rounded-lg" role="group" aria-label="Filter projects">
+<button class="project-filter-btn px-space-md py-1.5 rounded font-label-sm text-label-sm transition-colors bg-primary text-on-primary font-semibold" data-filter="all" aria-pressed="true" type="button">All</button>
+<button class="project-filter-btn px-space-md py-1.5 rounded font-label-sm text-label-sm transition-colors bg-transparent hover:bg-surface-container text-on-surface-variant hover:text-on-surface" data-filter="systems" aria-pressed="false" type="button">Systems / CRM</button>
+<button class="project-filter-btn px-space-md py-1.5 rounded font-label-sm text-label-sm transition-colors bg-transparent hover:bg-surface-container text-on-surface-variant hover:text-on-surface" data-filter="fullstack" aria-pressed="false" type="button">Full-Stack</button>
+<button class="project-filter-btn px-space-md py-1.5 rounded font-label-sm text-label-sm transition-colors bg-transparent hover:bg-surface-container text-on-surface-variant hover:text-on-surface" data-filter="ux" aria-pressed="false" type="button">UX/UI</button>
+<button class="project-filter-btn px-space-md py-1.5 rounded font-label-sm text-label-sm transition-colors bg-transparent hover:bg-surface-container text-on-surface-variant hover:text-on-surface" data-filter="web3" aria-pressed="false" type="button">Web3</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-lg" id="projects-grid">
+<article class="project-item fullstack ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="projects/overland-ready.png" alt="Overland Ready homepage: hero headline 'Plan less. Pack smarter. Go farther.' with review and beginner guide buttons"/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">Live</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Full-Stack / CMS</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-tertiary transition-colors">Overland Ready</h3>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">01</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Evidence-based overlanding gear review site. Reviews and affiliate products are managed in an embedded Sanity Studio and rendered through dynamic Next.js routes.</p>
+<div class="pb-space-md"><div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Next.js 16</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">React 19</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">TypeScript</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Tailwind v4</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Sanity CMS</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Vercel</span></div></div>
+<div class="flex items-center justify-between gap-space-sm pt-space-xs font-label-sm text-label-sm">
+<div class="flex items-center gap-space-md"><a class="text-tertiary hover:underline inline-flex items-center gap-1" href="https://overland-ready-eta.vercel.app" target="_blank" rel="noreferrer"><span>Live site</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span></a><a class="text-tertiary hover:underline inline-flex items-center gap-1" href="https://github.com/vincentinferido-a11y/overland-ready" target="_blank" rel="noreferrer"><span>Source</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">code</span></a></div>
+<span class="text-outline">Public repo</span>
+</div>
+</article>
+<article class="project-item fullstack ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<div class="w-full h-full flex flex-col items-center justify-center gap-2 bg-[radial-gradient(circle_at_30%_20%,rgba(249,115,22,0.25),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(208,188,255,0.18),transparent_50%)]" role="img" aria-label="HiKIDAI logo"><span class="font-headline-md text-headline-md font-bold text-on-surface">Hi<span class="text-[#F97316]">KID</span>AI</span><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">AI literacy for every age</span></div>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-secondary">Relaunching</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Full-Stack / EdTech</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-secondary transition-colors">HiKIDAI</h3>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">02</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">AI-literacy learning platform with a CMS for lessons, a Supabase database and auth backend, and embedded browser games.</p>
+<div class="pb-space-md"><div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Next.js</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">TypeScript</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Supabase</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Sanity CMS</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Tailwind</span></div></div>
+<div class="flex items-center justify-between gap-space-sm pt-space-xs font-label-sm text-label-sm">
+<div class="flex items-center gap-space-md"></div>
+<span class="text-outline">Private source · relaunching soon</span>
+</div>
+</article>
+<article class="project-item systems fullstack ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md" role="img" aria-label="Illustration of a CRM pipeline board">
+<div class="absolute inset-0 p-space-md pt-12 grid grid-cols-3 gap-2">
+<div class="flex flex-col gap-1.5"><span class="font-label-sm text-label-sm text-outline uppercase">Lead</span><div class="h-8 rounded bg-surface-container-high"></div><div class="h-8 rounded bg-surface-container-high"></div><div class="h-8 rounded bg-surface-container-high"></div></div>
+<div class="flex flex-col gap-1.5"><span class="font-label-sm text-label-sm text-outline uppercase">Proposal</span><div class="h-8 rounded bg-primary/25"></div><div class="h-8 rounded bg-primary/25"></div></div>
+<div class="flex flex-col gap-1.5"><span class="font-label-sm text-label-sm text-outline uppercase">Won</span><div class="h-8 rounded bg-tertiary/30"></div></div>
+</div>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">In development</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Systems / CRM</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">CRM System</h3>
+<span class="font-label-sm text-label-sm text-primary font-semibold">03</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">A custom CRM for managing contacts, deals and follow-ups, with a clean interface the team actually wants to use. Case study coming soon.</p>
+<div class="pb-space-md"><div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Next.js</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">TypeScript</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">PostgreSQL</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Figma</span></div></div>
+<div class="flex items-center justify-between gap-space-sm pt-space-xs font-label-sm text-label-sm"><span class="text-outline">Details coming soon</span></div>
+</article>
+<article class="project-item systems ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="projects/ts-task-control.jpg" alt="TS Task Control dashboard: task totals, done, past-due and due-today counters above an active roster of agents with their tasks"/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">UI system</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Systems / Ops</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">TS Task Control</h3>
+<span class="font-label-sm text-label-sm text-primary font-semibold">04</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Operations dashboard for a travel-support team: an agent roster with today&#39;s workload, a live pipeline tracking flight, hotel and event bookings, and a review screen that flags anomalies and matches bookings to tasks.</p>
+<div class="pb-space-md"><div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Google Stitch</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Tailwind CSS</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Dashboard UX</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Aero Synthetics DS</span></div></div>
+<div class="flex items-center justify-between gap-space-sm pt-space-xs font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><a class="text-primary hover:underline inline-flex items-center gap-1" href="https://vincentinferido-a11y.github.io/ts-task-control-ui/" target="_blank" rel="noreferrer"><span>Prototype</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span></a><a class="text-primary hover:underline inline-flex items-center gap-1" href="https://github.com/vincentinferido-a11y/ts-task-control-ui" target="_blank" rel="noreferrer"><span>Source</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">code</span></a></div><span class="text-outline">3 screens + design system</span></div>
+</article>
+<article class="project-item fullstack ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="projects/boyaxdev.jpg" alt="BoyaxDev asset inventory: filter sidebar for niche and tech stack next to a grid of website listings"/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">UI system</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Marketplace</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-tertiary transition-colors">BoyaxDev Marketplace</h3>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">05</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Marketplace for buying ready-to-launch websites. A filterable inventory by niche, stack and monetization, asset pages with a data room, and a four-step buyer-access flow with an NDA.</p>
+<div class="pb-space-md"><div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Google Stitch</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Tailwind CSS</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Multi-step forms</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Liquid Glass Aero DS</span></div></div>
+<div class="flex items-center justify-between gap-space-sm pt-space-xs font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><a class="text-tertiary hover:underline inline-flex items-center gap-1" href="https://vincentinferido-a11y.github.io/boyaxdev-marketplace-ui/" target="_blank" rel="noreferrer"><span>Prototype</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span></a><a class="text-tertiary hover:underline inline-flex items-center gap-1" href="https://github.com/vincentinferido-a11y/boyaxdev-marketplace-ui" target="_blank" rel="noreferrer"><span>Source</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">code</span></a></div><span class="text-outline">4 screens + design system</span></div>
+</article>
+<article class="project-item ux fullstack group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="projects/skinstack.jpg" alt="SkinStack homepage hero: AquaGlow Hydrating Ocean Serum product feature with a 4.9 rating and a check-price button"/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-secondary">UI system</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Content / Affiliate</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-secondary transition-colors">SkinStack</h3>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">06</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Curated skincare review site with in-depth product reviews, category directories and &ldquo;best under $30&rdquo; guides, with affiliate links and clear editorial disclosure.</p>
+<div class="pb-space-md"><div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Google Stitch</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Tailwind CSS</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Editorial UX</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Luminous Aqua DS</span></div></div>
+<div class="flex items-center justify-between gap-space-sm pt-space-xs font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><a class="text-secondary hover:underline inline-flex items-center gap-1" href="https://vincentinferido-a11y.github.io/skinstack-ui/" target="_blank" rel="noreferrer"><span>Prototype</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span></a><a class="text-secondary hover:underline inline-flex items-center gap-1" href="https://github.com/vincentinferido-a11y/skinstack-ui" target="_blank" rel="noreferrer"><span>Source</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">code</span></a></div><span class="text-outline">9 screens + product renders</span></div>
+</article>
+<article class="project-item web3 fullstack ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="projects/portfolio.jpg" alt="This portfolio's hero section: headline, live Ethereum gas ribbon and the triad node graphic"/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">You are here</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Web3 / Portfolio</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-tertiary transition-colors">This Portfolio</h3>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">07</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Static HTML with compiled Tailwind and no framework. Live data from 7 chains (6 EVM plus Solana) with automatic RPC fallback, and read-only EVM and Solana wallet connection.</p>
+<div class="pb-space-md"><div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">HTML</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Tailwind CSS</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">JavaScript</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">EIP-1193</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Solana wallets</span></div></div>
+<div class="flex items-center justify-between gap-space-sm pt-space-xs font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><a class="text-tertiary hover:underline inline-flex items-center gap-1" href="https://github.com/vincentinferido-a11y/vincentinferido-a11y.github.io" target="_blank" rel="noreferrer"><span>Source</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">code</span></a></div><span class="text-outline">Neo-Swiss Cybernetic DS</span></div>
+</article>
+<article class="project-item web3 systems fullstack ux flex flex-col items-start justify-center gap-space-sm rounded-xl border border-dashed border-outline-variant p-space-lg min-h-[24rem]">
+<span class="material-symbols-outlined text-[32px] text-tertiary" aria-hidden="true">add_circle</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">More projects shipping</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">More business systems, web apps and Web3 dApps are being prepared for release. Follow along on GitHub.</p>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-tertiary hover:underline" href="https://github.com/vincentinferido-a11y" target="_blank" rel="noreferrer"><span>github.com/vincentinferido-a11y</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span></a>
+</article>
+</div>
+<div class="pt-space-xl mt-space-xl border-t border-white/5" id="concepts">
+<div class="flex flex-col gap-space-xs pb-space-lg">
+<span class="font-label-md text-label-md text-secondary tracking-wider uppercase">// Concept Showcase</span>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Sample Builds &amp; Design Explorations</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Concept products I designed to explore patterns across DeFi, fintech, SaaS, e-commerce, real-time collaboration and AI. These are self-initiated studies, not client work.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-lg">
+<article class="project-item concept web3 fullstack group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c01.jpg?v=2" alt="Dark high-contrast cryptocurrency DeFi analytics interface showing multi-chain yield curves, liquidity pool graphs, and token swaps in deep navy, electric blue and neon teal."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">DeFi dashboard</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Web3 / FullStack</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">OmniDeFi Protocol Dashboard</h3>
+<span class="font-label-sm text-label-sm text-primary font-semibold">C01</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Multi-chain liquidity dashboard concept covering Uniswap V3, Aave V3 and Compound, with one-click batch rebalancing.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Solidity</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Next.js 14</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">The Graph</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Wagmi</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+<article class="project-item concept web3 ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c02.jpg?v=3" alt="Sophisticated futuristic NFT art marketplace UI showcasing generative 3D sculptures, bids ledger, and transparent glass panels on deep obsidian background."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">Gasless minting</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-secondary">Web3 / UX</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-secondary transition-colors">Aura L2 NFT Marketplace</h3>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">C02</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">NFT marketplace concept on Polygon, using EIP-712 off-chain signatures and lazy-minting vouchers so creators pay no upfront gas.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">EIP-712</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Polygon</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Figma</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">IPFS</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+<article class="project-item concept web3 ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c03.jpg?v=2" alt="Complex governance dashboard for crypto decentralized autonomous organization showing quadratic voting simulator, proposal trees, and voting delegate tokens."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">DAO governance</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Web3 / UX</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">Synapse DAO Governance Suite</h3>
+<span class="font-label-sm text-label-sm text-primary font-semibold">C03</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Governance portal concept that combines gasless off-chain Snapshot voting with on-chain Timelock execution and quadratic voting.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">OpenZeppelin</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Snapshot API</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Tailwind</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">React 18</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+<article class="project-item concept ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c04.jpg?v=2" alt="High-fidelity fintech mobile screens showing credit card management, biometrics onboarding, and real-time expense classification in dark mode UI."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">Mobile fintech UX</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-secondary">UX / Research</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-secondary transition-colors">FinPay Mobile Banking UX</h3>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">C04</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Banking onboarding concept that turns a long KYC form into three adaptive steps with instant document scanning.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Figma</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Prototyping</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Usability testing</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+<article class="project-item concept fullstack ux systems group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c05.jpg?v=2" alt="Futuristic dark SaaS analytics software showing live churn metrics, cohort heatmaps, and streaming customer telemetry cards with purple and neon cyan line charts."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">SaaS analytics</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Full-Stack / UX</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">PulseMetrics SaaS Platform</h3>
+<span class="font-label-sm text-label-sm text-primary font-semibold">C05</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Analytics platform concept with live event streams, customizable dashboards and instant segment filtering. A business-systems study.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Next.js 14</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">PostgreSQL</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Prisma</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">ClickHouse</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+<article class="project-item concept fullstack systems group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c06.jpg?v=2" alt="Minimalist luxury digital storefront interface with instant cart side-drawers, inventory counter widgets, and high resolution product photography in monochromatic dark mode."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">E-commerce backend</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">Full-Stack</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-tertiary transition-colors">HyperScale E-Commerce Core</h3>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">C06</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Marketplace backend concept with server-side rendering, Stripe Connect payouts and inventory locks that prevent overselling.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Next 14 SSR</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Stripe Connect</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Redis Mutex</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+<article class="project-item concept fullstack group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c07.jpg?v=2" alt="Collaborative infinite canvas UI with multiple user cursor tags in bright colors, wireframe sticky notes, and real-time audio room avatars floating on canvas."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">Real-time collab</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Full-Stack</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">CollabSync Real-Time Canvas</h3>
+<span class="font-label-sm text-label-sm text-primary font-semibold">C07</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Multiplayer whiteboard concept using Yjs CRDTs over WebSockets, with peer-to-peer WebRTC voice rooms.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Yjs CRDT</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">WebSockets</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">WebRTC</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Zustand</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+<article class="project-item concept web3 ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c08.jpg?v=2" alt="Sleek mobile Web3 crypto smart account interface showing passkey biometric authentication, zero seed phrase notice, and gas payment sponsorship toggle."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">Account abstraction</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-secondary">Web3 / UX</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-secondary transition-colors">Chronos Smart Account Flow</h3>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">C08</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">ERC-4337 smart-wallet onboarding concept that replaces seed phrases with passkeys and sponsors gas through Paymasters.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">ERC-4337</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Passkeys</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Paymasters</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Zero-Jargon UX</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+<article class="project-item concept fullstack group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c09.jpg?v=2" alt="Technical AI document workspace featuring real-time stream token highlighting, prompt branching trees, and semantic vector similarity graphs in futuristic dark UI."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">AI writing tool</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-primary">Full-Stack</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">CognitiveAI Editorial Engine</h3>
+<span class="font-label-sm text-label-sm text-primary font-semibold">C09</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Generative writing studio concept with streaming responses (SSE), semantic caching and side-by-side diff comparison.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">FastAPI</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">SSE Streams</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Redis Vector</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Next.js App</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+<article class="project-item concept ux group flex flex-col rounded-xl bg-surface-container-low hover:bg-surface-container transition-all p-space-md">
+<div class="relative w-full h-52 rounded-lg overflow-hidden bg-surface-container-lowest mb-space-md">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="projects/concepts/c10.jpg?v=2" alt="Strict geometric design system UI showcasing tokenized color palette cards, typography ramps, accessibility contrast ratios, and modular buttons in dark cyber aesthetic."/>
+<span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-tertiary">Design system</span>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-highest/90 backdrop-blur font-label-sm text-label-sm text-secondary">Design System</span>
+</div>
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-secondary transition-colors">Apex Enterprise Design System</h3>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">C10</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pb-space-sm flex-1">Enterprise design system concept with Figma Variables compiled into Tailwind tokens, following WCAG 2.1 AA.</p>
+<div class="flex flex-wrap gap-1.5 pb-space-md font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Figma Tokens</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Style Dictionary</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">WCAG 2.1 AA</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">React Lib</span></div>
+<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm"><span class="inline-flex items-center gap-1 text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">draw</span>Concept · UI and architecture study</span></div>
+</article>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 3: WEB3 TECHNICAL DEPTH & AUDIT -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="web3">
+<div class="flex flex-col gap-space-xs pb-space-lg">
+<span class="font-label-md text-label-md text-tertiary tracking-wider uppercase">// 02. Web3 Engineering</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Web3 &amp; Smart Contracts</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">I'm bringing my full-stack and UX skills to the EVM. The goal is dApps that are secure on-chain and easy to use for people who have never touched a wallet.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start">
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">token</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Smart contracts</h3></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Solidity contracts built on audited OpenZeppelin building blocks, tested and deployed with Hardhat.</p>
+<div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Solidity</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Hardhat</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">OpenZeppelin</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">ethers.js</span></div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-primary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">account_balance_wallet</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">dApp front ends</h3></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Wallet connection, network switching and clear transaction states. Crypto UX without the jargon.</p>
+<div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">wagmi</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">viem</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">RainbowKit</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Next.js</span></div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">hub</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Indexing and data</h3></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Reading on-chain data efficiently with subgraphs instead of slow RPC loops.</p>
+<div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">The Graph</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">GraphQL</span></div>
+</div>
+</div>
+<div class="lg:col-span-6 flex flex-col">
+<div class="rounded-xl bg-surface-container-lowest overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between px-space-md py-space-sm bg-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-error"></span><span class="w-3 h-3 rounded-full bg-secondary"></span><span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="ml-3 px-space-xs py-0.5 rounded bg-surface-container-lowest text-primary font-label-sm text-label-sm font-semibold">BuilderPass.sol</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Solidity 0.8.24</span>
+</div>
+<div class="p-space-md overflow-x-auto font-label-sm text-label-sm leading-relaxed text-on-surface-variant">
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">01</span><span class="whitespace-pre"><span class="text-outline">// SPDX-License-Identifier: MIT</span></span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">02</span><span class="whitespace-pre"><span class="text-secondary">pragma</span> <span class="text-on-surface">solidity</span> ^0.8.24;</span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">03</span><span class="whitespace-pre"></span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">04</span><span class="whitespace-pre"><span class="text-secondary">import</span> <span class="text-tertiary">"@openzeppelin/contracts/token/ERC721/ERC721.sol"</span>;</span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">05</span><span class="whitespace-pre"><span class="text-secondary">import</span> <span class="text-tertiary">"@openzeppelin/contracts/access/Ownable.sol"</span>;</span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">06</span><span class="whitespace-pre"></span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">07</span><span class="whitespace-pre"><span class="text-primary font-bold">contract</span> <span class="text-tertiary font-bold">BuilderPass</span> <span class="text-secondary">is</span> ERC721, Ownable {</span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">08</span><span class="whitespace-pre">  <span class="text-secondary">uint256</span> <span class="text-primary">public constant</span> MAX_SUPPLY = 1_000;</span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">09</span><span class="whitespace-pre">  <span class="text-secondary">uint256</span> <span class="text-primary">public</span> totalMinted;</span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">10</span><span class="whitespace-pre"></span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">11</span><span class="whitespace-pre">  <span class="text-primary">constructor</span>() ERC721(<span class="text-tertiary">"Builder Pass"</span>, <span class="text-tertiary">"PASS"</span>) Ownable(msg.sender) {}</span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">12</span><span class="whitespace-pre"></span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">13</span><span class="whitespace-pre">  <span class="text-outline">// One pass per wallet, capped supply</span></span></div>
+<div class="flex bg-primary/10 -mx-space-md px-space-md"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">14</span><span class="whitespace-pre">  <span class="text-primary font-bold">function</span> <span class="text-on-surface font-semibold">mint</span>() <span class="text-primary">external</span> {</span></div>
+<div class="flex bg-primary/10 -mx-space-md px-space-md"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">15</span><span class="whitespace-pre">    <span class="text-secondary">require</span>(totalMinted &lt; MAX_SUPPLY, <span class="text-tertiary">"Sold out"</span>);</span></div>
+<div class="flex bg-primary/10 -mx-space-md px-space-md"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">16</span><span class="whitespace-pre">    <span class="text-secondary">require</span>(balanceOf(msg.sender) == 0, <span class="text-tertiary">"Already minted"</span>);</span></div>
+<div class="flex bg-primary/10 -mx-space-md px-space-md"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">17</span><span class="whitespace-pre">    _safeMint(msg.sender, ++totalMinted);</span></div>
+<div class="flex bg-primary/10 -mx-space-md px-space-md"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">18</span><span class="whitespace-pre">  }</span></div>
+<div class="flex"><span class="text-outline select-none w-8 shrink-0 text-right pr-4">19</span><span class="whitespace-pre">}</span></div>
+</div>
+<div class="bg-surface-container-high p-space-sm flex flex-wrap items-center justify-between gap-space-xs font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs text-tertiary"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">science</span><span>Example contract · learning build</span></div>
+<span class="text-outline">Live multichain data in the header ↑</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 4: UX/UI DESIGN SYSTEMS & RESEARCH -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="ux-design">
+<div class="flex flex-col gap-space-xs pb-space-lg">
+<span class="font-label-md text-label-md text-secondary tracking-wider uppercase">// 03. UX/UI &amp; Design Systems</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">How I Design</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Good looks are the baseline. What matters is whether people can use the product. My process goes from AI-assisted concepts to a tested, tokenized design system that developers can build straight from.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-lg pb-space-xl">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-space-xs text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">lightbulb</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Step 1</span></span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Concept fast</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">AI-generated UI concepts to explore directions in hours, not days.</p>
+<div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Google Stitch</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Figma AI</span></div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-space-xs text-primary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">design_services</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Step 2</span></span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Refine in Figma</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Variants, components and auto-layout, organized into a reusable system.</p>
+<div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Figma</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Variables</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Components</span></div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">touch_app</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Step 3</span></span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Prototype and test</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Interactive prototypes and user research to catch friction before any code exists.</p>
+<div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Framer</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Hotjar</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Maze</span></div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-space-xs text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">code_blocks</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Step 4</span></span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Hand off as code</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Design tokens map straight into Tailwind, so the build matches the design.</p>
+<div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Dev Mode</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Tailwind tokens</span></div>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Live example: this site</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">The design tokens powering this portfolio</h3>
+</div>
+<span class="px-space-sm py-1 rounded bg-surface-container font-label-sm text-label-sm text-tertiary self-start md:self-auto">Design spec → Tailwind config</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-space-sm">
+<div class="p-space-xs rounded bg-surface-container-lowest flex flex-col gap-1">
+<div class="w-full h-10 rounded bg-primary"></div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">color-primary</span>
+<span class="font-label-sm text-label-sm text-outline">#ADC6FF</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-lowest flex flex-col gap-1">
+<div class="w-full h-10 rounded bg-secondary"></div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">color-secondary</span>
+<span class="font-label-sm text-label-sm text-outline">#D0BCFF</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-lowest flex flex-col gap-1">
+<div class="w-full h-10 rounded bg-tertiary"></div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">color-tertiary</span>
+<span class="font-label-sm text-label-sm text-outline">#4FDBC8</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-lowest flex flex-col gap-1">
+<div class="w-full h-10 rounded bg-surface-container-high"></div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">surface-high</span>
+<span class="font-label-sm text-label-sm text-outline">#262A34</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-lowest flex flex-col gap-1">
+<div class="w-full h-10 rounded bg-surface-variant"></div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">surface-variant</span>
+<span class="font-label-sm text-label-sm text-outline">#31353F</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-lowest flex flex-col gap-1">
+<div class="w-full h-10 rounded bg-error"></div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">color-error</span>
+<span class="font-label-sm text-label-sm text-outline">#FFB4AB</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 5: FULL-STACK WEB & APP BLUEPRINTS -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="fullstack">
+<div class="flex flex-col gap-space-xs pb-space-lg">
+<span class="font-label-md text-label-md text-primary tracking-wider uppercase">// 04. Full-Stack Engineering</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Web Apps &amp; Business Systems</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">From CRMs and internal tools to public-facing web apps, everything is type-safe from the database to the browser, editable by non-developers where it matters, and deployed on the edge.</p>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low mb-space-lg">
+<div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-md">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">My default architecture</span>
+<span class="font-label-sm text-label-sm text-outline">TypeScript end to end</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-space-sm items-center text-center">
+<div class="p-space-sm rounded bg-surface-container-lowest flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[24px]" aria-hidden="true">devices</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Client</span>
+<span class="font-label-sm text-label-sm text-outline">Next.js · React · Tailwind</span>
+</div>
+<div class="flex justify-center text-outline"><span class="material-symbols-outlined rotate-90 md:rotate-0 text-[20px]" aria-hidden="true">trending_flat</span></div>
+<div class="p-space-sm rounded bg-surface-container-lowest flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-[24px]" aria-hidden="true">alt_route</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Server &amp; Auth</span>
+<span class="font-label-sm text-label-sm text-outline">Route handlers · NextAuth / Clerk</span>
+</div>
+<div class="flex justify-center text-outline"><span class="material-symbols-outlined rotate-90 md:rotate-0 text-[20px]" aria-hidden="true">trending_flat</span></div>
+<div class="p-space-sm rounded bg-surface-container-lowest flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[24px]" aria-hidden="true">database</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Data &amp; Content</span>
+<span class="font-label-sm text-label-sm text-outline">Postgres · Supabase · Sanity</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm text-tertiary font-bold">Overland Ready</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">CMS-driven content site</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Sanity Studio runs inside the Next.js app at /studio. Route groups keep it separate from the public layout, and reviews render from GROQ queries.</p>
+<ul class="p-space-xs rounded bg-surface-container-lowest font-label-sm text-label-sm text-tertiary space-y-1"><li>✓ Headless CMS editing</li><li>✓ Dynamic review routes</li><li>✓ Affiliate-link system</li></ul>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm text-secondary font-bold">HiKIDAI</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Learning platform</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Supabase handles the database and authentication, Sanity manages lesson content, and browser games are built in and served alongside the app.</p>
+<ul class="p-space-xs rounded bg-surface-container-lowest font-label-sm text-label-sm text-secondary space-y-1"><li>✓ Postgres + auth</li><li>✓ CMS-managed lessons</li><li>✓ Embedded games</li></ul>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm text-primary font-bold">This portfolio</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Static and fast</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Plain HTML with compiled Tailwind and no framework overhead. Live gas and block data stream from a public Ethereum RPC, and wallet connection uses EIP-1193.</p>
+<ul class="p-space-xs rounded bg-surface-container-lowest font-label-sm text-label-sm text-primary space-y-1"><li>✓ No build-time framework</li><li>✓ Live on-chain data</li><li>✓ Accessible and responsive</li></ul>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 6: SKILLS MATRIX & GITHUB TELEMETRY -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="skills">
+<div class="flex flex-col gap-space-xs pb-space-lg">
+<span class="font-label-md text-label-md text-tertiary tracking-wider uppercase">// 05. Technical Stack</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Tools I Build With</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">My stack across the full product lifecycle, from business systems to Web3, plus the AI tools that make me faster.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-gutter-lg pb-space-lg">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-primary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">terminal</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Full-Stack</h3></div>
+<ul class="space-y-2 pt-space-xs font-label-sm text-label-sm text-on-surface"><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Next.js (App Router)</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>React · TypeScript</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Tailwind CSS</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Prisma · PostgreSQL</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Supabase · Sanity CMS</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>NextAuth.js · Clerk</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Stripe · Vercel</li></ul>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">dashboard</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Business Systems</h3></div>
+<ul class="space-y-2 pt-space-xs font-label-sm text-label-sm text-on-surface"><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>CRM and sales pipelines</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>Admin dashboards</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>Role-based access</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>Data models · PostgreSQL</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>Auth and user management</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>Payments and integrations</li></ul>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">token</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Web3</h3></div>
+<ul class="space-y-2 pt-space-xs font-label-sm text-label-sm text-on-surface"><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>Solidity</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>Hardhat</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>ethers.js · viem</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>wagmi · RainbowKit</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>The Graph</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary shrink-0"></span>OpenZeppelin</li></ul>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">brush</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">UX/UI Design</h3></div>
+<ul class="space-y-2 pt-space-xs font-label-sm text-label-sm text-on-surface"><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0"></span>Figma · Figma AI</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0"></span>Framer</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0"></span>Design systems and tokens</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0"></span>Hotjar · Maze</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0"></span>Google Stitch</li></ul>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-primary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">smart_toy</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">AI Workflow</h3></div>
+<ul class="space-y-2 pt-space-xs font-label-sm text-label-sm text-on-surface"><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Claude Code · Cursor</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>GitHub Copilot · Codex</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>Perplexity · Phind</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>OpenAI API · Vercel AI SDK</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>v0 · Mintlify</li></ul>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-[18px]" aria-hidden="true">commit</span><span class="font-label-sm text-label-sm text-on-surface font-bold">GitHub contributions</span></div>
+<a class="font-label-sm text-label-sm text-tertiary hover:underline inline-flex items-center gap-1" href="https://github.com/vincentinferido-a11y" target="_blank" rel="noreferrer"><span>View profile</span><span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span></a>
+</div>
+<div class="overflow-x-auto pt-space-xs">
+<img class="min-w-[720px] w-full h-auto" loading="lazy" src="https://ghchart.rshah.org/4fdbc8/vincentinferido-a11y" alt="Vincent Inferido's GitHub contribution chart for the past year"/>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 7: ABOUT THE BUILDER (BRAND STORY) -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="about">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-center">
+<!-- Portrait Card -->
+<div class="lg:col-span-5 flex flex-col items-center">
+<div class="relative w-full max-w-[420px] aspect-square rounded-2xl overflow-hidden bg-surface-container-low shadow-2xl p-2">
+<img loading="lazy" alt="Professional modern headshot of Vincent Inferido" class="w-full h-full object-cover rounded-xl" src="vincent-inferido.jpg"/>
+<div class="absolute bottom-6 left-6 right-6 p-space-sm rounded-lg bg-surface-container-high/90 backdrop-blur flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vincent Inferido</span>
+<span class="font-label-sm text-label-sm text-tertiary">Full-Stack · Web3 · UX/UI</span>
+</div>
+<a class="p-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors" href="#contact">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Narrative & Philosophy -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-primary tracking-wider uppercase">// 06. The Unfair Advantage</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Behind the Architecture</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          I design and build web products from start to finish, from the first Figma concept to a production Next.js app, with smart contracts when a product needs them.
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          When design, front end and back end are handled by different people, details get lost between them. Because I work across all three, I can take a product from idea to launch myself, and what ships matches what was designed. I use AI throughout that process to move faster, and I check everything it produces.
+        </p>
+<!-- Current Focus Matrix -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-tertiary font-bold block mb-1">WORKING PHILOSOPHY</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Understand the user first, keep the code type-safe and readable, and never ship AI output I haven&#39;t reviewed and tested.
+            </p>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-secondary font-bold block mb-1">CURRENTLY BUILDING</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Web3 dApps with Solidity, wagmi and RainbowKit, more open-source full-stack projects, and AI features built with the OpenAI API and Vercel AI SDK.
+            </p>
+</div>
+</div>
+<!-- Action Pills: Resume & Social Verification -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<a class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-colors" href="#contact">
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">mail</span>
+<span>Get in touch</span>
+</a>
+<a class="p-2.5 rounded bg-surface-container-high text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm flex items-center gap-1" href="https://github.com/vincentinferido-a11y" rel="noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]" aria-hidden="true">terminal</span>
+<span>GitHub</span>
+</a>
+<a class="p-2.5 rounded bg-surface-container-high text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm flex items-center gap-1" href="https://www.linkedin.com/in/vincentci/" rel="noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]" aria-hidden="true">work</span>
+<span>LinkedIn</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 9: INTERACTIVE FAQ & SPECIFICATIONS -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg">
+<div class="lg:col-span-4 flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-primary tracking-wider uppercase">// Contract Inquiries</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Frequently Asked Questions</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Clear terms, predictable delivery cycles, and full IP handover.
+        </p>
+</div>
+<div class="lg:col-span-8 flex flex-col gap-space-sm" id="faq-accordion">
+<!-- FAQ Item 1 -->
+<details class="faq group p-space-md rounded-xl bg-surface-container-low">
+<summary class="flex items-center justify-between gap-space-md cursor-pointer list-none">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">What is your typical project timeline?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180" aria-hidden="true">expand_more</span>
+</summary>
+<div class="pt-space-sm font-body-sm text-body-sm text-on-surface-variant">
+            It depends on scope. A focused marketing site or landing page usually takes 1–2 weeks, and a full-stack MVP with auth, a database and a CMS usually takes 4–8 weeks. I&#39;ll give you a clear estimate after a short discovery call.
+          </div>
+</details>
+<!-- FAQ Item 2 -->
+<details class="faq group p-space-md rounded-xl bg-surface-container-low">
+<summary class="flex items-center justify-between gap-space-md cursor-pointer list-none">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Do you work with existing teams or build solo from scratch?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180" aria-hidden="true">expand_more</span>
+</summary>
+<div class="pt-space-sm font-body-sm text-body-sm text-on-surface-variant">
+            Both. I can build a product solo from Figma to deployment, or join an existing team and fit into your codebase, design system and workflow.
+          </div>
+</details>
+<!-- FAQ Item 3 -->
+<details class="faq group p-space-md rounded-xl bg-surface-container-low">
+<summary class="flex items-center justify-between gap-space-md cursor-pointer list-none">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">What is your billing &amp; engagement structure?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180" aria-hidden="true">expand_more</span>
+</summary>
+<div class="pt-space-sm font-body-sm text-body-sm text-on-surface-variant">
+            For freelance work I usually quote fixed-scope milestones, so you know the cost up front. I&#39;m also open to part-time and full-time roles. We can agree on the details on a quick call.
+          </div>
+</details>
+<!-- FAQ Item 4 -->
+<details class="faq group p-space-md rounded-xl bg-surface-container-low">
+<summary class="flex items-center justify-between gap-space-md cursor-pointer list-none">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Can you work within our existing design system and codebase?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180" aria-hidden="true">expand_more</span>
+</summary>
+<div class="pt-space-sm font-body-sm text-body-sm text-on-surface-variant">
+            Absolutely. I quickly assimilate into established Figma design systems, existing GitHub CI/CD pipelines, and monorepos (Turborepo, Nx) without disturbing your ongoing release cadence.
+          </div>
+</details>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 10: INTERACTIVE CONTACT TERMINAL -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="contact">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg bg-surface-container-low rounded-2xl p-space-lg lg:p-space-xl relative overflow-hidden">
+<!-- Left Column: Availability Status & Direct Comms -->
+<div class="lg:col-span-5 flex flex-col justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm self-start">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+<span>OPEN TO ROLES &amp; FREELANCE PROJECTS</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface pt-space-xs">Let's Build Something Exceptional</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Whether you have a full technical specification or a rough whiteboard concept, let's schedule an architectural discovery session.
+          </p>
+</div>
+<div class="flex flex-col gap-space-sm font-label-sm text-label-sm">
+<div class="flex items-center gap-space-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">mail</span>
+<a class="hover:text-primary" href="mailto:vincent.inferido@gmail.com">vincent.inferido@gmail.com</a>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface">
+<span class="material-symbols-outlined text-tertiary text-[20px]" aria-hidden="true">work</span>
+<a class="hover:text-tertiary" href="https://www.linkedin.com/in/vincentci/" target="_blank" rel="noreferrer">linkedin.com/in/vincentci</a>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]" aria-hidden="true">terminal</span>
+<a class="hover:text-secondary" href="https://github.com/vincentinferido-a11y" target="_blank" rel="noreferrer">github.com/vincentinferido-a11y</a>
+</div>
+</div>
+<div class="p-space-sm rounded bg-surface-container font-label-sm text-label-sm text-outline">
+          Usually replies within 24 hours · Philippines (UTC+8)
+        </div>
+</div>
+<!-- Right Column: Interactive Project Inquiry Console Form -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-space-md lg:p-space-lg rounded-xl">
+<form class="flex flex-col gap-space-md" id="project-form">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-outline" for="name">YOUR NAME / HANDLE</label>
+<input class="px-space-md py-2.5 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" id="name" name="name" autocomplete="name" placeholder="Your name" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-outline" for="email">YOUR EMAIL</label>
+<input class="px-space-md py-2.5 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" id="email" name="email" autocomplete="email" placeholder="you@company.com" required="" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-outline">PROJECT DOMAIN</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs font-label-sm text-label-sm">
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input checked="" class="accent-tertiary" name="domain" type="radio" value="defi"/>
+<span>Web3 / DeFi</span>
+</label>
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input class="accent-secondary" name="domain" type="radio" value="ux"/>
+<span>UX / Design</span>
+</label>
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input class="accent-primary" name="domain" type="radio" value="fullstack"/>
+<span>Full-Stack</span>
+</label>
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input class="accent-primary" name="domain" type="radio" value="advisory"/>
+<span>Advisory</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-outline">ESTIMATED SCOPE BUDGET</label>
+<div class="grid grid-cols-3 gap-space-xs font-label-sm text-label-sm">
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input class="accent-tertiary" name="budget" type="radio" value="10k-25k"/>
+<span>$10k – $25k</span>
+</label>
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input checked="" class="accent-tertiary" name="budget" type="radio" value="25k-50k"/>
+<span>$25k – $50k</span>
+</label>
+<label class="flex items-center gap-1.5 p-2 rounded bg-surface-container-high cursor-pointer hover:bg-surface-container-highest">
+<input class="accent-tertiary" name="budget" type="radio" value="50k+"/>
+<span>$50k+</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-outline" for="message">PROJECT SUMMARY / REPOSITORY LINK</label>
+<textarea class="px-space-md py-2 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" id="message" name="message" placeholder="Describe what you want to engineer, target timeline, and links to your current repo or Figma spec..." required="" rows="3"></textarea>
+</div>
+<button class="w-full h-12 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-all flex items-center justify-center gap-space-xs hover:shadow-[0_0_24px_rgba(79,219,200,0.4)]" type="submit">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send Project Inquiry</span>
+</button>
+<p class="hidden p-space-sm rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm text-center" id="form-status" role="status"></p>
+</form>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- CLIENT INTERACTIVITY LOGIC SCRIPT -->
+<!-- ========================================== -->
+</div></main><footer class="w-full bg-surface-container-lowest py-space-xl shadow-[0_-1px_8px_rgba(0,0,0,0.5)]"><div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-lg pb-space-lg"><div class="md:col-span-5 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vincent Inferido</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container text-tertiary">portfolio v1</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Full-stack developer building business systems, web apps and Web3 products, from Figma to Next.js to smart contracts.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span><span class="font-label-sm text-label-sm text-tertiary">Live RPC ping: <span id="rpc-ping">—</span> • <span id="footer-block-label">Block</span> <span id="footer-block">#—</span></span></div></div><div class="md:col-span-3 flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">System Navigation</span><div class="flex flex-col gap-1"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#hero">00 // Home</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#projects">01 // Projects</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#web3">02 // Web3</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#ux-design">03 // Design</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#contact">04 // Contact</a></div></div><div class="md:col-span-4 flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Connect</span><div class="grid grid-cols-2 gap-space-xs"><a class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-sm text-label-sm" href="https://github.com/vincentinferido-a11y" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">terminal</span><span>GitHub</span></a><a class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-sm text-label-sm" href="https://www.linkedin.com/in/vincentci/" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">work</span><span>LinkedIn</span></a><a class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-sm text-label-sm" href="mailto:vincent.inferido@gmail.com" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">mail</span><span>Email</span></a></div></div></div><div class="pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-outline font-label-sm text-label-sm"><div class="flex items-center gap-space-sm"><span>© 2026 Vincent Inferido. All rights reserved.</span></div><div class="flex items-center gap-space-md"><span>Zero Tracking</span><span>•</span><span>Live Multichain Data</span><span>•</span><span class="text-tertiary">Wallet-Ready</span></div></div></div></footer></body></html>

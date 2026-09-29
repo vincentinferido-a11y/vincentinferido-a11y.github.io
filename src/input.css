@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body { margin: 0; padding: 0; }
+  body { overscroll-behavior: none; }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child { margin-bottom: 0 !important; }
+  :focus-visible { outline: 2px solid theme("colors.primary"); outline-offset: 2px; }
+  summary::-webkit-details-marker { display: none; }
+  .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; user-select: none; }
+}
+
+@layer components {
+  .nav-link { @apply text-on-surface-variant hover:text-on-surface transition-colors; }
+  .nav-link.is-active { @apply text-primary font-semibold; }
+  .nav-link.is-active::before { content: "// "; }
+}
+
+/* thin themed scrollbars instead of hiding them (keeps horizontal code/heatmap scroll discoverable) */
+* { scrollbar-width: thin; scrollbar-color: #262a34 transparent; }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-thumb { background: #262a34; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

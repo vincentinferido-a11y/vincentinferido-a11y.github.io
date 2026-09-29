@@ -1,0 +1,14 @@
+{
+  "name": "web3-builder-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack Web3 product builder portfolio (static site, Tailwind CSS).",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./docs/styles.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ./docs/styles.css --watch",
+    "serve": "npx --yes serve docs -l 5173"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
