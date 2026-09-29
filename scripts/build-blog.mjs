@@ -180,6 +180,10 @@ ${image !== "/vincent-inferido.jpg" ? `<meta property="og:image:width" content="
 <meta property="og:image:height" content="630"/>
 <meta property="og:image:alt" content="${esc(imageAlt || title)}"/>
 <meta name="twitter:card" content="summary_large_image"/>` : `<meta name="twitter:card" content="summary"/>`}
+<meta name="twitter:title" content="${esc(title)}"/>
+<meta name="twitter:description" content="${esc(description)}"/>
+<meta name="twitter:image" content="${SITE_URL}${image}"/>
+<meta name="twitter:image:alt" content="${esc(imageAlt || title)}"/>
 <meta property="og:site_name" content="${AUTHOR}"/>
 <meta property="og:locale" content="en_US"/>
 <meta name="author" content="${AUTHOR}"/>
