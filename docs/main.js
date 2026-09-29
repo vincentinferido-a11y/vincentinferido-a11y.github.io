@@ -499,6 +499,7 @@ function initEstimator() {
         (E.showPrices
           ? `- Ballpark: ${usd(est.low)} – ${usd(est.high)}, ~${est.weeks} week${est.weeks > 1 ? "s" : ""}\n\n`
           : `- Estimated effort: ${est.hoursLow}–${est.hoursHigh} hours, ~${est.weeks} week${est.weeks > 1 ? "s" : ""}\n\n`) +
+        `(I understand this is an estimate, not a final price. Happy to discuss scope and budget.)\n\n` +
         `About my project:\n`;
     }
     $("#contact")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
