@@ -45,6 +45,12 @@ GitHub Pages serves the `docs/` folder from the `main` branch. After editing HTM
 - [BoyaxDev Marketplace](https://github.com/vincentinferido-a11y/boyaxdev-marketplace-ui): website marketplace UI system
 - [SkinStack](https://github.com/vincentinferido-a11y/skinstack-ui): skincare review site UI system
 
+## Licensing & access
+
+Copyright © 2026 Vincent Inferido. All rights reserved. This project is shared for portfolio viewing only; copying, modifying, deploying or redistributing it requires written permission. See [LICENSE](LICENSE).
+
+**Want to use it, see more, or have something similar built?** Source access, commercial licensing and custom builds are available on request: [vincent.inferido@gmail.com](mailto:vincent.inferido@gmail.com?subject=Access%20request%3A%20Portfolio)
+
 ## Author
 
 [Vincent Inferido](https://github.com/vincentinferido-a11y) · [LinkedIn](https://www.linkedin.com/in/vincentci/)
