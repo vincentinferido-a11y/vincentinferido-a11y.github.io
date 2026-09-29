@@ -832,6 +832,68 @@
 </div>
 </section>
 <!-- ========================================== -->
+<!-- SECTION: CLIENT REVIEWS -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="reviews">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-tertiary tracking-wider uppercase">// Client Reviews</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">What Clients Say</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl" id="reviews-intro">Worked with me? I&#39;d really appreciate a short review. Every review is read and approved before it appears here.</p>
+</div>
+<button type="button" id="review-open" aria-expanded="false" aria-controls="review-form" class="inline-flex items-center justify-center gap-space-xs px-space-lg h-12 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-all self-start md:self-auto">
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">rate_review</span><span>Write a review</span>
+</button>
+</div>
+<!-- Approved reviews render here (hidden until there is at least one) -->
+<div id="reviews-list" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-lg pb-space-lg" aria-live="polite"></div>
+<form id="review-form" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-space-md p-space-lg rounded-xl bg-surface-container-low" novalidate>
+<div class="flex flex-col gap-1">
+<label for="rv-name" class="font-label-sm text-label-sm text-outline">YOUR NAME *</label>
+<input id="rv-name" name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Your name" class="px-space-md py-2.5 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary"/>
+</div>
+<div class="flex flex-col gap-1">
+<label for="rv-role" class="font-label-sm text-label-sm text-outline">ROLE &amp; COMPANY</label>
+<input id="rv-role" name="role_company" maxlength="120" autocomplete="organization-title" placeholder="e.g. Founder, Acme Inc." class="px-space-md py-2.5 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary"/>
+</div>
+<div class="flex flex-col gap-1">
+<label for="rv-project" class="font-label-sm text-label-sm text-outline">PROJECT WE WORKED ON</label>
+<input id="rv-project" name="project" maxlength="120" list="rv-projects" placeholder="e.g. CRM system, website redesign" class="px-space-md py-2.5 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary"/>
+<datalist id="rv-projects"></datalist>
+</div>
+<fieldset class="flex flex-col gap-1">
+<legend class="font-label-sm text-label-sm text-outline pb-1">RATING *</legend>
+<div class="flex items-center gap-1" id="rv-stars">
+<label class="cursor-pointer" title="1 star"><input class="sr-only peer" type="radio" name="rating" value="1" required/><span class="material-symbols-outlined text-[28px] text-outline" aria-hidden="true">star</span><span class="sr-only">1 star</span></label>
+<label class="cursor-pointer" title="2 stars"><input class="sr-only peer" type="radio" name="rating" value="2"/><span class="material-symbols-outlined text-[28px] text-outline" aria-hidden="true">star</span><span class="sr-only">2 stars</span></label>
+<label class="cursor-pointer" title="3 stars"><input class="sr-only peer" type="radio" name="rating" value="3"/><span class="material-symbols-outlined text-[28px] text-outline" aria-hidden="true">star</span><span class="sr-only">3 stars</span></label>
+<label class="cursor-pointer" title="4 stars"><input class="sr-only peer" type="radio" name="rating" value="4"/><span class="material-symbols-outlined text-[28px] text-outline" aria-hidden="true">star</span><span class="sr-only">4 stars</span></label>
+<label class="cursor-pointer" title="5 stars"><input class="sr-only peer" type="radio" name="rating" value="5" checked/><span class="material-symbols-outlined text-[28px] text-outline" aria-hidden="true">star</span><span class="sr-only">5 stars</span></label>
+</div>
+</fieldset>
+<div class="flex flex-col gap-1 lg:col-span-2">
+<label for="rv-body" class="font-label-sm text-label-sm text-outline">YOUR REVIEW * <span class="normal-case" id="rv-count">(0/1500)</span></label>
+<textarea id="rv-body" name="body" required minlength="20" maxlength="1500" rows="4" placeholder="What was it like working together? What did the project achieve?" class="px-space-md py-2 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary"></textarea>
+</div>
+<div class="flex flex-col gap-1">
+<label for="rv-email" class="font-label-sm text-label-sm text-outline">EMAIL (PRIVATE, NEVER SHOWN)</label>
+<input id="rv-email" name="email" type="email" maxlength="200" autocomplete="email" placeholder="So I can thank you or verify the review" class="px-space-md py-2.5 rounded bg-surface-container-high text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary"/>
+</div>
+<!-- Honeypot: humans never see or fill this -->
+<div class="hidden" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"/></label></div>
+<label class="flex items-start gap-2 font-body-sm text-body-sm text-on-surface-variant self-end">
+<input name="consent" type="checkbox" required class="accent-tertiary mt-1"/>
+<span>I agree that my name, role and review may be published on this website.</span>
+</label>
+<div class="lg:col-span-2 flex flex-col sm:flex-row sm:items-center gap-space-md">
+<button type="submit" class="h-12 px-space-lg rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-all inline-flex items-center justify-center gap-space-xs disabled:opacity-60">
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">send</span><span>Submit review</span>
+</button>
+<p id="review-status" role="status" class="font-label-sm text-label-sm text-outline">Reviews are checked before publishing.</p>
+</div>
+</form>
+</section>
+<!-- ========================================== -->
 <!-- SECTION 9: INTERACTIVE FAQ & SPECIFICATIONS -->
 <!-- ========================================== -->
 <section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl">
@@ -1081,4 +1143,4 @@
 <!-- ========================================== -->
 <!-- CLIENT INTERACTIVITY LOGIC SCRIPT -->
 <!-- ========================================== -->
-</div></main><footer class="w-full bg-surface-container-lowest py-space-xl shadow-[0_-1px_8px_rgba(0,0,0,0.5)]"><div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-lg pb-space-lg"><div class="md:col-span-5 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vincent Inferido</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container text-tertiary">portfolio v1</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Full-stack developer building business systems, web apps and Web3 products, from Figma to Next.js to smart contracts.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span><span class="font-label-sm text-label-sm text-tertiary">Live RPC ping: <span id="rpc-ping">—</span> • <span id="footer-block-label">Block</span> <span id="footer-block">#—</span></span></div></div><div class="md:col-span-3 flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">System Navigation</span><div class="flex flex-col gap-1"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#hero">00 // Home</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#projects">01 // Projects</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#web3">02 // Web3</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#ux-design">03 // Design</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#contact">04 // Contact</a></div></div><div class="md:col-span-4 flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Connect</span><div class="grid grid-cols-2 gap-space-xs"><a class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-sm text-label-sm" href="https://github.com/vincentinferido-a11y" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">terminal</span><span>GitHub</span></a><a class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-sm text-label-sm" href="https://www.linkedin.com/in/vincentci/" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">work</span><span>LinkedIn</span></a><a class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-sm text-label-sm" href="mailto:vincent.inferido@gmail.com" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">mail</span><span>Email</span></a></div></div></div><div class="pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-outline font-label-sm text-label-sm"><div class="flex items-center gap-space-sm"><span>© 2026 Vincent Inferido. All rights reserved.</span></div><div class="flex items-center gap-space-md"><span>Zero Tracking</span><span>•</span><span>Live Multichain Data</span><span>•</span><span class="text-tertiary">Wallet-Ready</span></div></div></div></footer></body></html>
+</div></main><footer class="w-full bg-surface-container-lowest py-space-xl shadow-[0_-1px_8px_rgba(0,0,0,0.5)]"><div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-lg pb-space-lg"><div class="md:col-span-5 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vincent Inferido</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container text-tertiary">portfolio v1</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Full-stack developer building business systems, web apps and Web3 products, from Figma to Next.js to smart contracts.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span><span class="font-label-sm text-label-sm text-tertiary">Live RPC ping: <span id="rpc-ping">—</span> • <span id="footer-block-label">Block</span> <span id="footer-block">#—</span></span></div></div><div class="md:col-span-3 flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">System Navigation</span><div class="flex flex-col gap-1"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#hero">00 // Home</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#projects">01 // Projects</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#web3">02 // Web3</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#ux-design">03 // Design</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#contact">04 // Contact</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#reviews">05 // Reviews</a></div></div><div class="md:col-span-4 flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Connect</span><div class="grid grid-cols-2 gap-space-xs"><a class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-sm text-label-sm" href="https://github.com/vincentinferido-a11y" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">terminal</span><span>GitHub</span></a><a class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-sm text-label-sm" href="https://www.linkedin.com/in/vincentci/" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">work</span><span>LinkedIn</span></a><a class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-sm text-label-sm" href="mailto:vincent.inferido@gmail.com" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">mail</span><span>Email</span></a></div></div></div><div class="pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-outline font-label-sm text-label-sm"><div class="flex items-center gap-space-sm"><span>© 2026 Vincent Inferido. All rights reserved.</span></div><div class="flex items-center gap-space-md"><span>Zero Tracking</span><span>•</span><span>Live Multichain Data</span><span>•</span><span class="text-tertiary">Wallet-Ready</span></div></div></div></footer></body></html>

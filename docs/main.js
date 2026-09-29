@@ -5,6 +5,12 @@ const CONFIG = {
   contactEmail: "vincent.inferido@gmail.com",
   // Optional: a Formspree / Getform endpoint. When empty, the form opens the visitor's mail client.
   formEndpoint: "",
+  // Supabase database (see supabase/README.md). Leave empty to use email instead.
+  // The publishable key (sb_publishable_...) is safe to put here; NEVER put the secret key here.
+  supabase: {
+    url: "",
+    publishableKey: "",
+  },
   rpcRefreshMs: 12000,
   // Networks in the header picker. Live data comes from public RPCs; if the first endpoint
   // is slow or down, the next one in "rpcs" is tried automatically.
@@ -405,6 +411,7 @@ function initWallet() {
 
 // --- 6. Project cost estimator -------------------------------------------
 let latestEstimate = null;
+let sentEstimate = null; // compact copy of the estimate handed to the contact form
 
 function initEstimator() {
   const form = $("#estimator");
@@ -479,6 +486,11 @@ function initEstimator() {
   $("#est-send")?.addEventListener("click", () => {
     const est = latestEstimate;
     if (!est) return;
+    sentEstimate = {
+      type: est.type.id, screens: est.screens, features: est.features.map((f) => f.id),
+      design: est.type.designOnly ? "design-only" : est.designProvided ? "provided" : "full",
+      timeline: est.rush ? "rush" : "standard", hours: [est.hoursLow, est.hoursHigh], weeks: est.weeks,
+    };
     const domain = { web3: "defi", design: "ux", system: "system" }[est.type.id] || "fullstack";
     const domainInput = $(`#project-form input[name="domain"][value="${domain}"]`);
     if (domainInput) domainInput.checked = true;
@@ -508,7 +520,27 @@ function initEstimator() {
   });
 }
 
-// --- 7. Contact form -----------------------------------------------------
+// --- 7. Database (Supabase REST, optional) --------------------------------
+// Enabled once CONFIG.supabase.url and publishableKey are set. The publishable key is
+// safe to be public: row-level security (supabase/schema.sql) limits it to submitting
+// inquiries/reviews and reading approved reviews.
+const dbEnabled = () => Boolean(CONFIG.supabase?.url && CONFIG.supabase?.publishableKey);
+
+async function dbRequest(path, { method = "GET", body } = {}) {
+  const res = await fetch(`${CONFIG.supabase.url.replace(/\/$/, "")}/rest/v1/${path}`, {
+    method,
+    headers: {
+      apikey: CONFIG.supabase.publishableKey,
+      "content-type": "application/json",
+      ...(method === "POST" ? { prefer: "return=minimal" } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (!res.ok) throw new Error(`Database error ${res.status}`);
+  return method === "GET" ? res.json() : null;
+}
+
+// --- 8. Contact form -----------------------------------------------------
 function initForm() {
   const form = $("#project-form");
   const status = $("#form-status");
@@ -524,6 +556,33 @@ function initForm() {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form));
     const submit = $("button[type=submit]", form);
+
+    if (dbEnabled()) {
+      submit.disabled = true;
+      const fromEstimator = Boolean(sentEstimate) && (data.message || "").startsWith("Estimate from your site");
+      try {
+        await dbRequest("inquiries", {
+          method: "POST",
+          body: {
+            source: fromEstimator ? "estimator" : "contact",
+            name: data.name,
+            email: data.email,
+            domain: data.domain || null,
+            budget: data.budget || null,
+            message: data.message,
+            estimate: fromEstimator ? sentEstimate : null,
+          },
+        });
+        show("✓ Inquiry received. Expect a reply within 24 hours.");
+        form.reset();
+        sentEstimate = null;
+        return;
+      } catch {
+        // Never lose a lead: fall through to the email fallback below.
+      } finally {
+        submit.disabled = false;
+      }
+    }
 
     if (CONFIG.formEndpoint) {
       submit.disabled = true;
@@ -551,6 +610,110 @@ function initForm() {
   });
 }
 
+// --- 9. Client reviews ---------------------------------------------------
+function initReviews() {
+  const form = $("#review-form");
+  const openBtn = $("#review-open");
+  const list = $("#reviews-list");
+  const status = $("#review-status");
+  if (!form || !openBtn) return;
+
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const stars = (n) => Array.from({ length: 5 }, (_, i) =>
+    `<span class="material-symbols-outlined text-[18px] ${i < n ? "text-tertiary" : "text-outline-variant"}" style="font-variation-settings:'FILL' ${i < n ? 1 : 0}" aria-hidden="true">star</span>`).join("");
+  const setStatus = (msg, tone = "outline") => {
+    status.textContent = msg;
+    status.className = `font-label-sm text-label-sm text-${tone}`;
+  };
+
+  // Project suggestions from the portfolio's own project cards
+  $("#rv-projects").innerHTML = $$("#projects-grid article h3")
+    .map((h) => h.textContent.replace(/\s*\(\$OTTER\)/, "").trim())
+    .filter((t) => t !== "More projects shipping")
+    .map((t) => `<option value="${esc(t)}"></option>`)
+    .join("");
+
+  // Open / close the form
+  openBtn.addEventListener("click", () => {
+    const open = form.classList.contains("hidden");
+    form.classList.toggle("hidden", !open);
+    openBtn.setAttribute("aria-expanded", String(open));
+    if (open) $("#rv-name").focus();
+  });
+
+  // Star rating: fill stars up to the selected value
+  const starInputs = $$('#rv-stars input[name="rating"]');
+  const paintStars = () => {
+    const val = Number(form.rating.value || 0);
+    starInputs.forEach((inp) => {
+      const icon = inp.nextElementSibling;
+      const on = Number(inp.value) <= val;
+      icon.classList.toggle("text-tertiary", on);
+      icon.classList.toggle("text-outline", !on);
+      icon.style.fontVariationSettings = `'FILL' ${on ? 1 : 0}`;
+    });
+  };
+  starInputs.forEach((i) => i.addEventListener("change", paintStars));
+  paintStars();
+
+  const body = $("#rv-body");
+  body.addEventListener("input", () => ($("#rv-count").textContent = `(${body.value.length}/1500)`));
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(form));
+    if (d.website) return setStatus("✓ Thank you!", "tertiary"); // honeypot: silently drop bots
+    if (!d.name || d.name.trim().length < 2) return setStatus("Please enter your name.", "error");
+    if (!d.body || d.body.trim().length < 20) return setStatus("Please write at least 20 characters.", "error");
+    if (!form.consent.checked) return setStatus("Please tick the box to allow publishing.", "error");
+
+    const review = {
+      name: d.name.trim(),
+      role_company: d.role_company?.trim() || null,
+      project: d.project?.trim() || null,
+      rating: Number(d.rating) || 5,
+      body: d.body.trim(),
+      email: d.email?.trim() || null,
+      consent: true,
+    };
+    const submit = $("button[type=submit]", form);
+
+    if (dbEnabled()) {
+      submit.disabled = true;
+      try {
+        await dbRequest("reviews", { method: "POST", body: review });
+        setStatus("✓ Thank you! Your review will appear once it's approved.", "tertiary");
+        form.reset();
+        paintStars();
+        return;
+      } catch {
+        // fall back to email so the review is never lost
+      } finally {
+        submit.disabled = false;
+      }
+    }
+    const text = `Name: ${review.name}\nRole & company: ${review.role_company || "-"}\nProject: ${review.project || "-"}\n` +
+      `Rating: ${review.rating}/5\nEmail: ${review.email || "-"}\nConsent to publish: yes\n\n${review.body}`;
+    window.location.href = `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent(`Client review from ${review.name}`)}&body=${encodeURIComponent(text)}`;
+    setStatus("✓ Opening your email app with the review filled in. Just press send.", "tertiary");
+  });
+
+  // Show approved reviews (only when the database is connected and has some)
+  if (!dbEnabled()) return;
+  dbRequest("reviews?select=name,role_company,project,rating,body,featured,created_at&order=featured.desc,created_at.desc&limit=12")
+    .then((rows) => {
+      if (!rows.length) return;
+      list.innerHTML = rows.map((r) => `<figure class="p-space-lg rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-md">
+        <div class="flex flex-col gap-space-sm"><div class="flex" aria-label="${r.rating} out of 5 stars">${stars(r.rating)}</div>
+        <blockquote class="font-body-md text-body-md text-on-surface-variant">&ldquo;${esc(r.body)}&rdquo;</blockquote></div>
+        <figcaption class="flex flex-col"><span class="font-headline-sm text-headline-sm font-bold text-on-surface">${esc(r.name)}</span>
+        <span class="font-label-sm text-label-sm text-outline">${esc([r.role_company, r.project].filter(Boolean).join(" · "))}</span></figcaption></figure>`).join("");
+      list.classList.remove("hidden");
+      $("#reviews-intro").textContent = "Reviews from people I've built with. Worked with me too? I'd love to hear from you.";
+    })
+    .catch(() => {});
+}
+
 initRoles();
 initFilters();
 initNav();
@@ -559,3 +722,4 @@ initChainTelemetry();
 initWallet();
 initEstimator();
 initForm();
+initReviews();

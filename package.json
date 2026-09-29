@@ -6,9 +6,11 @@
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./docs/styles.css --minify",
     "dev": "tailwindcss -i ./src/input.css -o ./docs/styles.css --watch",
-    "serve": "npx --yes serve docs -l 5173"
+    "serve": "npx --yes serve docs -l 5173",
+    "test:db": "node supabase/test-schema.mjs supabase/schema.sql"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "@electric-sql/pglite": "^0.5.8"
   }
 }

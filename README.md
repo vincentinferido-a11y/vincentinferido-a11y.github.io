@@ -36,6 +36,7 @@ GitHub Pages serves the `docs/` folder from the `main` branch. After editing HTM
 | Content (hero, projects, about, FAQ) | `docs/index.html` |
 | Contact email, form endpoint, chains, RPC endpoints, rotating roles | `CONFIG` at the top of `docs/main.js` |
 | Project estimator: hourly rate, hours per project type and feature, show or hide prices | `CONFIG.estimator` in `docs/main.js` |
+| Database for reviews and inquiries (Supabase) | [supabase/README.md](supabase/README.md) and `CONFIG.supabase` in `docs/main.js` |
 | Design tokens (colors, type, spacing) | `tailwind.config.js` and [DESIGN.md](DESIGN.md) |
 
 ## Projects featured
