@@ -30,36 +30,28 @@
 <div class="hidden 2xl:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span><span>Open to work</span></div>
 </a>
 <nav class="hidden xl:flex items-center gap-space-md 2xl:gap-space-lg whitespace-nowrap font-label-md text-label-md" aria-label="Primary" id="primary-nav">
-<a class="nav-link" href="#hero">00.Index</a>
-<a class="nav-link" href="#projects">01.Projects</a>
-<a class="nav-link" href="#web3">02.Web3</a>
-<a class="nav-link" href="#ux-design">03.Design</a>
-<a class="nav-link" href="#fullstack">04.Full-Stack</a>
-<a class="nav-link" href="#skills">05.Specs</a>
-<a class="nav-link" href="#about">06.About</a>
-<a class="nav-link" href="#estimate">07.Estimate</a>
-<a class="nav-link" href="#contact">08.Contact</a>
+<a class="nav-link" href="#hero">Home</a>
+<a class="nav-link" href="#services">Services</a>
+<a class="nav-link" href="#projects">Projects</a>
+<a class="nav-link" href="#estimate">Estimate</a>
+<a class="nav-link" href="#reviews">Reviews</a>
+<a class="nav-link" href="#about">About</a>
+<a class="nav-link" href="#contact">Contact</a>
 </nav>
 <div class="flex items-center gap-space-sm shrink-0">
-<div class="relative" id="chain-picker">
-<button id="chain-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="chain-menu" aria-label="Select network" class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface transition-colors"><span id="chain-dot" class="w-2 h-2 rounded-full" style="background:#627EEA"></span><span class="hidden sm:inline" id="network-name">Ethereum</span><span class="material-symbols-outlined text-[16px] text-outline" aria-hidden="true">expand_more</span></button>
-<ul id="chain-menu" role="listbox" aria-label="Networks" tabindex="-1" class="hidden absolute right-0 top-full mt-2 w-48 p-1 rounded-lg bg-surface-container-high shadow-2xl border border-white/5 font-label-sm text-label-sm z-50"></ul>
-</div>
-<button id="wallet-btn" class="flex items-center gap-space-xs px-space-md py-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary hover:text-on-surface transition-colors font-label-md text-label-md font-semibold" type="button"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">account_balance_wallet</span><span class="hidden sm:inline" id="wallet-label">Connect Wallet</span></button>
+<button type="button" data-book-call class="flex items-center gap-space-xs px-space-md py-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">event_available</span><span class="hidden sm:inline">Book a free call</span><span class="sm:hidden">Book a call</span></button>
 <button id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav" class="xl:hidden p-2 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span></button>
 </div>
 </div>
 <nav id="mobile-nav" class="hidden xl:hidden border-t border-white/5 bg-surface/95 backdrop-blur-xl" aria-label="Mobile">
 <div class="px-margin-mobile py-space-md grid grid-cols-2 gap-space-xs font-label-md text-label-md">
-<a class="nav-link p-2 rounded bg-surface-container" href="#hero">00.Index</a>
-<a class="nav-link p-2 rounded bg-surface-container" href="#projects">01.Projects</a>
-<a class="nav-link p-2 rounded bg-surface-container" href="#web3">02.Web3</a>
-<a class="nav-link p-2 rounded bg-surface-container" href="#ux-design">03.Design</a>
-<a class="nav-link p-2 rounded bg-surface-container" href="#fullstack">04.Full-Stack</a>
-<a class="nav-link p-2 rounded bg-surface-container" href="#skills">05.Specs</a>
-<a class="nav-link p-2 rounded bg-surface-container" href="#about">06.About</a>
-<a class="nav-link p-2 rounded bg-surface-container" href="#estimate">07.Estimate</a>
-<a class="nav-link p-2 rounded bg-surface-container" href="#contact">08.Contact</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#hero">Home</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#services">Services</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#projects">Projects</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#estimate">Estimate</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#reviews">Reviews</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#about">About</a>
+<a class="nav-link p-2 rounded bg-surface-container" href="#contact">Contact</a>
 </div>
 </nav>
 </header>
@@ -75,13 +67,13 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-center relative z-10">
 <!-- Left Column: Copy & CTAs -->
 <div class="lg:col-span-7 flex flex-col gap-space-md">
-<!-- Live Gas & Status Ribbon -->
+<!-- Availability & Role Ribbon -->
 <div class="flex flex-wrap items-center gap-space-xs font-label-sm text-label-sm">
 <div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high text-tertiary">
 <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
-<span><span id="gas-chain">ETHEREUM</span> <span id="gas-label">GAS</span>: <span id="gas-price">— </span> <span id="gas-unit">GWEI</span></span>
+<span>Available for new projects</span>
 <span class="text-outline">•</span>
-<span class="text-on-surface-variant"><span id="block-label">BLOCK</span> <span id="block-number">#—</span></span>
+<span class="text-on-surface-variant">Philippines · UTC+8</span>
 </div>
 <!-- Dynamic Role Pill -->
 <div class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">
@@ -102,10 +94,10 @@
 <span>Explore Shipped Works</span>
 <span class="material-symbols-outlined text-[18px]">south_east</span>
 </a>
-<a class="inline-flex items-center justify-center gap-space-xs px-space-lg h-12 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold transition-all" href="#contact">
-<span class="material-symbols-outlined text-[18px]">code</span>
-<span>Let's Build Together</span>
-</a>
+<button type="button" data-book-call class="inline-flex items-center justify-center gap-space-xs px-space-lg h-12 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold transition-all">
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">event_available</span>
+<span>Book a free call</span>
+</button>
 <div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm ml-auto sm:ml-0">
 <span class="material-symbols-outlined text-tertiary text-[16px]">work</span>
 <span>Open to roles &amp; freelance</span>
@@ -204,10 +196,74 @@
 </div>
 <!-- Bottom Telemetry bar -->
 <div class="pt-space-sm flex items-center justify-between text-outline font-label-sm text-label-sm">
-<span>RPC latency: <span id="rpc-latency">—</span></span>
+<span>Figma → Code → Launch</span>
 <span class="text-tertiary">100% End-to-End Ownership</span>
 </div>
 </div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION: SERVICES (plain language, for business owners) -->
+<!-- ========================================== -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop py-space-xl scroll-mt-20" id="services">
+<div class="flex flex-col gap-space-xs pb-space-lg">
+<span class="font-label-md text-label-md text-tertiary tracking-wider uppercase">// What I can build for you</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Tools That Help Your Business Grow</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">You don&#39;t need to know the tech. Tell me the problem, whether it&#39;s missed bookings, messy spreadsheets or no online presence, and I&#39;ll design and build the simplest thing that fixes it.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-lg">
+<article class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col gap-space-sm">
+<div class="flex items-center justify-between"><span class="material-symbols-outlined text-[28px] text-primary" aria-hidden="true">language</span><span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-outline">Typical: 1–3 weeks</span></div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Business websites</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">A fast, professional website that explains what you do and turns visitors into inquiries.</p>
+<p class="font-label-sm text-label-sm text-outline">Company site · landing page · menu or catalog</p>
+<button type="button" data-est-preset="landing" data-est-features="" class="self-start inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:underline"><span>Estimate this</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></button>
+</article>
+<article class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col gap-space-sm">
+<div class="flex items-center justify-between"><span class="material-symbols-outlined text-[28px] text-tertiary" aria-hidden="true">contacts</span><span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-outline">Typical: 6–12 weeks</span></div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">CRM & client management</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Keep every lead, client, deal and follow-up in one place, so nothing slips through the cracks.</p>
+<p class="font-label-sm text-label-sm text-outline">Sales pipeline · client records · reminders</p>
+<button type="button" data-est-preset="system" data-est-features="auth,admin" class="self-start inline-flex items-center gap-1 font-label-md text-label-md text-tertiary hover:underline"><span>Estimate this</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></button>
+</article>
+<article class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col gap-space-sm">
+<div class="flex items-center justify-between"><span class="material-symbols-outlined text-[28px] text-secondary" aria-hidden="true">event_available</span><span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-outline">Typical: 3–7 weeks</span></div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Booking & appointments</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Let customers book online 24/7, get automatic reminders, and pay a deposit upfront.</p>
+<p class="font-label-sm text-label-sm text-outline">Clinics · salons · consultations · rentals</p>
+<button type="button" data-est-preset="webapp" data-est-features="auth,payments" class="self-start inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline"><span>Estimate this</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></button>
+</article>
+<article class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col gap-space-sm">
+<div class="flex items-center justify-between"><span class="material-symbols-outlined text-[28px] text-primary" aria-hidden="true">storefront</span><span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-outline">Typical: 3–8 weeks</span></div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Online stores & ordering</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Sell your products online, take payments, and manage orders and stock without spreadsheets.</p>
+<p class="font-label-sm text-label-sm text-outline">Shop · pre-orders · delivery orders</p>
+<button type="button" data-est-preset="webapp" data-est-features="payments,admin" class="self-start inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:underline"><span>Estimate this</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></button>
+</article>
+<article class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col gap-space-sm">
+<div class="flex items-center justify-between"><span class="material-symbols-outlined text-[28px] text-tertiary" aria-hidden="true">dashboard</span><span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-outline">Typical: 4–10 weeks</span></div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Dashboards & internal tools</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Replace messy spreadsheets with a simple system your team actually enjoys using.</p>
+<p class="font-label-sm text-label-sm text-outline">Inventory · orders · reports · team tasks</p>
+<button type="button" data-est-preset="system" data-est-features="auth,admin" class="self-start inline-flex items-center gap-1 font-label-md text-label-md text-tertiary hover:underline"><span>Estimate this</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></button>
+</article>
+<article class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col gap-space-sm">
+<div class="flex items-center justify-between"><span class="material-symbols-outlined text-[28px] text-secondary" aria-hidden="true">token</span><span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-outline">Typical: 4–10 weeks</span></div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Web3 & crypto products</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">For crypto teams: token sites, dApps and wallet features that newcomers can actually use.</p>
+<p class="font-label-sm text-label-sm text-outline">Token launch · dApp · wallet login</p>
+<button type="button" data-est-preset="web3" data-est-features="wallet" class="self-start inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline"><span>Estimate this</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></button>
+</article>
+</div>
+<div class="mt-space-lg p-space-lg rounded-xl bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div>
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">Not sure what you need?</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Book a free 30-minute call. We&#39;ll talk about your business, and I&#39;ll suggest the simplest solution, even if that&#39;s something you don&#39;t need to pay me for.</p>
+</div>
+<div class="flex flex-wrap gap-space-sm shrink-0">
+<button type="button" data-book-call class="inline-flex items-center justify-center gap-space-xs px-space-lg h-12 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-all"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">event_available</span><span>Book a free call</span></button>
+<a href="#estimate" class="inline-flex items-center justify-center gap-space-xs px-space-lg h-12 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold transition-all"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">calculate</span><span>Estimate my project</span></a>
 </div>
 </div>
 </section>
@@ -531,6 +587,24 @@
 <span class="font-label-md text-label-md text-tertiary tracking-wider uppercase">// 02. Web3 Engineering</span>
 <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Web3 &amp; Smart Contracts</h2>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">I'm bringing my full-stack and UX skills to the EVM. The goal is dApps that are secure on-chain and easy to use for people who have never touched a wallet.</p>
+</div>
+<div class="mb-space-lg p-space-md rounded-xl bg-surface-container-low ring-1 ring-tertiary/20 flex flex-col lg:flex-row lg:items-center justify-between gap-space-md" id="web3-demo">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary uppercase tracking-wider"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>Live demo · try it</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xl">Pick a blockchain to stream live network data, then connect your wallet (read-only: no signatures, no payments). The same building blocks I use in client dApps.</p>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 font-label-sm text-label-sm text-on-surface-variant pt-1">
+<span><span id="gas-chain">ETHEREUM</span> <span id="gas-label">GAS</span>: <span class="text-on-surface" id="gas-price">— </span> <span id="gas-unit">GWEI</span></span>
+<span><span id="block-label">BLOCK</span> <span class="text-on-surface" id="block-number">#—</span></span>
+<span>RPC: <span class="text-on-surface" id="rpc-latency">—</span></span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<div class="relative" id="chain-picker">
+<button id="chain-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="chain-menu" aria-label="Select network" class="flex items-center gap-space-xs px-space-sm py-2 rounded bg-surface-container hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface transition-colors"><span id="chain-dot" class="w-2 h-2 rounded-full" style="background:#627EEA"></span><span class="hidden sm:inline" id="network-name">Ethereum</span><span class="material-symbols-outlined text-[16px] text-outline" aria-hidden="true">expand_more</span></button>
+<ul id="chain-menu" role="listbox" aria-label="Networks" tabindex="-1" class="hidden absolute left-0 top-full mt-2 w-48 p-1 rounded-lg bg-surface-container-high shadow-2xl border border-white/5 font-label-sm text-label-sm z-50"></ul>
+</div>
+<button id="wallet-btn" class="flex items-center gap-space-xs px-space-md py-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary hover:text-on-surface transition-colors font-label-md text-label-md font-semibold" type="button"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">account_balance_wallet</span><span class="hidden sm:inline" id="wallet-label">Connect Wallet</span></button>
+</div>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start">
 <div class="lg:col-span-6 flex flex-col gap-space-md">
@@ -1083,6 +1157,7 @@
 <a class="hover:text-secondary" href="https://github.com/vincentinferido-a11y" target="_blank" rel="noreferrer">github.com/vincentinferido-a11y</a>
 </div>
 </div>
+<button type="button" data-book-call class="self-start inline-flex items-center gap-space-xs px-space-md py-2.5 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold hover:bg-tertiary-fixed transition-colors"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">event_available</span><span>Book a free 30-min call</span></button>
 <div class="p-space-sm rounded bg-surface-container font-label-sm text-label-sm text-outline">
           Usually replies within 24 hours · Philippines (UTC+8)
         </div>

@@ -5,6 +5,9 @@ const CONFIG = {
   contactEmail: "vincent.inferido@gmail.com",
   // Optional: a Formspree / Getform endpoint. When empty, the form opens the visitor's mail client.
   formEndpoint: "",
+  // Scheduling link for "Book a free call" (e.g. https://calendly.com/yourname/30min or a Cal.com link).
+  // Leave empty to send visitors to the contact form with a call request pre-filled.
+  bookingUrl: "",
   // Supabase database (see supabase/README.md). Leave empty to use email instead.
   // The publishable key (sb_publishable_...) is safe to put here; NEVER put the secret key here.
   supabase: {
@@ -520,6 +523,40 @@ function initEstimator() {
   });
 }
 
+// --- 6b. Book a call + service shortcuts ----------------------------------
+function initBooking() {
+  $$("[data-book-call]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      if (CONFIG.bookingUrl) {
+        window.open(CONFIG.bookingUrl, "_blank", "noopener");
+        return;
+      }
+      // No scheduling link yet: pre-fill a call request in the contact form.
+      const msg = $("#message");
+      if (msg && !msg.value.trim()) {
+        msg.value = "Hi Vincent, I'd like to book a free 30-minute discovery call.\n\nBest days/times for me:\n\nWhat I need help with:\n";
+      }
+      $("#contact")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      setTimeout(() => { $("#name")?.focus(); }, reducedMotion ? 0 : 600);
+      toast("Tell me a good time for a call and I'll confirm by email.");
+    })
+  );
+
+  // "Estimate this" on a service card: preselect the estimator and jump there.
+  $$("[data-est-preset]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const form = $("#estimator");
+      if (!form) return;
+      const type = form.querySelector(`input[name="type"][value="${btn.dataset.estPreset}"]`);
+      if (type) type.checked = true;
+      const wanted = (btn.dataset.estFeatures || "").split(",").filter(Boolean);
+      $$('input[name="feature"]', form).forEach((f) => (f.checked = wanted.includes(f.value)));
+      form.dispatchEvent(new Event("change", { bubbles: true }));
+      $("#estimate")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+    })
+  );
+}
+
 // --- 7. Database (Supabase REST, optional) --------------------------------
 // Enabled once CONFIG.supabase.url and publishableKey are set. The publishable key is
 // safe to be public: row-level security (supabase/schema.sql) limits it to submitting
@@ -852,5 +889,6 @@ initChainPicker();
 initChainTelemetry();
 initWallet();
 initEstimator();
+initBooking();
 initForm();
 initReviews();
