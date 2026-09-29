@@ -42,6 +42,7 @@ GitHub Pages serves the `docs/` folder from the `main` branch. After editing HTM
 - [Overland Ready](https://github.com/vincentinferido-a11y/overland-ready): Next.js 16 and Sanity CMS gear review site
 - [RemitOtter](https://github.com/vincentinferido-a11y/remitotter): Solana meme-coin platform demo (Next.js 15, MongoDB, buyback-and-burn engine)
 - [TS Task Control](https://github.com/vincentinferido-a11y/ts-task-control-ui): operations dashboard UI system
+- [Harbor Reach Studio OS](https://github.com/vincentinferido-a11y/harbor-reach-studio-os-ui): production operating system UI for a game studio (product design)
 - [BoyaxDev Marketplace](https://github.com/vincentinferido-a11y/boyaxdev-marketplace-ui): website marketplace UI system
 - [SkinStack](https://github.com/vincentinferido-a11y/skinstack-ui): skincare review site UI system
 
