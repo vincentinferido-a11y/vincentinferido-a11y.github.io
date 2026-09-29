@@ -8,8 +8,8 @@ const CONFIG = {
   // Supabase database (see supabase/README.md). Leave empty to use email instead.
   // The publishable key (sb_publishable_...) is safe to put here; NEVER put the secret key here.
   supabase: {
-    url: "",
-    publishableKey: "",
+    url: "https://catbgcjucrassbmpwlnw.supabase.co",
+    publishableKey: "sb_publishable_cML9VXfRJ6Ou7zMFH-wfPg_Ndv-YhPv",
   },
   rpcRefreshMs: 12000,
   // Networks in the header picker. Live data comes from public RPCs; if the first endpoint
