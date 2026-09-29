@@ -21,8 +21,10 @@ const CONFIG = {
   // Project cost estimator (section #estimate). All prices in USD.
   // estimate = (base + screens x perScreen + features) x design x timeline x hourlyRate
   estimator: {
-    hourlyRate: 25,
-    showPrices: false, // false = visitors see hours and timeline only; pricing is shared after the discovery call
+    // Pricing is private: visitors see hours and timeline only. To show price ranges,
+    // set showPrices: true AND hourlyRate to your rate (both are public in this file).
+    showPrices: false,
+    hourlyRate: 0,
     hoursPerWeek: 30, // focused hours per week used for the timeline estimate
     rangeLow: 0.85, // shown range around the point estimate
     rangeHigh: 1.2,
