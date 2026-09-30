@@ -13,7 +13,7 @@ set search_path = public, extensions
 as $$
 begin
   perform net.http_post(
-    url := 'https://catbgcjucrassbmpwlnw.supabase.co/functions/v1/notify-lead',
+    url := 'https://catbgcjucrassbmpwlnw.supabase.co/functions/v1/smooth-service',
     headers := jsonb_build_object('Content-Type', 'application/json', 'x-webhook-secret', 'REPLACE_WITH_WEBHOOK_SECRET'),
     body := jsonb_build_object('type', 'INSERT', 'table', TG_TABLE_NAME, 'record', to_jsonb(NEW))
   );

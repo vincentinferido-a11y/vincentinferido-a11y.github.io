@@ -57,7 +57,7 @@ New inquiries and reviews trigger `notify_new_row()` (see `notify.sql`). That ca
 
 Setup (one time):
 1. **Resend:** create a free account at resend.com with the alert address, then create an API key (Sending access).
-2. **Supabase → Edge Functions:** deploy a new function named `notify-lead` with the code from `functions/notify-lead/index.ts`, then turn **off** "Verify JWT" for it. The function checks its own secret instead.
+2. **Supabase → Edge Functions:** deploy a new function (ours is named `smooth-service`; update the URL in notify.sql if yours differs) with the code from `functions/notify-lead/index.ts`, then turn **off** "Verify JWT" for it. The function checks its own secret instead.
 3. **Supabase → Edge Functions → Secrets:** set these three.
    - `RESEND_API_KEY`: the key from step 1
    - `WEBHOOK_SECRET`: a long random string
