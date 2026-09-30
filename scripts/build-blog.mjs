@@ -15,6 +15,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
+import { pathToFileURL } from "node:url";
 
 // Change this when the custom domain is live (e.g. "https://yourdomain.com").
 const SITE_URL = "https://vincentinferido-a11y.github.io";
@@ -24,6 +25,11 @@ const AUTHOR_TITLE = "Full-Stack Engineer & Designer";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "..");
 const CONTENT = path.join(ROOT, "content", "blog");
 const DOCS = path.join(ROOT, "docs");
+// Site-wide settings (analytics ID etc.). Empty values switch the feature off.
+const SITE_CFG = JSON.parse(fs.readFileSync(path.join(ROOT, "site.config.json"), "utf8"));
+const ANALYTICS = SITE_CFG.umamiWebsiteId
+  ? `<script defer src="https://cloud.umami.is/script.js" data-website-id="${SITE_CFG.umamiWebsiteId}" data-domains="${new URL(SITE_URL).host}"></script>\n`
+  : "";
 const OUT = path.join(DOCS, "blog");
 
 marked.setOptions({ gfm: true });
@@ -163,7 +169,7 @@ ${a("Facebook", `https://www.facebook.com/sharer/sharer.php?u=${u}`, FB_ICON)}
 const SHARE_SCRIPT = `<script>document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var t=b.dataset.copy,l=b.lastElementChild;function done(ok){l.textContent=ok?"Copied!":"Press Ctrl+C";setTimeout(function(){l.textContent="Copy link"},1800)}function legacy(){var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}a.remove();done(ok)}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){done(true)},legacy)}else{legacy()}})});if(navigator.share){document.querySelectorAll("[data-native-share]").forEach(function(b){b.hidden=false;b.addEventListener("click",function(){navigator.share({title:b.dataset.title,url:b.dataset.url}).catch(function(){})})})}</script>`;
 
 // ---------------------------------------------------------------- shared page chrome
-const head = ({ title, description, url, type = "website", image = "/og-image.jpg", imageAlt = "", extra = "" }) => `<!DOCTYPE html>
+const head = ({ title, description, url, type = "website", image = "/og-image.jpg", imageAlt = "", extra = "", active = "blog" }) => `<!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -198,7 +204,7 @@ ${image !== "/vincent-inferido.jpg" ? `<meta property="og:image:width" content="
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=block" rel="stylesheet"/>
 <link href="/styles.css" rel="stylesheet"/>
-${extra}</head>
+${ANALYTICS}${extra}</head>
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary">
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-space-md focus:py-2 focus:rounded focus:bg-tertiary focus:text-on-tertiary font-label-md text-label-md">Skip to content</a>
 <header class="sticky top-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
@@ -211,10 +217,10 @@ ${extra}</head>
 <a class="nav-link" href="/#services">Services</a>
 <a class="nav-link" href="/#projects">Projects</a>
 <a class="nav-link" href="/#estimate">Estimate</a>
-<a class="nav-link is-active" href="/blog/" aria-current="page">Blog</a>
+<a class="nav-link${active === "blog" ? " is-active" : ""}" href="/blog/"${active === "blog" ? ' aria-current="page"' : ""}>Blog</a>
 <a class="nav-link" href="/#contact">Contact</a>
 </nav>
-<a href="/#contact" aria-label="Hire me" class="flex items-center gap-space-xs px-2.5 sm:px-space-md py-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors font-label-md text-label-md font-bold shrink-0"><span class="material-symbols-outlined text-[18px] sm:text-[16px]" aria-hidden="true">handshake</span><span class="hidden sm:inline">Hire me</span></a>
+<a href="/#contact" data-umami-event="hire-me-header" aria-label="Hire me" class="flex items-center gap-space-xs px-2.5 sm:px-space-md py-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors font-label-md text-label-md font-bold shrink-0"><span class="material-symbols-outlined text-[18px] sm:text-[16px]" aria-hidden="true">handshake</span><span class="hidden sm:inline">Hire me</span></a>
 </div>
 </header>
 <main id="main">`;
@@ -229,6 +235,9 @@ const foot = () => `</main>
 <div class="flex flex-wrap gap-space-md">
 <a class="hover:text-primary" href="/">Portfolio</a>
 <a class="hover:text-primary" href="/blog/">Blog</a>
+<a class="hover:text-primary" href="/for/agencies/">For agencies</a>
+<a class="hover:text-primary" href="/for/clinics-salons/">For clinics &amp; salons</a>
+<a class="hover:text-primary" href="/for/saas-web3/">For SaaS &amp; Web3</a>
 <a class="hover:text-primary" href="/blog/feed.xml">RSS</a>
 <a class="hover:text-primary" href="https://github.com/vincentinferido-a11y" target="_blank" rel="noreferrer">GitHub</a>
 <a class="hover:text-primary" href="https://www.linkedin.com/in/vincentci/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -371,6 +380,134 @@ ${SHARE_SCRIPT}
 ` + foot();
 fs.writeFileSync(path.join(OUT, "index.html"), index);
 
+// ---------------------------------------------------------------- audience landing pages (/for/<slug>/)
+const { landingPages, REVIEW } = await import(pathToFileURL(path.join(ROOT, "content", "landing", "pages.mjs")).href);
+const LANDING_OUT = path.join(DOCS, "for");
+fs.rmSync(LANDING_OUT, { recursive: true, force: true });
+const msIcon = (n, cls = "text-[20px]") => `<span class="material-symbols-outlined ${cls}" aria-hidden="true">${n}</span>`;
+
+const BOOKING_DEMO = `<div id="booking-demo" class="rounded-xl bg-surface-container-lowest ring-1 ring-white/10 p-space-md md:p-space-lg flex flex-col gap-space-md" aria-live="polite">
+<div><p class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-2">1 · Service</p><div class="flex flex-wrap gap-2" data-group="service">
+<button type="button" data-v="Consultation · 30 min" class="bd-opt">Consultation · 30 min</button><button type="button" data-v="Follow-up · 20 min" class="bd-opt">Follow-up · 20 min</button><button type="button" data-v="Facial treatment · 60 min" class="bd-opt">Facial treatment · 60 min</button></div></div>
+<div><p class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-2">2 · Day</p><div class="flex flex-wrap gap-2" data-group="day"></div></div>
+<div><p class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-2">3 · Time</p><div class="flex flex-wrap gap-2" data-group="time"><span class="font-body-sm text-body-sm text-outline">Pick a day first.</span></div></div>
+<label class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant"><input type="checkbox" id="bd-deposit" checked class="accent-[#4fdbc8]"/> Pay a $20 deposit to secure the slot (demo)</label>
+<button type="button" id="bd-confirm" disabled class="self-start inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold disabled:opacity-40" data-umami-event="booking-demo-confirm">${msIcon("check_circle", "text-[18px]")}Confirm booking</button>
+<div id="bd-result" hidden class="rounded-lg bg-tertiary/10 ring-1 ring-tertiary/30 p-space-md font-body-sm text-body-sm text-on-surface"></div>
+</div>
+<script>(function(){var s={},root=document.getElementById("booking-demo");if(!root)return;var cls="bd-opt px-3 py-2 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md hover:text-on-surface";root.querySelectorAll(".bd-opt").forEach(function(b){b.className=cls});
+var days=root.querySelector('[data-group=day]'),times=root.querySelector('[data-group=time]'),btn=document.getElementById("bd-confirm"),out=document.getElementById("bd-result");
+function pick(group,b){root.querySelectorAll('[data-group='+group+'] button').forEach(function(x){var on=x===b;x.setAttribute("aria-pressed",on);x.classList.toggle("bg-tertiary",on);x.classList.toggle("text-on-tertiary",on);x.classList.toggle("bg-surface-container",!on)});s[group]=b.dataset.v;btn.disabled=!(s.service&&s.day&&s.time);out.hidden=true}
+function bind(group){root.querySelectorAll('[data-group='+group+'] button').forEach(function(b){b.onclick=function(){pick(group,b);if(group==="day")renderTimes(b.dataset.seed)}})}
+var d=new Date();for(var i=1;i<=5;i++){var x=new Date(d);x.setDate(d.getDate()+i);var b=document.createElement("button");b.type="button";b.className=cls;b.dataset.v=x.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});b.dataset.seed=i;b.textContent=b.dataset.v;days.appendChild(b)}
+function renderTimes(seed){times.innerHTML="";delete s.time;["9:00 AM","10:30 AM","1:00 PM","2:30 PM","4:00 PM","5:30 PM","7:00 PM"].forEach(function(t,j){var b=document.createElement("button");b.type="button";b.className=cls;b.dataset.v=t;b.textContent=t;if((j+Number(seed))%3===0){b.disabled=true;b.className+=" opacity-40 line-through";b.title="Already booked"}times.appendChild(b)});bind("time");btn.disabled=true}
+bind("service");bind("day");
+btn.onclick=function(){var dep=document.getElementById("bd-deposit").checked;out.innerHTML="<p class='font-bold text-tertiary pb-1'>Booked (demo): "+s.service+"</p><p>"+s.day+" at "+s.time+"</p><ul class='pt-2 list-disc pl-5 text-on-surface-variant'><li>Confirmation email sent</li><li>SMS reminder scheduled for 24 hours before</li><li>Added to the staff calendar, slot blocked for others</li>"+(dep?"<li>$20 deposit captured</li>":"")+"</ul><p class='pt-2 text-outline'>This is a sample. On your site, it would use your real services, staff and calendar.</p>";out.hidden=false}})();</script>`;
+
+for (const L of landingPages) {
+  const url = `${SITE_URL}/for/${L.slug}/`;
+  const cta = `/?need=${L.need}#contact`;
+  const relatedPosts = L.articles.map((slug) => posts.find((p) => p.slug === slug)).filter(Boolean);
+  const ld = [
+    { "@context": "https://schema.org", "@type": "Service", name: L.seoTitle, description: L.description, provider: { "@type": "Person", name: AUTHOR, url: SITE_URL, jobTitle: AUTHOR_TITLE }, areaServed: "Worldwide", url },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` }, { "@type": "ListItem", position: 2, name: L.nav, item: url }] },
+    { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: L.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+  ];
+  const demo = L.demo.type === "booking" ? BOOKING_DEMO : `<a href="${L.demo.url}" target="_blank" rel="noopener noreferrer" data-umami-event="demo-open-${L.slug}" class="group block rounded-xl overflow-hidden ring-1 ring-white/10 bg-surface-container-lowest">
+<img src="${L.demo.image}" alt="${esc(L.demo.title)}" width="960" height="533" loading="lazy" class="w-full aspect-[960/533] object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"/></a>`;
+  const page = head({ title: `${L.seoTitle} | ${AUTHOR}`, description: L.description, url, active: "none",
+    extra: ld.map((o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, "\\u003c")}</script>`).join("\n") + "\n" }) + `
+<div class="max-w-[1200px] mx-auto px-margin-mobile lg:px-margin-desktop">
+<nav class="font-label-sm text-label-sm text-outline pt-space-lg" aria-label="Breadcrumb"><a class="hover:text-primary" href="/">Home</a> / <span class="text-on-surface-variant">${esc(L.nav)}</span></nav>
+
+<section class="py-space-xl flex flex-col gap-space-md max-w-3xl">
+<span class="font-label-md text-label-md text-tertiary tracking-wider uppercase">// ${esc(L.eyebrow)}</span>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">${esc(L.title)}</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">${esc(L.sub)}</p>
+<div class="flex flex-wrap gap-space-sm pt-space-xs">
+<a href="${cta}" data-umami-event="cta-hero-${L.slug}" class="inline-flex items-center gap-space-xs px-space-lg h-12 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed font-label-md text-label-md font-bold">${msIcon("handshake", "text-[18px]")}Tell me about your project</a>
+<a href="#demo" class="inline-flex items-center gap-space-xs px-space-lg h-12 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold">${msIcon(L.demo.type === "booking" ? "touch_app" : "play_circle", "text-[18px]")}${L.demo.type === "booking" ? "Try the booking demo" : "See the live demo"}</a>
+</div>
+<ul class="flex flex-wrap gap-x-space-md gap-y-1 pt-space-xs font-label-sm text-label-sm text-outline">
+<li class="flex items-center gap-1">${msIcon("check", "text-[16px] text-tertiary")}Fixed-scope plan before you pay</li>
+<li class="flex items-center gap-1">${msIcon("check", "text-[16px] text-tertiary")}You own the code</li>
+<li class="flex items-center gap-1">${msIcon("check", "text-[16px] text-tertiary")}Reply within 24 hours</li>
+<li class="flex items-center gap-1">${msIcon("check", "text-[16px] text-tertiary")}Typical timeline: ${esc(L.timeline)}</li>
+</ul>
+</section>
+
+<section class="pb-space-xl" aria-labelledby="pains">
+<h2 id="pains" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">Sound familiar?</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg">
+${L.pains.map((p) => `<div class="rounded-xl bg-surface-container-low p-space-md flex flex-col gap-space-xs">${msIcon("error", "text-[22px] text-error")}<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">${esc(p.title)}</h3><p class="font-body-sm text-body-sm text-on-surface-variant">${esc(p.body)}</p></div>`).join("\n")}
+</div>
+</section>
+
+<section class="pb-space-xl" aria-labelledby="build">
+<h2 id="build" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">What I build for you</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter-lg">
+${L.build.map((b) => `<div class="rounded-xl bg-surface-container-low p-space-md flex gap-space-sm"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tertiary/15 text-tertiary">${msIcon(b.icon)}</span><div><h3 class="font-label-md text-label-md font-bold text-on-surface">${esc(b.title)}</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">${esc(b.body)}</p></div></div>`).join("\n")}
+</div>
+</section>
+
+<section id="demo" class="pb-space-xl scroll-mt-24" aria-labelledby="demo-title">
+<div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-gutter-lg items-center rounded-2xl bg-surface-container-low p-space-md md:p-space-lg">
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">${L.demo.type === "booking" ? "Interactive demo" : "Live demo"}</span>
+<h2 id="demo-title" class="font-headline-md text-headline-md font-bold text-on-surface">${esc(L.demo.title)}</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">${esc(L.demo.body)}</p>
+${L.demo.url ? `<a href="${L.demo.url}" target="_blank" rel="noopener noreferrer" data-umami-event="demo-open-${L.slug}" class="self-start inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold">${esc(L.demo.cta)}${msIcon("open_in_new", "text-[16px]")}</a>` : ""}
+<p class="font-label-sm text-label-sm text-outline">${esc(L.demo.note)}</p>
+</div>
+${demo}
+</div>
+</section>
+
+<section id="proof" class="pb-space-xl scroll-mt-24" aria-labelledby="proof-title">
+<h2 id="proof-title" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">Proof, not promises</h2>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter-lg">
+<figure class="rounded-xl bg-surface-container-low p-space-md flex flex-col gap-space-sm ring-1 ring-tertiary/20">
+<div class="flex gap-0.5 text-[#f5c518]" aria-label="5 out of 5 stars">${"★".repeat(5)}</div>
+<blockquote class="font-body-md text-body-md text-on-surface">&ldquo;${esc(REVIEW.quote)}&rdquo;</blockquote>
+<figcaption class="font-label-sm text-label-sm text-outline"><span class="text-on-surface font-bold">${esc(REVIEW.name)}</span> · ${esc(REVIEW.role)}<br/><span class="inline-flex items-center gap-1 text-tertiary pt-1">${msIcon("verified", "text-[15px]")}${esc(REVIEW.badge)}</span></figcaption>
+</figure>
+${L.projects.map((p) => `<a href="${p.url}"${p.url.startsWith("http") ? ' target="_blank" rel="noopener noreferrer"' : ""} class="rounded-xl bg-surface-container-low hover:bg-surface-container p-space-md flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm text-primary">${esc(p.label)}</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">${esc(p.title)}</h3><p class="font-body-sm text-body-sm text-on-surface-variant">${esc(p.body)}</p></a>`).join("\n")}
+</div>
+</section>
+
+<section class="pb-space-xl" aria-labelledby="how">
+<h2 id="how" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">How we'd work together</h2>
+<ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-lg">
+${[["Tell me what's broken", "A short message about your business and what you want to fix."], ["Get a clear plan", "Screens, features, milestones and a fixed-scope quote, in plain language."], ["See it take shape", "Designs you approve, then working software shown to you regularly."], ["Launch & own it", `Live in about ${L.timeline}, with a bug-fix period and all code in your name.`]].map(([t, b], i) => `<li class="rounded-xl bg-surface-container-low p-space-md"><span class="font-label-md text-label-md text-tertiary">0${i + 1}</span><h3 class="font-label-md text-label-md font-bold text-on-surface pt-1">${esc(t)}</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">${esc(b)}</p></li>`).join("\n")}
+</ol>
+</section>
+
+<section class="pb-space-xl" aria-labelledby="faq">
+<h2 id="faq" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">Questions</h2>
+<div class="flex flex-col gap-space-xs max-w-3xl">
+${L.faq.map((f) => `<details class="group rounded-xl bg-surface-container-low"><summary class="flex cursor-pointer list-none items-center justify-between gap-space-sm p-space-md font-body-md text-body-md font-semibold text-on-surface [&::-webkit-details-marker]:hidden">${esc(f.q)}${msIcon("expand_more", "text-[20px] transition-transform group-open:rotate-180")}</summary><p class="px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant">${esc(f.a)}</p></details>`).join("\n")}
+</div>
+</section>
+
+${relatedPosts.length ? `<section class="pb-space-xl" aria-labelledby="reading"><h2 id="reading" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">Helpful guides</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg">${relatedPosts.map(postCard).join("\n")}</div></section>` : ""}
+
+<section class="pb-space-xl">
+<div class="rounded-2xl bg-surface-container-low ring-1 ring-tertiary/25 p-space-lg md:p-space-xl flex flex-col items-start gap-space-sm">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Next step</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Tell me what you'd like to fix. I'll reply within 24 hours.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">No sales call needed. Send a short message, and you'll get questions, a suggested approach and, if it's a fit, a fixed-scope plan.</p>
+<div class="flex flex-wrap gap-space-sm pt-space-xs">
+<a href="${cta}" data-umami-event="cta-bottom-${L.slug}" class="inline-flex items-center gap-space-xs px-space-lg h-12 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed font-label-md text-label-md font-bold">${msIcon("handshake", "text-[18px]")}Send me a message</a>
+<a href="/#estimate" data-umami-event="cta-estimate-${L.slug}" class="inline-flex items-center gap-space-xs px-space-lg h-12 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold">${msIcon("calculate", "text-[18px]")}Estimate my project</a>
+</div>
+</div>
+</section>
+</div>
+` + foot();
+  fs.mkdirSync(path.join(LANDING_OUT, L.slug), { recursive: true });
+  fs.writeFileSync(path.join(LANDING_OUT, L.slug, "index.html"), page);
+}
+
 // ---------------------------------------------------------------- RSS, sitemap, robots
 const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -387,6 +524,7 @@ ${posts.map((p) => `<item><title>${esc(p.meta.title)}</title><link>${SITE_URL}/b
 fs.writeFileSync(path.join(OUT, "feed.xml"), rss);
 const today = new Date().toISOString().slice(0, 10);
 const urls = [{ loc: `${SITE_URL}/`, lastmod: today }, { loc: `${SITE_URL}/blog/`, lastmod: posts[0]?.meta.date || today },
+  ...landingPages.map((L) => ({ loc: `${SITE_URL}/for/${L.slug}/`, lastmod: today })),
   ...posts.map((p) => ({ loc: `${SITE_URL}/blog/${p.slug}/`, lastmod: p.meta.updated || p.meta.date }))];
 fs.writeFileSync(path.join(DOCS, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -406,7 +544,10 @@ ${posts.slice(0, 3).map(postCard).join("\n")}
 </div>
 ${END}`;
   home = home.slice(0, home.indexOf(START)) + strip + home.slice(home.indexOf(END) + END.length);
+  // Analytics snippet on the homepage too (between ANALYTICS markers in <head>).
+  const AS = "<!-- ANALYTICS:START -->", AE = "<!-- ANALYTICS:END -->";
+  if (home.includes(AS) && home.includes(AE)) home = home.slice(0, home.indexOf(AS)) + AS + ANALYTICS.trim() + AE + home.slice(home.indexOf(AE) + AE.length);
   fs.writeFileSync(homePath, home);
 }
 
-console.log(`blog: ${posts.length} posts → docs/blog/ (+ feed.xml, sitemap.xml, robots.txt${home.includes(START) ? ", homepage strip" : ""})`);
+console.log(`landing: ${landingPages.length} pages → docs/for/ · blog: ${posts.length} posts → docs/blog/ (+ feed.xml, sitemap.xml, robots.txt${home.includes(START) ? ", homepage strip" : ""})`);

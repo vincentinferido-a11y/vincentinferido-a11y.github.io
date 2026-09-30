@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Custom Dashboards &amp; Admin Panels for SaaS and Web3 Teams | Vincent Inferido</title>
+<meta name="description" content="Custom operations dashboards, admin panels and control rooms for SaaS and Web3 teams: live data, clear alerts and actions in one screen. See a live demo."/>
+<link rel="canonical" href="https://vincentinferido-a11y.github.io/for/saas-web3/"/>
+<meta property="og:title" content="Custom Dashboards &amp; Admin Panels for SaaS and Web3 Teams | Vincent Inferido"/>
+<meta property="og:description" content="Custom operations dashboards, admin panels and control rooms for SaaS and Web3 teams: live data, clear alerts and actions in one screen. See a live demo."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://vincentinferido-a11y.github.io/for/saas-web3/"/>
+<meta property="og:image" content="https://vincentinferido-a11y.github.io/og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Custom Dashboards &amp; Admin Panels for SaaS and Web3 Teams | Vincent Inferido"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Custom Dashboards &amp; Admin Panels for SaaS and Web3 Teams | Vincent Inferido"/>
+<meta name="twitter:description" content="Custom operations dashboards, admin panels and control rooms for SaaS and Web3 teams: live data, clear alerts and actions in one screen. See a live demo."/>
+<meta name="twitter:image" content="https://vincentinferido-a11y.github.io/og-image.jpg"/>
+<meta name="twitter:image:alt" content="Custom Dashboards &amp; Admin Panels for SaaS and Web3 Teams | Vincent Inferido"/>
+<meta property="og:site_name" content="Vincent Inferido"/>
+<meta property="og:locale" content="en_US"/>
+<meta name="author" content="Vincent Inferido"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<meta name="twitter:site" content="@web3boyaxdev"/>
+<meta name="twitter:creator" content="@web3boyaxdev"/>
+<meta name="theme-color" content="#0f131c"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="alternate" type="application/rss+xml" title="Vincent Inferido — Blog" href="https://vincentinferido-a11y.github.io/blog/feed.xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=block" rel="stylesheet"/>
+<link href="/styles.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Custom Dashboards & Admin Panels for SaaS and Web3 Teams","description":"Custom operations dashboards, admin panels and control rooms for SaaS and Web3 teams: live data, clear alerts and actions in one screen. See a live demo.","provider":{"@type":"Person","name":"Vincent Inferido","url":"https://vincentinferido-a11y.github.io","jobTitle":"Full-Stack Engineer & Designer"},"areaServed":"Worldwide","url":"https://vincentinferido-a11y.github.io/for/saas-web3/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vincentinferido-a11y.github.io/"},{"@type":"ListItem","position":2,"name":"SaaS & Web3","item":"https://vincentinferido-a11y.github.io/for/saas-web3/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does a custom dashboard replace Datadog or Grafana?","acceptedAnswer":{"@type":"Answer","text":"No. It usually sits on top of them, using them as data sources, and adds your business context and actions in one place."}},{"@type":"Question","name":"Can it connect to our database and on-chain data?","acceptedAnswer":{"@type":"Answer","text":"Yes. Dashboards can read from your database, monitoring APIs, chain RPCs and indexers, with read-only access where that's safer."}},{"@type":"Question","name":"Who can see and do what?","acceptedAnswer":{"@type":"Answer","text":"Roles and permissions control which screens and actions each person has, and actions can be logged for auditing."}},{"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"Most dashboards and admin panels take 4–10 weeks, starting with the one screen your team needs most."}}]}</script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-space-md focus:py-2 focus:rounded focus:bg-tertiary focus:text-on-tertiary font-label-md text-label-md">Skip to content</a>
+<header class="sticky top-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+<div class="h-16 max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-space-md">
+<a href="/" class="flex items-center gap-space-sm sm:gap-space-md min-w-0" aria-label="Vincent Inferido — home">
+<svg class="h-8 w-8 shrink-0" viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="none" stroke="#4D8EFF" stroke-width="2"/><path d="M16 2v14M28 9l-12 7M28 23l-12-7M16 30V16M4 23l12-7M4 9l12 7" stroke="#D0BCFF" stroke-width="1.5"/><circle cx="16" cy="16" r="3.5" fill="#4FDBC8"/></svg>
+<div class="flex flex-col min-w-0"><span class="font-label-md text-label-md font-bold tracking-tight text-on-surface uppercase">Vincent Inferido</span><span class="font-label-sm text-label-sm text-outline tracking-normal sm:tracking-wider uppercase truncate">Full-Stack Engineer &amp; Designer</span></div>
+</a>
+<nav class="hidden md:flex items-center gap-space-md font-label-md text-label-md" aria-label="Primary">
+<a class="nav-link" href="/#services">Services</a>
+<a class="nav-link" href="/#projects">Projects</a>
+<a class="nav-link" href="/#estimate">Estimate</a>
+<a class="nav-link" href="/blog/">Blog</a>
+<a class="nav-link" href="/#contact">Contact</a>
+</nav>
+<a href="/#contact" data-umami-event="hire-me-header" aria-label="Hire me" class="flex items-center gap-space-xs px-2.5 sm:px-space-md py-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors font-label-md text-label-md font-bold shrink-0"><span class="material-symbols-outlined text-[18px] sm:text-[16px]" aria-hidden="true">handshake</span><span class="hidden sm:inline">Hire me</span></a>
+</div>
+</header>
+<main id="main">
+<div class="max-w-[1200px] mx-auto px-margin-mobile lg:px-margin-desktop">
+<nav class="font-label-sm text-label-sm text-outline pt-space-lg" aria-label="Breadcrumb"><a class="hover:text-primary" href="/">Home</a> / <span class="text-on-surface-variant">SaaS &amp; Web3</span></nav>
+
+<section class="py-space-xl flex flex-col gap-space-md max-w-3xl">
+<span class="font-label-md text-label-md text-tertiary tracking-wider uppercase">// For SaaS &amp; Web3 teams</span>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Dashboards your team actually understands</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your data lives in Datadog, your database, the chain and three admin tools. I design and build one control room around your product: live health, the jobs and customers that matter, and the actions your team takes every day.</p>
+<div class="flex flex-wrap gap-space-sm pt-space-xs">
+<a href="/?need=dashboard#contact" data-umami-event="cta-hero-saas-web3" class="inline-flex items-center gap-space-xs px-space-lg h-12 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">handshake</span>Tell me about your project</a>
+<a href="#demo" class="inline-flex items-center gap-space-xs px-space-lg h-12 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">play_circle</span>See the live demo</a>
+</div>
+<ul class="flex flex-wrap gap-x-space-md gap-y-1 pt-space-xs font-label-sm text-label-sm text-outline">
+<li class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary" aria-hidden="true">check</span>Fixed-scope plan before you pay</li>
+<li class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary" aria-hidden="true">check</span>You own the code</li>
+<li class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary" aria-hidden="true">check</span>Reply within 24 hours</li>
+<li class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary" aria-hidden="true">check</span>Typical timeline: 4–10 weeks</li>
+</ul>
+</section>
+
+<section class="pb-space-xl" aria-labelledby="pains">
+<h2 id="pains" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">Sound familiar?</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg">
+<div class="rounded-xl bg-surface-container-low p-space-md flex flex-col gap-space-xs"><span class="material-symbols-outlined text-[22px] text-error" aria-hidden="true">error</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Five tabs to answer one question</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Metrics in one tool, logs in another, customers in the database, and on-chain data somewhere else.</p></div>
+<div class="rounded-xl bg-surface-container-low p-space-md flex flex-col gap-space-xs"><span class="material-symbols-outlined text-[22px] text-error" aria-hidden="true">error</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Generic tools don&#39;t speak your language</h3><p class="font-body-sm text-body-sm text-on-surface-variant">CPU graphs are useful, but your team thinks in jobs, customers, transactions and incidents.</p></div>
+<div class="rounded-xl bg-surface-container-low p-space-md flex flex-col gap-space-xs"><span class="material-symbols-outlined text-[22px] text-error" aria-hidden="true">error</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Admin work happens in raw SQL</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Refunds, retries and fixes are done by hand in the database, which is slow and risky.</p></div>
+</div>
+</section>
+
+<section class="pb-space-xl" aria-labelledby="build">
+<h2 id="build" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">What I build for you</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter-lg">
+<div class="rounded-xl bg-surface-container-low p-space-md flex gap-space-sm"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tertiary/15 text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">speed</span></span><div><h3 class="font-label-md text-label-md font-bold text-on-surface">Live health &amp; KPIs</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">Latency, errors, throughput and your business metrics in one view.</p></div></div>
+<div class="rounded-xl bg-surface-container-low p-space-md flex gap-space-sm"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tertiary/15 text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">account_tree</span></span><div><h3 class="font-label-md text-label-md font-bold text-on-surface">Service &amp; dependency maps</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">See what depends on what, and where a problem really starts.</p></div></div>
+<div class="rounded-xl bg-surface-container-low p-space-md flex gap-space-sm"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tertiary/15 text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">terminal</span></span><div><h3 class="font-label-md text-label-md font-bold text-on-surface">Logs, traces &amp; incidents</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">Streaming logs with filters, traces and incident workflows.</p></div></div>
+<div class="rounded-xl bg-surface-container-low p-space-md flex gap-space-sm"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tertiary/15 text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">bolt</span></span><div><h3 class="font-label-md text-label-md font-bold text-on-surface">Actions, not just charts</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">Retry jobs, resolve incidents, trigger deploys, with the right permissions.</p></div></div>
+<div class="rounded-xl bg-surface-container-low p-space-md flex gap-space-sm"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tertiary/15 text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">token</span></span><div><h3 class="font-label-md text-label-md font-bold text-on-surface">Web3-ready</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">Wallet connection, on-chain data and multichain RPC with fallbacks.</p></div></div>
+<div class="rounded-xl bg-surface-container-low p-space-md flex gap-space-sm"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tertiary/15 text-tertiary"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">palette</span></span><div><h3 class="font-label-md text-label-md font-bold text-on-surface">Branded &amp; shareable</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">Your name, colors and environments, for your team or your customers.</p></div></div>
+</div>
+</section>
+
+<section id="demo" class="pb-space-xl scroll-mt-24" aria-labelledby="demo-title">
+<div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-gutter-lg items-center rounded-2xl bg-surface-container-low p-space-md md:p-space-lg">
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Live demo</span>
+<h2 id="demo-title" class="font-headline-md text-headline-md font-bold text-on-surface">Click through a live control room</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Obsidian Console is a working observability console for a Web3 compute platform: live service health, telemetry charts, a streaming log viewer, TEE job orchestration, incident response and ⌘K search. You can even rebrand it from its settings page.</p>
+<a href="https://obsidian-console-eosin.vercel.app/" target="_blank" rel="noopener noreferrer" data-umami-event="demo-open-saas-web3" class="self-start inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold">Open the live demo<span class="material-symbols-outlined text-[16px]" aria-hidden="true">open_in_new</span></a>
+<p class="font-label-sm text-label-sm text-outline">Concept with simulated data. For your team, it would connect to your real data sources.</p>
+</div>
+<a href="https://obsidian-console-eosin.vercel.app/" target="_blank" rel="noopener noreferrer" data-umami-event="demo-open-saas-web3" class="group block rounded-xl overflow-hidden ring-1 ring-white/10 bg-surface-container-lowest">
+<img src="/projects/obsidian-console.jpg" alt="Click through a live control room" width="960" height="533" loading="lazy" class="w-full aspect-[960/533] object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"/></a>
+</div>
+</section>
+
+<section id="proof" class="pb-space-xl scroll-mt-24" aria-labelledby="proof-title">
+<h2 id="proof-title" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">Proof, not promises</h2>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter-lg">
+<figure class="rounded-xl bg-surface-container-low p-space-md flex flex-col gap-space-sm ring-1 ring-tertiary/20">
+<div class="flex gap-0.5 text-[#f5c518]" aria-label="5 out of 5 stars">★★★★★</div>
+<blockquote class="font-body-md text-body-md text-on-surface">&ldquo;Well-architected, purpose-driven, and executionally clean: a strong example of niche EdTech done right.&rdquo;</blockquote>
+<figcaption class="font-label-sm text-label-sm text-outline"><span class="text-on-surface font-bold">Elena Marisol Hikida</span> · Founder &amp; CEO, HiKIDAI<br/><span class="inline-flex items-center gap-1 text-tertiary pt-1"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">verified</span>Verified client</span></figcaption>
+</figure>
+<a href="https://solana-meme-bank.preview.emergentagent.com" target="_blank" rel="noopener noreferrer" class="rounded-xl bg-surface-container-low hover:bg-surface-container p-space-md flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm text-primary">Live demo · Web3</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">RemitOtter</h3><p class="font-body-sm text-body-sm text-on-surface-variant">A Solana token platform with a real-time dashboard, a public ledger and a partner API. 20 API routes plus a test suite.</p></a>
+<a href="/#web3" class="rounded-xl bg-surface-container-low hover:bg-surface-container p-space-md flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm text-primary">Web3 · live</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">This portfolio</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Live data from 7 chains (6 EVM plus Solana) with automatic RPC fallback, and read-only wallet connection.</p></a>
+</div>
+</section>
+
+<section class="pb-space-xl" aria-labelledby="how">
+<h2 id="how" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">How we'd work together</h2>
+<ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-lg">
+<li class="rounded-xl bg-surface-container-low p-space-md"><span class="font-label-md text-label-md text-tertiary">01</span><h3 class="font-label-md text-label-md font-bold text-on-surface pt-1">Tell me what&#39;s broken</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">A short message about your business and what you want to fix.</p></li>
+<li class="rounded-xl bg-surface-container-low p-space-md"><span class="font-label-md text-label-md text-tertiary">02</span><h3 class="font-label-md text-label-md font-bold text-on-surface pt-1">Get a clear plan</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">Screens, features, milestones and a fixed-scope quote, in plain language.</p></li>
+<li class="rounded-xl bg-surface-container-low p-space-md"><span class="font-label-md text-label-md text-tertiary">03</span><h3 class="font-label-md text-label-md font-bold text-on-surface pt-1">See it take shape</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">Designs you approve, then working software shown to you regularly.</p></li>
+<li class="rounded-xl bg-surface-container-low p-space-md"><span class="font-label-md text-label-md text-tertiary">04</span><h3 class="font-label-md text-label-md font-bold text-on-surface pt-1">Launch &amp; own it</h3><p class="font-body-sm text-body-sm text-on-surface-variant pt-1">Live in about 4–10 weeks, with a bug-fix period and all code in your name.</p></li>
+</ol>
+</section>
+
+<section class="pb-space-xl" aria-labelledby="faq">
+<h2 id="faq" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">Questions</h2>
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<details class="group rounded-xl bg-surface-container-low"><summary class="flex cursor-pointer list-none items-center justify-between gap-space-sm p-space-md font-body-md text-body-md font-semibold text-on-surface [&::-webkit-details-marker]:hidden">Does a custom dashboard replace Datadog or Grafana?<span class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span></summary><p class="px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant">No. It usually sits on top of them, using them as data sources, and adds your business context and actions in one place.</p></details>
+<details class="group rounded-xl bg-surface-container-low"><summary class="flex cursor-pointer list-none items-center justify-between gap-space-sm p-space-md font-body-md text-body-md font-semibold text-on-surface [&::-webkit-details-marker]:hidden">Can it connect to our database and on-chain data?<span class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span></summary><p class="px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant">Yes. Dashboards can read from your database, monitoring APIs, chain RPCs and indexers, with read-only access where that&#39;s safer.</p></details>
+<details class="group rounded-xl bg-surface-container-low"><summary class="flex cursor-pointer list-none items-center justify-between gap-space-sm p-space-md font-body-md text-body-md font-semibold text-on-surface [&::-webkit-details-marker]:hidden">Who can see and do what?<span class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span></summary><p class="px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant">Roles and permissions control which screens and actions each person has, and actions can be logged for auditing.</p></details>
+<details class="group rounded-xl bg-surface-container-low"><summary class="flex cursor-pointer list-none items-center justify-between gap-space-sm p-space-md font-body-md text-body-md font-semibold text-on-surface [&::-webkit-details-marker]:hidden">How long does it take?<span class="material-symbols-outlined text-[20px] transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span></summary><p class="px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant">Most dashboards and admin panels take 4–10 weeks, starting with the one screen your team needs most.</p></details>
+</div>
+</section>
+
+<section class="pb-space-xl" aria-labelledby="reading"><h2 id="reading" class="font-headline-md text-headline-md font-bold text-on-surface pb-space-md">Helpful guides</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg"><article class="post-card group relative flex flex-col rounded-xl overflow-hidden bg-surface-container-low hover:bg-surface-container transition-colors" data-tags="Buying guide|Tech choices|Startups">
+<img src="/images/blog/best-monitoring-tools-for-startups.png" alt="" width="1200" height="630" loading="lazy" decoding="async" class="w-full aspect-[1200/630] object-cover"/>
+<div class="flex flex-col gap-space-sm p-space-md flex-1">
+<div class="flex flex-wrap items-center gap-1.5"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Buying guide</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Tech choices</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Startups</span></div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors"><a href="/blog/best-monitoring-tools-for-startups/" class="after:absolute after:inset-0">Best Monitoring Tools for Startups in 2026: Datadog vs Grafana vs New Relic (and When to Build Your Own Control Room)</a></h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">Datadog, Grafana Cloud, New Relic, Better Stack and PagerDuty compared with real 2026 prices, plus when a custom operations dashboard makes more sense, with a live demo you can click.</p>
+<p class="font-label-sm text-label-sm text-outline">September 29, 2026 · 11 min read</p>
+</div>
+</article>
+<article class="post-card group relative flex flex-col rounded-xl overflow-hidden bg-surface-container-low hover:bg-surface-container transition-colors" data-tags="Tech choices|Startups|Planning">
+<img src="/images/blog/supabase-vs-firebase-for-your-mvp.png" alt="" width="1200" height="630" loading="lazy" decoding="async" class="w-full aspect-[1200/630] object-cover"/>
+<div class="flex flex-col gap-space-sm p-space-md flex-1">
+<div class="flex flex-wrap items-center gap-1.5"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Tech choices</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Startups</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Planning</span></div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors"><a href="/blog/supabase-vs-firebase-for-your-mvp/" class="after:absolute after:inset-0">Supabase vs. Firebase: Choosing a Backend for Your MVP</a></h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">A practical, non-hype comparison of Supabase and Firebase for founders and small teams, covering data model, security, pricing model, lock-in, and a simple guide to which one fits your product.</p>
+<p class="font-label-sm text-label-sm text-outline">September 29, 2026 · 4 min read</p>
+</div>
+</article>
+<article class="post-card group relative flex flex-col rounded-xl overflow-hidden bg-surface-container-low hover:bg-surface-container transition-colors" data-tags="Planning|Business|Tech choices">
+<img src="/images/blog/website-vs-web-app-vs-mobile-app.png" alt="" width="1200" height="630" loading="lazy" decoding="async" class="w-full aspect-[1200/630] object-cover"/>
+<div class="flex flex-col gap-space-sm p-space-md flex-1">
+<div class="flex flex-wrap items-center gap-1.5"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Planning</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Business</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Tech choices</span></div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors"><a href="/blog/website-vs-web-app-vs-mobile-app/" class="after:absolute after:inset-0">Website, Web App or Mobile App: Which One Does Your Business Actually Need?</a></h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1">A clear explanation of the difference between a website, a web app and a mobile app, with a simple decision guide and the most expensive mistake businesses make when choosing.</p>
+<p class="font-label-sm text-label-sm text-outline">September 29, 2026 · 4 min read</p>
+</div>
+</article></div></section>
+
+<section class="pb-space-xl">
+<div class="rounded-2xl bg-surface-container-low ring-1 ring-tertiary/25 p-space-lg md:p-space-xl flex flex-col items-start gap-space-sm">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Next step</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Tell me what you'd like to fix. I'll reply within 24 hours.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">No sales call needed. Send a short message, and you'll get questions, a suggested approach and, if it's a fit, a fixed-scope plan.</p>
+<div class="flex flex-wrap gap-space-sm pt-space-xs">
+<a href="/?need=dashboard#contact" data-umami-event="cta-bottom-saas-web3" class="inline-flex items-center gap-space-xs px-space-lg h-12 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">handshake</span>Send me a message</a>
+<a href="/#estimate" data-umami-event="cta-estimate-saas-web3" class="inline-flex items-center gap-space-xs px-space-lg h-12 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">calculate</span>Estimate my project</a>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="w-full bg-surface-container-lowest mt-space-xl py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop flex flex-col md:flex-row md:items-center justify-between gap-space-md font-label-sm text-label-sm text-outline">
+<div class="flex flex-col gap-1">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vincent Inferido</span>
+<span>Full-Stack Engineer &amp; Designer · Building business systems, web apps and Web3 products.</span>
+</div>
+<div class="flex flex-wrap gap-space-md">
+<a class="hover:text-primary" href="/">Portfolio</a>
+<a class="hover:text-primary" href="/blog/">Blog</a>
+<a class="hover:text-primary" href="/for/agencies/">For agencies</a>
+<a class="hover:text-primary" href="/for/clinics-salons/">For clinics &amp; salons</a>
+<a class="hover:text-primary" href="/for/saas-web3/">For SaaS &amp; Web3</a>
+<a class="hover:text-primary" href="/blog/feed.xml">RSS</a>
+<a class="hover:text-primary" href="https://github.com/vincentinferido-a11y" target="_blank" rel="noreferrer">GitHub</a>
+<a class="hover:text-primary" href="https://www.linkedin.com/in/vincentci/" target="_blank" rel="noreferrer">LinkedIn</a>
+<a class="hover:text-primary" href="https://x.com/web3boyaxdev" target="_blank" rel="noreferrer">X</a>
+</div>
+</div>
+<p class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop pt-space-md font-label-sm text-label-sm text-outline">© 2026 Vincent Inferido. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -896,6 +896,21 @@ function initReviews() {
     .catch(() => {});
 }
 
+// --- 11. Audience landing pages: /?need=<topic>#contact pre-fills the message ------
+function initNeedPrefill() {
+  const need = new URLSearchParams(window.location.search).get("need");
+  const texts = {
+    crm: "Hi Vincent, I run an agency / service business and I'm interested in a custom CRM.\n\nHow we track clients today:\n\nTeam size:\n\nWhat I'd like to fix first:\n",
+    booking: "Hi Vincent, I run a clinic / salon / studio and I'm interested in online booking.\n\nHow clients book today:\n\nNumber of staff / rooms:\n\nWhat I'd like to fix first (no-shows, double bookings, phone calls…):\n",
+    dashboard: "Hi Vincent, I'm on a SaaS / Web3 team and I'm interested in a custom dashboard or admin panel.\n\nWhat we monitor today (tools):\n\nWho would use it:\n\nThe one screen I wish we had:\n",
+  };
+  const msg = $("#message");
+  if (!need || !texts[need] || !msg || msg.value.trim()) return;
+  msg.value = texts[need];
+  msg.rows = 8;
+  setTimeout(() => $("#name")?.focus({ preventScroll: true }), 400);
+}
+
 initRoles();
 initFilters();
 initNav();
@@ -906,3 +921,4 @@ initEstimator();
 initBooking();
 initForm();
 initReviews();
+initNeedPrefill();
