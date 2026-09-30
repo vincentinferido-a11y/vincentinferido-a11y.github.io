@@ -129,6 +129,7 @@ export const landingPages = [
       note: "Concept with simulated data. For your team, it would connect to your real data sources.",
     },
     projects: [
+      { title: "Tidewell Terminal", label: "Live demo · Trading", body: "A white-label DeFi trading terminal: perps, vaults, lending and a real-time risk panel, with paper trading on live market data.", url: "https://tidewell-terminal.vercel.app/" },
       { title: "RemitOtter", label: "Live demo · Web3", body: "A Solana token platform with a real-time dashboard, a public ledger and a partner API. 20 API routes plus a test suite.", url: "https://solana-meme-bank.preview.emergentagent.com" },
       { title: "This portfolio", label: "Web3 · live", body: "Live data from 7 chains (6 EVM plus Solana) with automatic RPC fallback, and read-only wallet connection.", url: "/#web3" },
     ],
@@ -139,6 +140,6 @@ export const landingPages = [
       { q: "Who can see and do what?", a: "Roles and permissions control which screens and actions each person has, and actions can be logged for auditing." },
       { q: "How long does it take?", a: "Most dashboards and admin panels take 4–10 weeks, starting with the one screen your team needs most." },
     ],
-    articles: ["best-monitoring-tools-for-startups", "supabase-vs-firebase-for-your-mvp", "website-vs-web-app-vs-mobile-app"],
+    articles: ["best-monitoring-tools-for-startups", "how-to-launch-a-crypto-trading-platform", "supabase-vs-firebase-for-your-mvp"],
   },
 ];

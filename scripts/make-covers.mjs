@@ -10,7 +10,9 @@ import { execFileSync } from "node:child_process";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "..");
 const CONTENT = path.join(ROOT, "content", "blog");
 const OUT = path.join(ROOT, "docs", "images", "blog");
-const EDGE = process.env.EDGE_PATH || "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
+// Chrome first (headless Edge fails silently mid-update); override with EDGE_PATH.
+const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
+const EDGE = process.env.EDGE_PATH || (fs.existsSync(CHROME) ? CHROME : "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe");
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
 const meta = (raw) => Object.fromEntries(raw.replace(/\r\n/g, "\n").split("\n---\n")[0].split("\n").slice(1)
@@ -48,7 +50,7 @@ for (const f of fs.readdirSync(CONTENT).filter((f) => f.endsWith(".md"))) {
   const m = meta(fs.readFileSync(path.join(CONTENT, f), "utf8"));
   const page = path.join(tmp, `${slug}.html`), png = path.join(tmp, `${slug}.png`);
   fs.writeFileSync(page, html({ title: m.coverTitle || m.title, label: m.coverLabel || (m.tags || "").split(",")[0], icon: m.coverIcon || "article", accent: m.coverAccent || "#4fdbc8" }));
-  execFileSync(EDGE, ["--headless=new", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=1", "--window-size=1200,630",
+  execFileSync(EDGE, ["--headless=new", `--user-data-dir=${process.env.EDGE_PROFILE || path.join(os.tmpdir(), "edge-covers")}`, "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=1", "--window-size=1200,630",
     "--virtual-time-budget=5000", `--screenshot=${png}`, "file:///" + page.replace(/\\/g, "/")], { stdio: "ignore" });
   fs.copyFileSync(png, target);
   console.log("cover:", slug);
