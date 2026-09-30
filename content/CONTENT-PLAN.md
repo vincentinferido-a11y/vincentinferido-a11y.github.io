@@ -45,3 +45,4 @@ One article per day, starting 2026-09-30. The daily task takes the **first unche
 
 - [x] 2026-09-29 · best-crm-software-for-small-business
 - [x] 2026-09-29 · best-online-booking-software
+- [x] 2026-09-29 · best-monitoring-tools-for-startups (extra, features the Obsidian Console demo)
