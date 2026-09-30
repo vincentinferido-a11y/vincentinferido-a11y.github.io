@@ -51,3 +51,16 @@ and verified by automated checks: `npm run test:db`.
 3. Once DNS works, tick **Enforce HTTPS** in GitHub Pages.
 4. Nothing changes on the Supabase side: the Data API accepts requests from any domain, and security comes from the rules above, not from the domain.
 5. Update the site URL in your GitHub profile, LinkedIn and project READMEs.
+
+## Instant lead alerts (Edge Function + trigger)
+New inquiries and reviews trigger `notify_new_row()` (see `notify.sql`). That calls the `notify-lead` Edge Function (`functions/notify-lead/index.ts`), which emails you through Resend, with the lead's address as reply-to.
+
+Setup (one time):
+1. **Resend:** create a free account at resend.com with the alert address, then create an API key (Sending access).
+2. **Supabase → Edge Functions:** deploy a new function named `notify-lead` with the code from `functions/notify-lead/index.ts`, then turn **off** "Verify JWT" for it. The function checks its own secret instead.
+3. **Supabase → Edge Functions → Secrets:** set these three.
+   - `RESEND_API_KEY`: the key from step 1
+   - `WEBHOOK_SECRET`: a long random string
+   - `ALERT_EMAIL`: where alerts should go
+4. **Supabase → SQL Editor:** run `notify.sql`, with `REPLACE_WITH_WEBHOOK_SECRET` replaced by the same `WEBHOOK_SECRET`. Never commit the real value.
+5. **Optional auto-reply to leads:** once a sending domain is verified in Resend, add a `FROM_EMAIL` secret (e.g. `Vincent Inferido <hello@yourdomain.com>`).
