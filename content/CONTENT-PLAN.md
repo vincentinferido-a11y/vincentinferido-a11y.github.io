@@ -10,7 +10,7 @@ One article per day, starting 2026-09-30. The daily task takes the **first unche
 
 ## Queue
 
-- [ ] Best Website Builders for Small Businesses (2026): Wix vs Squarespace vs Shopify vs WordPress.com vs Webflow · buying guide · keyword: best website builder for small business
+- [x] Best Website Builders for Small Businesses (2026): Wix vs Squarespace vs Shopify vs WordPress.com vs Webflow · buying guide · keyword: best website builder for small business
 - [ ] How to Reduce No-Shows: Proven Tactics for Appointment-Based Businesses · practical · keyword: how to reduce no-shows
 - [ ] Best Accounting & Invoicing Software for Small Businesses (2026): QuickBooks, Xero, FreshBooks, Zoho Books, Wave · buying guide · keyword: best accounting software for small business
 - [ ] How Long Does It Take to Build a Web App? Realistic Timelines by Project Type · practical (timelines in weeks only, no prices) · keyword: how long to build a web app
@@ -46,3 +46,4 @@ One article per day, starting 2026-09-30. The daily task takes the **first unche
 - [x] 2026-09-29 · best-crm-software-for-small-business
 - [x] 2026-09-29 · best-online-booking-software
 - [x] 2026-09-29 · best-monitoring-tools-for-startups (extra, features the Obsidian Console demo)
+- [x] 2026-10-01 · best-website-builder-for-small-business
