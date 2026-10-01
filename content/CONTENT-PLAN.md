@@ -4,11 +4,26 @@ One article per day, starting 2026-09-30. The daily task takes the **first unche
 
 **Audience:** small-business owners and founders in the US, UK, Canada, Australia and the EU (worldwide first, the Philippines second). They are non-technical buyers trying to choose tools, avoid wasting money and decide when custom software makes sense.
 
-**Mix:** alternate **buying guides** (research format: quick picks, comparison table, ```product blocks, real-cost table, FAQ, sources; official US prices only) with **practical guides** (how-to/education: hook, clear steps, callouts, FAQ, sources where facts are cited). Every article ends with a soft CTA to [Send me a message](/#contact) or the [estimator](/#estimate), and links to 1–3 related posts.
+**Order:** case studies of the things we build come first (each followed by an educational companion). New public projects get a case study automatically. When the queue runs low, new topics are at least 70% **educational** (how-to guides, plain-English explainers, checklists) for the audience below, the rest buying guides. Every article passes the SEO checklist in the daily task.
+
+**Mix (regular topics):** alternate **buying guides** (research format: quick picks, comparison table, ```product blocks, real-cost table, FAQ, sources; official US prices only) with **practical guides** (how-to/education: hook, clear steps, callouts, FAQ, sources where facts are cited). Every article ends with a soft CTA to [Send me a message](/#contact) or the [estimator](/#estimate), and links to 1–3 related posts.
 
 **Keyword intent:** "best X for small business", "X vs Y", "how to X", "how long / what does X involve". Put the main keyword in the title, the description, the first 100 words and one H2.
 
 ## Queue
+
+<!-- Build stories first (case studies of things we built, each followed by an educational companion), then the regular mix. -->
+- [ ] Case Study: Building Klyron, a DEX Intelligence Terminal That Shows Who Is Really Trading · case study · keyword: crypto token due diligence tool · live: https://klyron-intel.vercel.app (testnet Safe Launch, not audited; private repo, no source links)
+- [ ] What Is Wash Trading? How to Spot Fake Volume on a Crypto Token · educational (draws on how Klyron's wash-trading audit works) · keyword: how to spot wash trading in crypto
+- [ ] Case Study: Tidewell Terminal, a White-Label DeFi Trading Terminal · case study · keyword: white label defi trading platform · live: https://tidewell-terminal.vercel.app
+- [ ] Paper Trading vs Live Trading Platforms: What Businesses Need Before Launching a Trading Product · educational · keyword: paper trading platform
+- [ ] Case Study: Obsidian Console, an Observability Console for Web3 Infrastructure · case study · keyword: web3 infrastructure monitoring dashboard · live: https://obsidian-console-eosin.vercel.app
+- [ ] What Is Observability? Logs, Metrics and Alerts Explained for Non-Technical Founders · educational · keyword: what is observability
+- [ ] Case Study: RemitOtter, a Solana Token Launch Platform with Quests and a Public Burn Ledger · case study · keyword: token launch platform development
+- [ ] How Anti-Rug Token Launches Work: Liquidity Locks, LP Burns and Good-Behaviour Bonds Explained · educational (draws on Klyron Safe Launch) · keyword: liquidity lock crypto
+- [ ] Case Study: This Portfolio, a Fast Static Website with Live Multi-Chain Data and No Framework · case study · keyword: fast static website
+- [ ] Case Study: TS Task Control, Designing an Operations Dashboard for a Travel-Support Team (prototype) · case study · keyword: operations dashboard design
+- [ ] How to Design a Dashboard Your Team Will Actually Use: 9 Practical Rules · educational · keyword: how to design a dashboard
 
 - [x] Best Website Builders for Small Businesses (2026): Wix vs Squarespace vs Shopify vs WordPress.com vs Webflow · buying guide · keyword: best website builder for small business
 - [ ] How to Reduce No-Shows: Proven Tactics for Appointment-Based Businesses · practical · keyword: how to reduce no-shows
