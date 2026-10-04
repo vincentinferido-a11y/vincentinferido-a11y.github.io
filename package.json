@@ -2,7 +2,7 @@
   "name": "web3-builder-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfolio of Vincent Inferido, full-stack engineer & designer (static site, Tailwind CSS).",
+  "description": "Portfolio of Vincent Inferido, full-stack AI-first developer & UI/UX designer (static site, Tailwind CSS).",
   "scripts": {
     "build": "node scripts/build-blog.mjs && tailwindcss -i ./src/input.css -o ./docs/styles.css --minify",
     "dev": "tailwindcss -i ./src/input.css -o ./docs/styles.css --watch",

@@ -60,7 +60,7 @@ const CONFIG = {
     ],
   },
   roles: [
-    "Full-Stack Engineer & Designer",
+    "Full-Stack AI-First Developer & UI/UX Designer",
     "CRM & Business Systems Developer",
     "Web3 / dApp Developer",
     "UX/UI Systems Architect",

@@ -144,7 +144,7 @@ spacing:
 
 ## Brand & Style
 
-This design system synthesizes the disciplined order of Swiss International Typographic Style with the forward-looking vitality of Web3 cybernetics. Built for a full-stack engineer and designer working across decentralized protocol engineering, system-level UX/UI, and full-stack software development, the aesthetic rejects superficial "hacker" clichés in favor of architectural precision, functional clarity, and luminous dynamic accents.
+This design system synthesizes the disciplined order of Swiss International Typographic Style with the forward-looking vitality of Web3 cybernetics. Built for a full-stack AI-first developer and UI/UX designer working across decentralized protocol engineering, system-level UX/UI, and full-stack software development, the aesthetic rejects superficial "hacker" clichés in favor of architectural precision, functional clarity, and luminous dynamic accents.
 
 ### Visual Pillars
 - **Disciplined Precision (Swiss Modernism):** Strict spatial grids, uncompromising typographic hierarchies, and unambiguous functional affordances. Every UI component adheres to a structured, reproducible geometry.

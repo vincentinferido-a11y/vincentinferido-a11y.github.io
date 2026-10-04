@@ -20,7 +20,7 @@ import { pathToFileURL } from "node:url";
 // Change this when the custom domain is live (e.g. "https://yourdomain.com").
 const SITE_URL = "https://vincentinferido-a11y.github.io";
 const AUTHOR = "Vincent Inferido";
-const AUTHOR_TITLE = "Full-Stack Engineer & Designer";
+const AUTHOR_TITLE = "Full-Stack AI-First Developer & UI/UX Designer";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "..");
 const CONTENT = path.join(ROOT, "content", "blog");
@@ -169,7 +169,7 @@ ${a("Facebook", `https://www.facebook.com/sharer/sharer.php?u=${u}`, FB_ICON)}
 const SHARE_SCRIPT = `<script>document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var t=b.dataset.copy,l=b.lastElementChild;function done(ok){l.textContent=ok?"Copied!":"Press Ctrl+C";setTimeout(function(){l.textContent="Copy link"},1800)}function legacy(){var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}a.remove();done(ok)}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){done(true)},legacy)}else{legacy()}})});if(navigator.share){document.querySelectorAll("[data-native-share]").forEach(function(b){b.hidden=false;b.addEventListener("click",function(){navigator.share({title:b.dataset.title,url:b.dataset.url}).catch(function(){})})})}</script>`;
 
 // ---------------------------------------------------------------- shared page chrome
-const head = ({ title, description, url, type = "website", image = "/og-image.jpg", imageAlt = "", extra = "", active = "blog" }) => `<!DOCTYPE html>
+const head = ({ title, description, url, type = "website", image = "/og-image.jpg?v=5", imageAlt = "", extra = "", active = "blog" }) => `<!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
 <head>
 <meta charset="utf-8"/>
