@@ -130,7 +130,7 @@ export const landingPages = [
     },
     projects: [
       { title: "Tidewell Terminal", label: "Live demo · Trading", body: "A white-label DeFi trading terminal: perps, vaults, lending and a real-time risk panel, with paper trading on live market data.", url: "https://tidewell-terminal.vercel.app/" },
-      { title: "RemitOtter", label: "Live demo · Web3", body: "A Solana token platform with a real-time dashboard, a public ledger and a partner API. 20 API routes plus a test suite.", url: "https://solana-meme-bank.preview.emergentagent.com" },
+      { title: "RemitOtter", label: "Live demo · Web3", body: "A Solana token platform with a real-time dashboard, a public ledger and a partner API. 20 API routes plus a test suite.", url: "https://remitotter.vercel.app" },
       { title: "This portfolio", label: "Web3 · live", body: "Live data from 7 chains (6 EVM plus Solana) with automatic RPC fallback, and read-only wallet connection.", url: "/#web3" },
     ],
     timeline: "4–10 weeks",
