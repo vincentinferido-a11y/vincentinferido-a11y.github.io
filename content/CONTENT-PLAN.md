@@ -13,6 +13,10 @@ One article per day, starting 2026-09-30. The daily task takes the **first unche
 ## Queue
 
 <!-- Build stories first (case studies of things we built, each followed by an educational companion), then the regular mix. -->
+- [x] Case Study: BoyaxDev Marketplace, Designing a Marketplace for Buying Ready-Made Websites (UI prototype) · case study · keyword: marketplace website design · live: https://boyaxdev-marketplace-ui.vercel.app
+- [ ] How to Buy an Existing Website: A Due Diligence Checklist for First-Time Buyers · educational (draws on BoyaxDev's data room and buyer-access flow) · keyword: how to buy a website
+- [ ] Case Study: SkinStack, Designing a Skincare Review Site Readers Can Trust (UI prototype) · case study · keyword: affiliate review site design · live: https://skinstack-ui.vercel.app
+- [ ] Affiliate Disclosure Rules Explained: What Review Sites Must Tell Readers · educational, not legal advice (draws on SkinStack's editorial disclosure) · keyword: affiliate disclosure requirements
 - [ ] Case Study: Building Klyron, a DEX Intelligence Terminal That Shows Who Is Really Trading · case study · keyword: crypto token due diligence tool · live: https://klyron-intel.vercel.app (testnet Safe Launch, not audited; private repo, no source links)
 - [ ] What Is Wash Trading? How to Spot Fake Volume on a Crypto Token · educational (draws on how Klyron's wash-trading audit works) · keyword: how to spot wash trading in crypto
 - [ ] Case Study: Tidewell Terminal, a White-Label DeFi Trading Terminal · case study · keyword: white label defi trading platform · live: https://tidewell-terminal.vercel.app
@@ -62,3 +66,4 @@ One article per day, starting 2026-09-30. The daily task takes the **first unche
 - [x] 2026-09-29 · best-online-booking-software
 - [x] 2026-09-29 · best-monitoring-tools-for-startups (extra, features the Obsidian Console demo)
 - [x] 2026-10-01 · best-website-builder-for-small-business
+- [x] 2026-10-08 · case-study-marketplace-website-design

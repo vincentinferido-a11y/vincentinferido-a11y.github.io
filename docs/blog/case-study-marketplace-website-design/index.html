@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Marketplace Website Design Case Study: BoyaxDev UI | Vincent Inferido</title>
+<meta name="description" content="A marketplace website design case study: how I designed BoyaxDev, a UI prototype for buying ready-made websites, from faceted search to a gated NDA flow."/>
+<link rel="canonical" href="https://vincentinferido-a11y.github.io/blog/case-study-marketplace-website-design/"/>
+<meta property="og:title" content="Marketplace Website Design Case Study: BoyaxDev UI | Vincent Inferido"/>
+<meta property="og:description" content="A marketplace website design case study: how I designed BoyaxDev, a UI prototype for buying ready-made websites, from faceted search to a gated NDA flow."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://vincentinferido-a11y.github.io/blog/case-study-marketplace-website-design/"/>
+<meta property="og:image" content="https://vincentinferido-a11y.github.io/images/blog/case-study-marketplace-website-design.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Case Study: BoyaxDev, a Marketplace Website Design for Buying Ready-Made Websites"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Marketplace Website Design Case Study: BoyaxDev UI | Vincent Inferido"/>
+<meta name="twitter:description" content="A marketplace website design case study: how I designed BoyaxDev, a UI prototype for buying ready-made websites, from faceted search to a gated NDA flow."/>
+<meta name="twitter:image" content="https://vincentinferido-a11y.github.io/images/blog/case-study-marketplace-website-design.png"/>
+<meta name="twitter:image:alt" content="Case Study: BoyaxDev, a Marketplace Website Design for Buying Ready-Made Websites"/>
+<meta property="og:site_name" content="Vincent Inferido"/>
+<meta property="og:locale" content="en_US"/>
+<meta name="author" content="Vincent Inferido"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<meta name="twitter:site" content="@web3boyaxdev"/>
+<meta name="twitter:creator" content="@web3boyaxdev"/>
+<meta name="theme-color" content="#0f131c"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="alternate" type="application/rss+xml" title="Vincent Inferido — Blog" href="https://vincentinferido-a11y.github.io/blog/feed.xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=block" rel="stylesheet"/>
+<link href="/styles.css" rel="stylesheet"/>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c9c42c0a-97aa-4979-b543-0b544e7167f4" data-domains="vincentinferido-a11y.github.io"></script>
+<meta property="article:published_time" content="2026-10-08"/>
+<meta property="article:modified_time" content="2026-10-08"/>
+<meta property="article:tag" content="Case study"/>
+<meta property="article:tag" content="Planning"/>
+<meta property="article:tag" content="Business"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Case Study: BoyaxDev, a Marketplace Website Design for Buying Ready-Made Websites","description":"A marketplace website design case study: how I designed BoyaxDev, a UI prototype for buying ready-made websites, from faceted search to a gated NDA flow.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":"https://vincentinferido-a11y.github.io/blog/case-study-marketplace-website-design/","url":"https://vincentinferido-a11y.github.io/blog/case-study-marketplace-website-design/","author":{"@type":"Person","name":"Vincent Inferido","url":"https://vincentinferido-a11y.github.io","jobTitle":"Full-Stack AI-First Developer & UI/UX Designer"},"publisher":{"@type":"Person","name":"Vincent Inferido"},"keywords":"Case study, Planning, Business","wordCount":2156,"image":"https://vincentinferido-a11y.github.io/images/blog/case-study-marketplace-website-design.png","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vincentinferido-a11y.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://vincentinferido-a11y.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Case Study: BoyaxDev, a Marketplace Website Design for Buying Ready-Made Websites","item":"https://vincentinferido-a11y.github.io/blog/case-study-marketplace-website-design/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What makes a good marketplace website design?","acceptedAnswer":{"@type":"Answer","text":"Fast, reliable filtering, consistent listing cards, a detail page that clearly says what the buyer gets, visible trust signals (verification, escrow, policies), and well-designed empty, loading and error states. Build it around the questions your buyers ask, in the order they ask them."}},{"@type":"Question","name":"What is faceted search on a marketplace?","acceptedAnswer":{"@type":"Answer","text":"Faceted search is a set of filters that work together, such as category, price range and status. Each choice narrows the results, and active filters are usually shown as removable chips so users can see and undo them easily."}},{"@type":"Question","name":"What is a data room when buying a website?","acceptedAnswer":{"@type":"Answer","text":"A data room is a private, access-controlled area where a seller shares sensitive information, such as real traffic, revenue reports and the codebase, with vetted buyers. Access is usually granted after the buyer signs an NDA."}},{"@type":"Question","name":"Should a marketplace ask buyers to verify before seeing details?","acceptedAnswer":{"@type":"Answer","text":"For high-value or confidential listings, yes. A short verification step protects sellers and signals that other buyers are vetted too. For low-value items, keep it frictionless. Split any verification into small steps with a progress bar."}},{"@type":"Question","name":"How long does it take to design a marketplace prototype?","acceptedAnswer":{"@type":"Answer","text":"A focused prototype with a few core screens and a documented design system typically takes a few weeks, depending on how many screens and states you need and how quickly feedback comes back. Building the working marketplace behind it takes considerably longer."}},{"@type":"Question","name":"Is BoyaxDev a real marketplace I can buy websites on?","acceptedAnswer":{"@type":"Answer","text":"No. BoyaxDev Marketplace is a UI prototype and design exploration with placeholder content. It shows how such a marketplace could look and work; it does not list or sell real websites."}}]}</script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-space-md focus:py-2 focus:rounded focus:bg-tertiary focus:text-on-tertiary font-label-md text-label-md">Skip to content</a>
+<header class="sticky top-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+<div class="h-16 max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-space-md">
+<a href="/" class="flex items-center gap-space-sm sm:gap-space-md min-w-0" aria-label="Vincent Inferido — home">
+<svg class="h-8 w-8 shrink-0" viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="none" stroke="#4D8EFF" stroke-width="2"/><path d="M16 2v14M28 9l-12 7M28 23l-12-7M16 30V16M4 23l12-7M4 9l12 7" stroke="#D0BCFF" stroke-width="1.5"/><circle cx="16" cy="16" r="3.5" fill="#4FDBC8"/></svg>
+<div class="flex flex-col min-w-0"><span class="font-label-md text-label-md font-bold tracking-tight text-on-surface uppercase">Vincent Inferido</span><span class="font-label-sm text-label-sm text-outline tracking-normal sm:tracking-wider uppercase truncate">Full-Stack AI-First Developer &amp; UI/UX Designer</span></div>
+</a>
+<nav class="hidden md:flex items-center gap-space-md font-label-md text-label-md" aria-label="Primary">
+<a class="nav-link" href="/#services">Services</a>
+<a class="nav-link" href="/#projects">Projects</a>
+<a class="nav-link" href="/#estimate">Estimate</a>
+<a class="nav-link is-active" href="/blog/" aria-current="page">Blog</a>
+<a class="nav-link" href="/#contact">Contact</a>
+</nav>
+<a href="/#contact" data-umami-event="hire-me-header" aria-label="Hire me" class="flex items-center gap-space-xs px-2.5 sm:px-space-md py-2 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed transition-colors font-label-md text-label-md font-bold shrink-0"><span class="material-symbols-outlined text-[18px] sm:text-[16px]" aria-hidden="true">handshake</span><span class="hidden sm:inline">Hire me</span></a>
+</div>
+</header>
+<main id="main">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop pt-space-lg">
+<nav class="font-label-sm text-label-sm text-outline pb-space-md" aria-label="Breadcrumb"><a class="hover:text-primary" href="/">Home</a> / <a class="hover:text-primary" href="/blog/">Blog</a></nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg">
+<article class="lg:col-span-8 min-w-0">
+<header class="flex flex-col gap-space-sm pb-space-lg border-b border-white/5">
+<div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Case study</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Planning</span><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Business</span></div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Case Study: BoyaxDev, a Marketplace Website Design for Buying Ready-Made Websites</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">A marketplace website design case study: how I designed BoyaxDev, a UI prototype for buying ready-made websites, from faceted search to a gated NDA flow.</p>
+<div class="flex flex-wrap items-center gap-space-sm font-label-sm text-label-sm text-outline">
+<img src="/vincent-inferido.jpg" alt="" width="28" height="28" class="w-7 h-7 rounded-full object-cover"/>
+<span class="text-on-surface">Vincent Inferido</span><span>·</span><time datetime="2026-10-08">October 8, 2026</time><span>·</span><span>10 min read</span>
+</div>
+<div class="pt-1"><div class="flex flex-wrap items-center gap-space-xs" data-share>
+<span class="font-label-sm text-label-sm text-outline pr-1">Share:</span>
+<a href="https://x.com/intent/post?text=Case%20Study%3A%20BoyaxDev%2C%20a%20Marketplace%20Website%20Design%20for%20Buying%20Ready-Made%20Websites&url=https%3A%2F%2Fvincentinferido-a11y.github.io%2Fblog%2Fcase-study-marketplace-website-design%2F&via=web3boyaxdev" target="_blank" rel="noopener noreferrer" aria-label="Share on X" class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fvincentinferido-a11y.github.io%2Fblog%2Fcase-study-marketplace-website-design%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvincentinferido-a11y.github.io%2Fblog%2Fcase-study-marketplace-website-design%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>Facebook</a>
+<button type="button" data-copy="https://vincentinferido-a11y.github.io/blog/case-study-marketplace-website-design/" class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">link</span><span>Copy link</span></button>
+<button type="button" data-native-share data-url="https://vincentinferido-a11y.github.io/blog/case-study-marketplace-website-design/" data-title="Case Study: BoyaxDev, a Marketplace Website Design for Buying Ready-Made Websites" hidden class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">ios_share</span><span>More</span></button>
+</div></div>
+
+</header>
+<img src="/images/blog/case-study-marketplace-website-design.png" alt="Marketplace website design case study cover for BoyaxDev, a UI prototype for buying ready-made websites" width="1200" height="630" fetchpriority="high" decoding="async" class="w-full aspect-[1200/630] object-cover rounded-xl mt-space-lg"/>
+<details class="lg:hidden mt-space-lg rounded-xl bg-surface-container-low"><summary class="cursor-pointer p-space-md font-label-md text-label-md text-on-surface">On this page</summary><ol class="flex flex-col gap-1.5 px-space-md pb-space-md font-body-sm text-body-sm"><li><a class="text-on-surface-variant hover:text-primary" href="#the-problem-selling-something-people-cant-try-first">The problem: selling something people can&#39;t try first</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#who-its-for">Who it&#39;s for</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#marketplace-website-design-at-a-glance">Marketplace website design at a glance</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#key-features">Key features</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#decisions-and-trade-offs-in-plain-english">Decisions and trade-offs, in plain English</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#what-was-hard">What was hard</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#lessons-you-can-apply-to-your-own-marketplace-or-listings-site">Lessons you can apply to your own marketplace or listings site</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#whats-next">What&#39;s next</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#faq">FAQ</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#sources">Sources</a></li></ol></details>
+<div class="article pt-space-lg">
+<p>Picture someone about to spend serious money on a website they&#39;ve never touched. They can&#39;t kick the tyres. They can&#39;t see the code yet. All they have is a listing page, and that page has about thirty seconds to answer one question: <em>can I trust this?</em></p>
+<p>That question shaped every screen of <strong>BoyaxDev Marketplace</strong>, a marketplace website design for buying ready-to-launch websites and SaaS platforms. This case study walks through the problem, the screens, the decisions and trade-offs, and the lessons you can borrow for any marketplace, directory or listings site.</p>
+<ul>
+<li><strong>Live prototype:</strong> <a href="https://boyaxdev-marketplace-ui.vercel.app/" target="_blank" rel="noopener noreferrer">boyaxdev-marketplace-ui.vercel.app</a></li>
+</ul>
+<aside class="callout callout-note"><span class="material-symbols-outlined text-[22px] callout-icon" aria-hidden="true">info</span><div><p class="callout-title">What stage this project is at</p><p>BoyaxDev is a <strong>UI prototype and design exploration</strong>: four clickable HTML screens plus a documented design system. It is not a live marketplace. The names, prices, numbers and listings in the screens are placeholders, so there are no real sales, users or results to report here, and I won&#39;t pretend otherwise.</p>
+</div></aside>
+
+
+
+<h2 id="the-problem-selling-something-people-cant-try-first">The problem: selling something people can&#39;t try first</h2>
+<p>Buying an existing website is a bit like buying a small business. The buyer is weighing up code quality, how the site makes money, how much traffic it gets, and what they will actually receive on handover day.</p>
+<p>That creates three tensions a marketplace has to solve:</p>
+<ol>
+<li><strong>Discovery vs. detail.</strong> Buyers want to scan lots of options fast, but each option has a lot of technical detail behind it (framework, backend, database, hosting).</li>
+<li><strong>Openness vs. confidentiality.</strong> Sellers want to show enough to attract buyers, but not hand their traffic numbers and codebase to anyone with a browser.</li>
+<li><strong>Speed vs. trust.</strong> A smooth &quot;buy now&quot; button feels modern, but for a high-value digital asset, too little friction looks suspicious.</li>
+</ol>
+<h2 id="who-its-for">Who it&#39;s for</h2>
+<p>The design targets two groups:</p>
+<ul>
+<li><strong>Buyers:</strong> founders, agencies and operators who would rather buy a working platform in a niche (health, finance, SaaS, e-commerce) than build from zero.</li>
+<li><strong>The marketplace operator:</strong> someone who lists assets, approves serious buyers and manages handovers, and needs that process to feel orderly, not like a pile of emails.</li>
+</ul>
+<h2 id="marketplace-website-design-at-a-glance">Marketplace website design at a glance</h2>
+<p>The prototype has four screens, each with one clear job:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Screen</th>
+<th>Its job</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Home hub</strong></td>
+<td>Explain what&#39;s sold, show featured inventory, niche collections, a four-step &quot;how the handoff works&quot; section, what every asset includes, and a buyer FAQ</td>
+</tr>
+<tr>
+<td><strong>Asset inventory</strong></td>
+<td>Let buyers narrow the list with filters: niche, tech stack, backend runtime, monetization model, traffic range, price range and status</td>
+</tr>
+<tr>
+<td><strong>Asset detail</strong></td>
+<td>One listing in depth: gallery, tabs, tech stack specs, a &quot;what&#39;s included&quot; checklist, documentation previews, a five-step transfer process and asset facts</td>
+</tr>
+<tr>
+<td><strong>Request buyer access</strong></td>
+<td>A four-step form (identity, interest, access and compliance, review) that ends with agreeing to an NDA before the data room opens</td>
+</tr>
+</tbody></table></div>
+<p>Everything sits on a dark &quot;glass&quot; design system I documented as <strong>Liquid Glass Aero</strong>: colour tokens, a type scale, spacing, rounded corners and component rules, all written down in a design spec so a developer can build from it.</p>
+<h2 id="key-features">Key features</h2>
+<h3 id="faceted-search-that-matches-how-buyers-think">Faceted search that matches how buyers think</h3>
+<p>&quot;Faceted search&quot; just means filters that work together: tick <em>Technology &amp; SaaS</em>, then <em>Node.js</em>, then <em>Available</em>, and the list narrows with each choice. The inventory screen shows the active filters as removable chips at the top, with a &quot;Clear all&quot; link, so buyers never lose track of why they&#39;re seeing what they&#39;re seeing.</p>
+<p>The filter groups follow the questions a buyer actually asks, in roughly the order they ask them: <em>What market? What&#39;s it built with? How does it make money? How busy is it? What does it cost? Can I buy it today?</em></p>
+<h3 id="listing-cards-that-show-the-same-facts-in-the-same-place">Listing cards that show the same facts in the same place</h3>
+<p>Every card shows status (Available, Reserved or In Progress), niche, stack tags, monetization, backend and price in an identical layout. When the facts sit in the same spot on every card, comparing six options takes seconds instead of minutes.</p>
+<h3 id="a-detail-page-built-around-what-do-i-actually-get">A detail page built around &quot;what do I actually get?&quot;</h3>
+<p>The asset page leads with a <strong>what&#39;s included</strong> checklist: frontend codebase, backend and API, database migrations, deployment configs, architecture docs, SOP playbooks, domain transfer, and a post-sale support window. Below that sit documentation previews and a numbered transfer process, from verification and NDA through to repository transfer and escrow release.</p>
+<p><strong>Escrow</strong>, if you haven&#39;t met the term, is when a neutral third party holds the buyer&#39;s money until the seller hands over what was promised. The design references it as a trust signal on the detail page; in a real build, it would be connected to an actual escrow provider.</p>
+<h3 id="gated-data-by-design">Gated data, by design</h3>
+<p>On the detail page, the performance section is deliberately locked: <em>&quot;Data room access required.&quot;</em> A <strong>data room</strong> is a private area holding the sensitive stuff, such as real traffic, revenue and the full codebase. Buyers see enough to get interested, then request access.</p>
+<h3 id="a-buyer-access-flow-with-a-progress-bar">A buyer-access flow with a progress bar</h3>
+<p>The access request is split into four short steps with a visible progress indicator: who you are, what you&#39;re looking for (niches, budget band, timeline), the NDA and due-diligence terms, then a review. There&#39;s a &quot;Save draft&quot; button, because people step away from long forms.</p>
+<h3 id="designed-states-not-just-the-happy-path">Designed states, not just the happy path</h3>
+<p>This is the part most prototypes skip. The inventory screen includes <strong>loading skeletons</strong> (grey placeholder cards while results load) and an <strong>empty state</strong> (&quot;No assets match these filters&quot; with a one-click reset). The access form documents six input states: default, focused, filled, error, disabled and confirmation.</p>
+<h2 id="decisions-and-trade-offs-in-plain-english">Decisions and trade-offs, in plain English</h2>
+<h3 id="1-friction-on-purpose">1. Friction on purpose</h3>
+<p>The obvious e-commerce move is &quot;add to cart&quot;. I went the other way: for an asset like this, a short verification step <em>increases</em> trust. It tells sellers their data is protected and tells buyers other buyers are vetted too.</p>
+<p><strong>The trade-off:</strong> every extra step loses some people. That&#39;s why the form is split into four small steps with a progress bar and a save option, rather than one long page. You keep the friction that builds trust and remove the friction that just annoys.</p>
+<h3 id="2-show-the-shape-of-the-data-before-showing-the-data">2. Show the shape of the data before showing the data</h3>
+<p>The detail page lists <em>which</em> facts exist (niche, stack, hosting, monetization, age, transfer window) even when the values are behind the data room. Buyers can judge whether a listing is worth requesting access for, and sellers don&#39;t over-share.</p>
+<p><strong>Lesson for your business:</strong> if you sell something high-value, tell people exactly what they&#39;ll see after the next step. Uncertainty kills more conversions than friction does.</p>
+<h3 id="3-placeholder-content-clearly-labelled">3. Placeholder content, clearly labelled</h3>
+<p>Every screen carries a footer note that it&#39;s a design prototype with placeholder content. It would have been easy to fill the screens with made-up revenue figures and five-star reviews to make the shots look busier. On a marketplace that sells on trust, fake numbers in a demo send exactly the wrong message.</p>
+<h3 id="4-accessibility-states-written-into-the-system">4. Accessibility states written into the system</h3>
+<p>The error state pairs a red outline with a written message (&quot;Valid corporate domain required&quot;), not colour alone. The focused state has a visible focus ring. These match long-standing rules in the W3C&#39;s accessibility guidelines (<a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">WCAG 2.2</a>): errors must be identified in text (<em>Error Identification</em>), keyboard focus must be visible (<em>Focus Visible</em>), and form fields need labels (<em>Labels or Instructions</em>).</p>
+<p><strong>Lesson:</strong> accessibility is cheapest at the design stage. Deciding what an error looks like <em>once</em> in a design system is far cheaper than fixing forty forms later.</p>
+<h3 id="5-a-design-tool-for-speed-a-written-spec-for-consistency">5. A design tool for speed, a written spec for consistency</h3>
+<p>I used <strong>Google Stitch</strong> (an AI-assisted UI design tool) to move fast on layouts, then wrote the rules down in the design spec: colours, type sizes, spacing and component behaviour. The tool gets you a first draft quickly. The written system is what stops screen five from drifting away from screen one.</p>
+<h2 id="what-was-hard">What was hard</h2>
+<ul>
+<li><strong>Density without clutter.</strong> A buyer needs a lot of technical detail per listing. Fitting stack, backend, monetization and price onto a card without it becoming a wall of text took several passes. The answer was strict, repeated placement plus small monospace labels for technical facts.</li>
+<li><strong>A dark interface that stays readable.</strong> Glassy, dark designs look great in screenshots and can be hard to read in real life. WCAG&#39;s <em>Contrast (Minimum)</em> rule asks for a contrast ratio of at least 4.5:1 for normal body text, so text colours had to be chosen against the actual dark surfaces, not against a white artboard.</li>
+<li><strong>Making a form feel short when it isn&#39;t.</strong> Identity, preferences and legal agreement is a lot to ask. Splitting it into steps, asking only for essentials (company is optional), and letting people save a draft does most of the work.</li>
+</ul>
+<h2 id="lessons-you-can-apply-to-your-own-marketplace-or-listings-site">Lessons you can apply to your own marketplace or listings site</h2>
+<p>Whether you run a property directory, a used-equipment site, a talent marketplace or a booking platform, these carry over:</p>
+<ol>
+<li><strong>Build filters around your buyer&#39;s questions,</strong> in the order they ask them, not around how your database is organised.</li>
+<li><strong>Put the same facts in the same place on every listing.</strong> Consistency is what makes comparison fast.</li>
+<li><strong>Answer &quot;what do I get?&quot; above the fold</strong> on every detail page.</li>
+<li><strong>Use friction deliberately.</strong> Add steps where they build trust; remove them everywhere else.</li>
+<li><strong>Design the empty, loading and error states</strong> before launch. Users will see them; make sure they help.</li>
+<li><strong>Never fake proof.</strong> Placeholder content is fine in a prototype if it&#39;s labelled. Invented reviews and numbers are not.</li>
+</ol>
+<p>If you&#39;re still deciding what kind of product you need in the first place, my guide on <a href="/blog/website-vs-web-app-vs-mobile-app/">website vs. web app vs. mobile app</a> is a good starting point. A marketplace like this is firmly a web app.</p>
+<h2 id="whats-next">What&#39;s next</h2>
+<p>To turn this prototype into a working marketplace, the next steps would be:</p>
+<ul>
+<li><strong>A real backend:</strong> listings, accounts, saved searches and an admin panel to approve buyer requests.</li>
+<li><strong>E-signature for the NDA</strong> and secure, logged access to each data room.</li>
+<li><strong>An escrow integration</strong> with a licensed provider, rather than building money handling yourself.</li>
+<li><strong>Usability testing</strong> of the filters and the access form with real buyers before adding more features.</li>
+</ul>
+<p>If that list feels long, that&#39;s normal. My post on <a href="/blog/what-to-prepare-before-hiring-a-developer/">what to prepare before hiring a developer</a> shows how to turn a prototype like this into a clear brief, and <a href="/blog/how-i-plan-a-project/">how I plan a project</a> explains how the work gets broken into phases.</p>
+<h2 id="faq">FAQ</h2>
+<div class="faq-list"><details class="faq-item"><summary>What makes a good marketplace website design?<span class="material-symbols-outlined text-[20px] faq-chevron" aria-hidden="true">expand_more</span></summary><div><p>Fast, reliable filtering, consistent listing cards, a detail page that clearly says what the buyer gets, visible trust signals (verification, escrow, policies), and well-designed empty, loading and error states. Build it around the questions your buyers ask, in the order they ask them.</p>
+</div></details><details class="faq-item"><summary>What is faceted search on a marketplace?<span class="material-symbols-outlined text-[20px] faq-chevron" aria-hidden="true">expand_more</span></summary><div><p>Faceted search is a set of filters that work together, such as category, price range and status. Each choice narrows the results, and active filters are usually shown as removable chips so users can see and undo them easily.</p>
+</div></details><details class="faq-item"><summary>What is a data room when buying a website?<span class="material-symbols-outlined text-[20px] faq-chevron" aria-hidden="true">expand_more</span></summary><div><p>A data room is a private, access-controlled area where a seller shares sensitive information, such as real traffic, revenue reports and the codebase, with vetted buyers. Access is usually granted after the buyer signs an NDA.</p>
+</div></details><details class="faq-item"><summary>Should a marketplace ask buyers to verify before seeing details?<span class="material-symbols-outlined text-[20px] faq-chevron" aria-hidden="true">expand_more</span></summary><div><p>For high-value or confidential listings, yes. A short verification step protects sellers and signals that other buyers are vetted too. For low-value items, keep it frictionless. Split any verification into small steps with a progress bar.</p>
+</div></details><details class="faq-item"><summary>How long does it take to design a marketplace prototype?<span class="material-symbols-outlined text-[20px] faq-chevron" aria-hidden="true">expand_more</span></summary><div><p>A focused prototype with a few core screens and a documented design system typically takes a few weeks, depending on how many screens and states you need and how quickly feedback comes back. Building the working marketplace behind it takes considerably longer.</p>
+</div></details><details class="faq-item"><summary>Is BoyaxDev a real marketplace I can buy websites on?<span class="material-symbols-outlined text-[20px] faq-chevron" aria-hidden="true">expand_more</span></summary><div><p>No. BoyaxDev Marketplace is a UI prototype and design exploration with placeholder content. It shows how such a marketplace could look and work; it does not list or sell real websites.</p>
+</div></details></div>
+
+
+
+<p><strong>Planning a marketplace, directory or listings platform</strong> and want the trust and the filters right from day one? <a href="/#contact">Send me a message</a> with what you&#39;re selling and who&#39;s buying, or <a href="/#estimate">estimate your project</a> first.</p>
+<h2 id="sources">Sources</h2>
+<p>Checked on <strong>October 8, 2026</strong>:</p>
+<ol>
+<li><a href="https://boyaxdev-marketplace-ui.vercel.app/" target="_blank" rel="noopener noreferrer">BoyaxDev Marketplace live prototype</a> (home hub, asset inventory, asset detail and buyer-access screens)</li>
+<li>BoyaxDev Marketplace project documentation: README and the Liquid Glass Aero design spec (DESIGN.md) in the project folder</li>
+<li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">W3C: Web Content Accessibility Guidelines (WCAG) 2.2</a> (Error Identification, Focus Visible, Labels or Instructions, Contrast (Minimum))</li>
+</ol>
+
+</div>
+<aside class="mt-space-xl p-space-lg rounded-xl bg-surface-container-low ring-1 ring-tertiary/20 flex flex-col gap-space-sm" aria-label="Get help">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Need help with this?</span>
+<p class="font-headline-sm text-headline-sm font-bold text-on-surface">Let&#39;s talk about your project</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Get an instant ballpark for effort and timeline, or send me a message about your project. No pressure, and you&#39;ll leave with a clearer plan either way.</p>
+<div class="flex flex-wrap gap-space-sm pt-1">
+<a href="/#estimate" class="inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-semibold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">calculate</span>Estimate my project</a>
+<a href="/#contact" class="inline-flex items-center gap-space-xs px-space-md h-11 rounded bg-tertiary text-on-tertiary hover:bg-tertiary-fixed font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">handshake</span>Hire me</a>
+</div>
+</aside>
+<div class="mt-space-lg flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-low">
+<img src="/vincent-inferido.jpg" alt="Vincent Inferido" width="64" height="64" class="w-16 h-16 rounded-full object-cover shrink-0"/>
+<div class="flex flex-col gap-1"><span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vincent Inferido</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Full-Stack AI-First Developer &amp; UI/UX Designer based in the Philippines. I design and build CRMs, booking systems, web apps and Web3 products for growing businesses.</span></div>
+</div>
+<div class="mt-space-md"><div class="flex flex-wrap items-center gap-space-xs" data-share>
+<span class="font-label-sm text-label-sm text-outline pr-1">Found this useful? Share it:</span>
+<a href="https://x.com/intent/post?text=Case%20Study%3A%20BoyaxDev%2C%20a%20Marketplace%20Website%20Design%20for%20Buying%20Ready-Made%20Websites&url=https%3A%2F%2Fvincentinferido-a11y.github.io%2Fblog%2Fcase-study-marketplace-website-design%2F&via=web3boyaxdev" target="_blank" rel="noopener noreferrer" aria-label="Share on X" class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fvincentinferido-a11y.github.io%2Fblog%2Fcase-study-marketplace-website-design%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvincentinferido-a11y.github.io%2Fblog%2Fcase-study-marketplace-website-design%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>Facebook</a>
+<button type="button" data-copy="https://vincentinferido-a11y.github.io/blog/case-study-marketplace-website-design/" class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">link</span><span>Copy link</span></button>
+<button type="button" data-native-share data-url="https://vincentinferido-a11y.github.io/blog/case-study-marketplace-website-design/" data-title="Case Study: BoyaxDev, a Marketplace Website Design for Buying Ready-Made Websites" hidden class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">ios_share</span><span>More</span></button>
+</div></div>
+<nav class="mt-space-lg grid grid-cols-1 sm:grid-cols-2 gap-space-sm" aria-label="More articles">
+<a href="/blog/best-website-builder-for-small-business/" class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container"><span class="font-label-sm text-label-sm text-outline">← Previous</span><span class="block font-body-sm text-body-sm text-on-surface">Best Website Builders for Small Businesses in 2026: Wix vs Squarespace vs Shopify vs WordPress.com vs Webflow</span></a>
+
+</nav>
+</article>
+<aside class="hidden lg:block lg:col-span-4">
+<div class="sticky top-24 flex flex-col gap-space-md">
+<nav class="p-space-md rounded-xl bg-surface-container-low" aria-label="On this page"><p class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-space-sm">On this page</p><ol class="flex flex-col gap-1.5 font-body-sm text-body-sm"><li><a class="text-on-surface-variant hover:text-primary" href="#the-problem-selling-something-people-cant-try-first">The problem: selling something people can&#39;t try first</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#who-its-for">Who it&#39;s for</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#marketplace-website-design-at-a-glance">Marketplace website design at a glance</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#key-features">Key features</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#decisions-and-trade-offs-in-plain-english">Decisions and trade-offs, in plain English</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#what-was-hard">What was hard</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#lessons-you-can-apply-to-your-own-marketplace-or-listings-site">Lessons you can apply to your own marketplace or listings site</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#whats-next">What&#39;s next</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#faq">FAQ</a></li><li><a class="text-on-surface-variant hover:text-primary" href="#sources">Sources</a></li></ol></nav>
+<div class="p-space-md rounded-xl bg-surface-container-low"><p class="font-label-sm text-label-sm text-outline uppercase tracking-wider pb-space-sm">Related</p><ul class="flex flex-col gap-space-sm"><li><a class="font-body-sm text-body-sm text-on-surface hover:text-primary" href="/blog/best-website-builder-for-small-business/">Best Website Builders for Small Businesses in 2026: Wix vs Squarespace vs Shopify vs WordPress.com vs Webflow</a></li><li><a class="font-body-sm text-body-sm text-on-surface hover:text-primary" href="/blog/best-crm-software-for-small-business/">Best CRM Software for Small Businesses in 2026: 6 Options Compared (With Real Prices)</a></li><li><a class="font-body-sm text-body-sm text-on-surface hover:text-primary" href="/blog/best-online-booking-software/">Best Online Booking Software for Small Businesses in 2026: 5 Tools Compared (With Real Prices)</a></li></ul></div>
+</div>
+</aside>
+</div>
+</div>
+<script>document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var t=b.dataset.copy,l=b.lastElementChild;function done(ok){l.textContent=ok?"Copied!":"Press Ctrl+C";setTimeout(function(){l.textContent="Copy link"},1800)}function legacy(){var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}a.remove();done(ok)}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){done(true)},legacy)}else{legacy()}})});if(navigator.share){document.querySelectorAll("[data-native-share]").forEach(function(b){b.hidden=false;b.addEventListener("click",function(){navigator.share({title:b.dataset.title,url:b.dataset.url}).catch(function(){})})})}</script>
+</main>
+<footer class="w-full bg-surface-container-lowest mt-space-xl py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop flex flex-col md:flex-row md:items-center justify-between gap-space-md font-label-sm text-label-sm text-outline">
+<div class="flex flex-col gap-1">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Vincent Inferido</span>
+<span>Full-Stack AI-First Developer &amp; UI/UX Designer · Building business systems, web apps and Web3 products.</span>
+</div>
+<div class="flex flex-wrap gap-space-md">
+<a class="hover:text-primary" href="/">Portfolio</a>
+<a class="hover:text-primary" href="/blog/">Blog</a>
+<a class="hover:text-primary" href="/for/agencies/">For agencies</a>
+<a class="hover:text-primary" href="/for/clinics-salons/">For clinics &amp; salons</a>
+<a class="hover:text-primary" href="/for/saas-web3/">For SaaS &amp; Web3</a>
+<a class="hover:text-primary" href="/blog/feed.xml">RSS</a>
+<a class="hover:text-primary" href="https://github.com/vincentinferido-a11y" target="_blank" rel="noreferrer">GitHub</a>
+<a class="hover:text-primary" href="https://www.linkedin.com/in/vincentci/" target="_blank" rel="noreferrer">LinkedIn</a>
+<a class="hover:text-primary" href="https://x.com/web3boyaxdev" target="_blank" rel="noreferrer">X</a>
+</div>
+</div>
+<p class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin-desktop pt-space-md font-label-sm text-label-sm text-outline">© 2026 Vincent Inferido. All rights reserved.</p>
+</footer>
+</body>
+</html>
