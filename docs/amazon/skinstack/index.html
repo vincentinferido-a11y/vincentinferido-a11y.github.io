@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SkinStack — Amazon Listing &amp; A+ Content | Vincent Inferido</title>
+<meta name="description" content="Spec project: a full 9-image Amazon listing set, A+ content and visual direction for SkinStack, a premium skincare concept brand."/>
+<link rel="canonical" href="https://vincentinferido-a11y.github.io/amazon/skinstack/"/>
+<meta property="og:title" content="SkinStack — Amazon Listing &amp; A+ Content"/>
+<meta property="og:description" content="Spec project: 9-image Amazon listing set, A+ content and visual direction for a premium skincare concept brand."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://vincentinferido-a11y.github.io/amazon/skinstack/"/>
+<meta property="og:image" content="https://vincentinferido-a11y.github.io/amazon/skinstack/img/02-hero.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="author" content="Vincent Inferido"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c9c42c0a-97aa-4979-b543-0b544e7167f4" data-domains="vincentinferido-a11y.github.io"></script>
+<style>
+  :root {
+    --bg: #f6f5f9; --surface: #ffffff; --ink: #1f2236; --muted: #5d6178;
+    --line: #e2e1ea; --accent: #5b5f97; --tag: #ecebf4;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 Inter, system-ui, sans-serif; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 14px; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--ink); }
+  h1, h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; letter-spacing: -0.01em; line-height: 1.1; }
+  h1 { font-size: clamp(40px, 7vw, 68px); margin: 8px 0 16px; }
+  h2 { font-size: clamp(30px, 4.5vw, 42px); margin: 0 0 8px; }
+  h3 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .lead { font-size: 18px; color: var(--muted); max-width: 680px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+  .tags li { background: var(--tag); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--ink); }
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  header { padding: 32px 0 56px; }
+  .intro { color: var(--muted); max-width: 680px; margin: 0 0 32px; }
+  .grid { display: grid; gap: 16px; }
+  .grid-row { display: grid; gap: 16px; align-items: start; } /* fr = image widths, so images in a row share one height */
+  figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  figure img { display: block; width: 100%; height: auto; }
+  figure a { display: block; }
+  figcaption { padding: 12px 14px 14px; font-size: 14px; color: var(--muted); }
+  figcaption b { color: var(--ink); font-weight: 600; }
+  .brief { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .aplus { display: grid; gap: 12px; }
+  .aplus-row { display: grid; gap: 12px; grid-template-columns: 659fr 461fr; } /* fr = image widths at a shared height */
+  .aplus-row.two { grid-template-columns: 456fr 691fr; }
+  ol.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(5, 1fr); counter-reset: s; }
+  ol.steps li { counter-increment: s; }
+  ol.steps li::before { content: counter(s); display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+  .cta { text-align: center; }
+  .btn { display: inline-block; background: var(--ink); color: #fff; text-decoration: none; padding: 12px 22px; border-radius: 999px; font-weight: 500; margin: 8px 4px 0; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  footer { padding: 32px 0 48px; font-size: 13px; color: var(--muted); text-align: center; }
+  @media (max-width: 860px) {
+    .brief { grid-template-columns: repeat(2, 1fr); }
+    .grid-row { grid-template-columns: 1fr 1fr !important; }
+    ol.steps { grid-template-columns: 1fr 1fr; }
+    .aplus-row, .aplus-row.two { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .brief, ol.steps { grid-template-columns: 1fr; }
+    .grid-row { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a href="/">← Vincent Inferido</a>
+    <a href="mailto:vincent.inferido@gmail.com">vincent.inferido@gmail.com</a>
+  </nav>
+
+  <header>
+    <div class="eyebrow">Amazon creative · Spec project</div>
+    <h1>SkinStack — Amazon listing &amp; A+ content</h1>
+    <p class="lead">A complete Amazon creative package for a premium skincare line: visual direction, a 9-image listing set for the hero SKU, and A+ content modules. SkinStack is a concept brand I created for this study, not a client.</p>
+    <ul class="tags">
+      <li>9-image listing set</li><li>A+ content</li><li>Mood board</li><li>Photoshop compositing</li><li>AI-assisted, manually retouched</li>
+    </ul>
+  </header>
+
+  <section>
+    <div class="eyebrow">01 · Brief</div>
+    <h2>Product &amp; positioning</h2>
+    <p class="intro">Starting point: one product and a short positioning statement, the same input an agency hands over.</p>
+    <div class="brief">
+      <div class="card"><h3>Product</h3><p>Hyaluronic Acid Serum, 30 mL, the hero SKU in a four-serum line (Hyaluronic, Vitamin C, Niacinamide, Retinol).</p></div>
+      <div class="card"><h3>Audience</h3><p>Shoppers who compare ingredients and want clinical results with a premium, calm feel.</p></div>
+      <div class="card"><h3>Positioning</h3><p>Science-backed, clean and quietly luxurious. No loud claims, no clutter.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">02 · Visual direction</div>
+    <h2>Mood board</h2>
+    <p class="intro">Lavender-gray light, ivory silk and pale stone give the line a soft, editorial luxury feel. Each serum has its own glass color (clear, amber, frosted, violet) so the range reads as a system at thumbnail size.</p>
+    <figure>
+      <a href="img/moodboard.jpg"><img src="img/moodboard.jpg" alt="SkinStack mood board: four serum bottles on silk and stone in lavender-gray light" loading="lazy" width="1536" height="1024"/></a>
+    </figure>
+  </section>
+
+  <section>
+    <div class="eyebrow">03 · Listing images</div>
+    <h2>The 9-image set</h2>
+    <p class="intro">Every image has one job in the shopper's decision. Click any image to view it full size.</p>
+    <div class="grid">
+      <div class="grid-row" style="grid-template-columns: 339fr 604fr 600fr;">
+      <figure><a href="img/01-main.jpg"><img src="img/01-main.jpg" alt="Main image: SkinStack serum bottle on pure white" loading="lazy"/></a><figcaption><b>1 · Main image.</b> Pure white, product only, compliant with Amazon's main-image rules.</figcaption></figure>
+      <figure><a href="img/02-hero.jpg"><img src="img/02-hero.jpg" alt="Hero image with three key benefits" loading="lazy"/></a><figcaption><b>2 · Hero benefits.</b> The three reasons to buy, readable on a phone.</figcaption></figure>
+      <figure><a href="img/03-ingredients.jpg"><img src="img/03-ingredients.jpg" alt="Key ingredients: hyaluronic acid and vitamin B5" loading="lazy"/></a><figcaption><b>3 · Key ingredients.</b> What's inside and why it works.</figcaption></figure>
+      </div>
+      <div class="grid-row" style="grid-template-columns: 526fr 545fr 617fr;">
+      <figure><a href="img/04-results.jpg"><img src="img/04-results.jpg" alt="What you'll notice at week 1, 2 and 4" loading="lazy"/></a><figcaption><b>4 · What you'll notice.</b> A week-by-week timeline in place of a before/after photo.</figcaption></figure>
+      <figure><a href="img/05-how-to-use.jpg"><img src="img/05-how-to-use.jpg" alt="How to use in three steps" loading="lazy"/></a><figcaption><b>5 · How to use.</b> Three steps that remove routine doubt.</figcaption></figure>
+      <figure><a href="img/06-texture.jpg"><img src="img/06-texture.jpg" alt="Serum texture close-up from dropper" loading="lazy"/></a><figcaption><b>6 · Texture.</b> Shows the lightweight feel shoppers can't touch online.</figcaption></figure>
+      </div>
+      <div class="grid-row" style="grid-template-columns: 497fr 643fr 543fr;">
+      <figure><a href="img/07-size.jpg"><img src="img/07-size.jpg" alt="Bottle size and dimensions in hand" loading="lazy"/></a><figcaption><b>7 · Size.</b> Hand scale plus dimensions, which cuts "smaller than expected" returns.</figcaption></figure>
+      <figure><a href="img/08-comparison.jpg"><img src="img/08-comparison.jpg" alt="SkinStack routine: cleanser, serum, moisturizer and SPF" loading="lazy"/></a><figcaption><b>8 · Routine.</b> Where the serum fits in a full routine, which supports cross-sells.</figcaption></figure>
+      <figure><a href="img/09-lifestyle.jpg"><img src="img/09-lifestyle.jpg" alt="Lifestyle image on stone with silk and leaves" loading="lazy"/></a><figcaption><b>9 · Lifestyle.</b> The brand mood, carried over from the visual direction.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">04 · A+ content</div>
+    <h2>A+ modules</h2>
+    <p class="intro">Brand story, philosophy and ingredients, so the product page reads like the brand's own site.</p>
+    <div class="aplus">
+      <div class="aplus-row">
+        <figure><a href="img/aplus-1-brand.jpg"><img src="img/aplus-1-brand.jpg" alt="A+ brand header module" loading="lazy"/></a></figure>
+        <figure><a href="img/aplus-2-philosophy.jpg"><img src="img/aplus-2-philosophy.jpg" alt="A+ brand philosophy module" loading="lazy"/></a></figure>
+      </div>
+      <div class="aplus-row two">
+        <figure><a href="img/aplus-3-ingredients.jpg"><img src="img/aplus-3-ingredients.jpg" alt="A+ key ingredients module" loading="lazy"/></a></figure>
+        <figure><a href="img/aplus-5-closer.jpg"><img src="img/aplus-5-closer.jpg" alt="A+ closing brand module" loading="lazy"/></a></figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">05 · Process</div>
+    <h2>AI in the workflow, finished by hand</h2>
+    <p class="intro">AI speeds up scene creation. Photoshop makes the result believable. The final images are checked at 100% zoom for the usual AI tells: soft edges, garbled text, mismatched light and plastic textures.</p>
+    <!-- TODO: add a before/after strip here (base bottle → AI scene → composite → final) -->
+    <ol class="steps">
+      <li class="card"><h3>Direction</h3><p>Mood board, palette and lighting rules before any image is made.</p></li>
+      <li class="card"><h3>Scene generation</h3><p>AI backgrounds and props, generated against the mood board.</p></li>
+      <li class="card"><h3>Product &amp; label</h3><p>One master bottle, with label art applied as a smart object so the text stays sharp.</p></li>
+      <li class="card"><h3>Composite</h3><p>Matched light direction, contact shadows, glass reflections and refraction.</p></li>
+      <li class="card"><h3>Retouch &amp; QA</h3><p>Edge cleanup, texture fixes, and a check of every image at full size.</p></li>
+    </ol>
+  </section>
+
+  <section class="cta">
+    <h2>Need Amazon creative for a premium brand?</h2>
+    <p class="lead" style="margin: 0 auto 8px;">Listing sets, A+ content, Brand Store assets and visual direction.</p>
+    <a class="btn" href="mailto:vincent.inferido@gmail.com?subject=Amazon%20creative">Email me</a>
+    <a class="btn ghost" href="https://wa.me/639566380044">WhatsApp</a>
+  </section>
+</div>
+<footer>SkinStack is a concept brand created for this spec project. © Vincent Inferido</footer>
+</body>
+</html>
